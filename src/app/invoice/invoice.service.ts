@@ -82,7 +82,7 @@ import { Invoice } from './invoice.model';
   providedIn: 'root'
 })
 export class InvoiceService {
-  private baseUrl = 'http://localhost:8081/invoices'; // Your API base URL
+  private baseUrl = 'http://localhost:8080/invoices'; // Your API base URL
 
   constructor(private http: HttpClient) { }
 
