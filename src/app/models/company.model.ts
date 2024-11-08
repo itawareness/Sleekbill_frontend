@@ -1,0 +1,32 @@
+export interface Company {
+  logo: File| null;
+  companyName: string;
+  currency: string;
+  country: string;
+  state: string;
+  city: string;
+  address: string;
+  email: string;
+  phone: string;
+  gstin: string;
+  contactName: string;
+  pinCode: string;
+  website: string;
+  taxationType: string;
+  serviceTaxNo: string;
+  bankName: string;
+  branchName: string;
+  adCode: string;
+  upiId: string;
+  accountNumber: string;
+  ifscCode: string;
+  swiftCode: string;
+  accountHolderName: string;
+  tinNo: string;
+  lst: string;
+  pan: string;
+  fassaiNo: string;
+  dlNo: string;
+  cst: string;
+  tan: string;
+}

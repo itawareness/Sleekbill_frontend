@@ -1,0 +1,179 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="text-center">Add Client</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+        <div class="row">
+          <!-- Company Name -->
+          <div class="col-md-6 mb-3">
+            <label for="companyName">Company Name:</label>
+            <input
+              type="text"
+              id="companyName"
+              formControlName="companyName"
+              class="form-control"
+              [ngClass]="{'is-invalid': clientForm.get('companyName')?.touched && clientForm.get('companyName')?.invalid}"
+              required
+            />
+            <div *ngIf="clientForm.get('companyName')?.touched && clientForm.get('companyName')?.errors" class="text-danger">
+              <ng-container *ngIf="clientForm.get('companyName')?.errors?.['required']">Company name is required.</ng-container>
+              <ng-container *ngIf="clientForm.get('companyName')?.errors?.['pattern']">Only alphabets, spaces, and hyphens are allowed.</ng-container>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="col-md-6 mb-3">
+            <label for="phone">Phone:</label>
+            <input
+              type="text"
+              id="phone"
+              formControlName="phone"
+              class="form-control"
+              [ngClass]="{'is-invalid': clientForm.get('phone')?.touched && clientForm.get('phone')?.invalid}"
+              required
+            />
+            <div *ngIf="clientForm.get('phone')?.touched && clientForm.get('phone')?.errors" class="text-danger">
+              <ng-container *ngIf="clientForm.get('phone')?.errors?.['required']">Phone number is required.</ng-container>
+              <ng-container *ngIf="clientForm.get('phone')?.errors?.['pattern']">Phone number must be exactly 10 digits.</ng-container>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-6 mb-3">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              [ngClass]="{'is-invalid': clientForm.get('email')?.touched && clientForm.get('email')?.invalid}"
+              required
+            />
+            <div *ngIf="clientForm.get('email')?.touched && clientForm.get('email')?.errors" class="text-danger">
+              <ng-container *ngIf="clientForm.get('email')?.errors?.['required']">Email is required.</ng-container>
+              <ng-container *ngIf="clientForm.get('email')?.errors?.['pattern']">Invalid email format.</ng-container>
+            </div>
+          </div>
+
+          <!-- GST Treatment -->
+          <div class="col-md-6 mb-3">
+            <label for="gstTreatment">GST Treatment:</label>
+            <input
+              type="text"
+              id="gstTreatment"
+              formControlName="gstTreatment"
+              class="form-control"
+            />
+          </div>
+
+          <!-- GSTIN -->
+          <div class="col-md-6 mb-3">
+            <label for="gstin">GSTIN:</label>
+            <input
+              type="text"
+              id="gstin"
+              formControlName="gstin"
+              class="form-control"
+              [ngClass]="{'is-invalid': clientForm.get('gstin')?.touched && clientForm.get('gstin')?.invalid}"
+              required
+            />
+            <div *ngIf="clientForm.get('gstin')?.touched && clientForm.get('gstin')?.errors" class="text-danger">
+              <ng-container *ngIf="clientForm.get('gstin')?.errors?.['required']">GSTIN is required.</ng-container>
+              <ng-container *ngIf="clientForm.get('gstin')?.errors?.['pattern']">GSTIN format be like- 27ABCDE1234F2Z5</ng-container>
+            </div>
+          </div>
+
+          <!-- PAN -->
+          <div class="col-md-6 mb-3">
+            <label for="pan">PAN:</label>
+            <input
+              type="text"
+              id="pan"
+              formControlName="pan"
+              class="form-control"
+              [ngClass]="{'is-invalid': clientForm.get('pan')?.touched && clientForm.get('pan')?.invalid}"
+              required
+            />
+            <div *ngIf="clientForm.get('pan')?.touched && clientForm.get('pan')?.errors" class="text-danger">
+              <ng-container *ngIf="clientForm.get('pan')?.errors?.['required']">PAN is required.</ng-container>
+              <ng-container *ngIf="clientForm.get('pan')?.errors?.['pattern']">PAN format be like ABCDE1234F</ng-container>
+            </div>
+          </div>
+
+          <!-- TIN -->
+          <div class="col-md-6 mb-3">
+            <label for="tin">TIN:</label>
+            <input
+              type="text"
+              id="tin"
+              formControlName="tin"
+              class="form-control"
+              [ngClass]="{'is-invalid': clientForm.get('tin')?.touched && clientForm.get('tin')?.invalid}"
+              required
+            />
+            <div *ngIf="clientForm.get('tin')?.touched && clientForm.get('tin')?.errors" class="text-danger">
+              <ng-container *ngIf="clientForm.get('tin')?.errors?.['required']">TIN is required.</ng-container>
+              <ng-container *ngIf="clientForm.get('tin')?.errors?.['pattern']">TIN must be exactly 11 digits.</ng-container>
+            </div>
+          </div>
+
+          <!-- VAT -->
+          <div class="col-md-6 mb-3">
+            <label for="vat">VAT:</label>
+            <input
+              type="text"
+              id="vat"
+              formControlName="vat"
+              class="form-control"
+              [ngClass]="{'is-invalid': clientForm.get('vat')?.touched && clientForm.get('vat')?.invalid}"
+              required
+            />
+            <div *ngIf="clientForm.get('vat')?.touched && clientForm.get('vat')?.errors" class="text-danger">
+              <ng-container *ngIf="clientForm.get('vat')?.errors?.['required']">VAT is required.</ng-container>
+              <ng-container *ngIf="clientForm.get('vat')?.errors?.['pattern']">VAT format be like 27-1234567890-VAT</ng-container>
+            </div>
+          </div>
+
+          <!-- Website -->
+          <div class="col-md-6 mb-3">
+            <label for="website">Website:</label>
+            <input
+              type="text"
+              id="website"
+              formControlName="website"
+              class="form-control"
+              [ngClass]="{'is-invalid': clientForm.get('website')?.touched && clientForm.get('website')?.invalid}"
+              required
+            />
+            <div *ngIf="clientForm.get('website')?.touched && clientForm.get('website')?.errors" class="text-danger">
+              <ng-container *ngIf="clientForm.get('website')?.errors?.['required']">Website is required.</ng-container>
+              <ng-container *ngIf="clientForm.get('website')?.errors?.['pattern']">   Website format be like www.example.com</ng-container>
+           
+            </div>
+          </div>
+
+          <!-- Use as Vendor Checkbox -->
+          <div class="col-md-6 mb-3 d-flex align-items-center">
+            <input
+              type="checkbox"
+              id="useAsVendor"
+              formControlName="useAsVendor"
+              class="form-check-input"
+            />
+            <label for="useAsVendor" class="form-check-label ml-2">
+              Use as Vendor
+            </label>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success btn-lg">
+            <i class="fa-solid fa-check"></i>
+            Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

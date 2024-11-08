@@ -1,0 +1,575 @@
+   <div class="container mt-4">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h2 class="text-center">Profile</h2>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="companyForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+          <div class="row">
+          <!-- Logo Upload -->
+          <!-- <div class="col-md-12 mb-3">
+            <label for="logo">Your Logo:</label>
+            <input type="file" (change)="onFileChange($event)" required class="form-control" />
+          </div> -->
+          <!-- <div class="col-md-6 mb-3">
+            <label for="logo">Your Logo :</label>
+            <div 
+                class="logo-upload" 
+                (dragover)="onDragOver($event)" 
+                (dragleave)="onDragLeave($event)" 
+                (drop)="onDrop($event)" 
+                (click)="fileInput.click()"
+                [class.drag-over]="isDragOver">
+                <input 
+                    type="file" 
+                    (change)="onFileChange($event)" 
+                    required 
+                    class="form-control" 
+                    accept="image/*" 
+                    #fileInput 
+                    style="display: none;" />
+                
+                <img *ngIf="logoUrl" [src]="logoUrl" alt="Logo Preview" class="logo-preview" />
+                <p *ngIf="!logoUrl">Drag and drop your logo here or click to select</p>
+                <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+            </div>
+        </div> -->
+
+        <div class="col-md-6 mb-3">
+          <label for="logo">Your Logo :</label>
+          <div 
+              class="logo-upload text-center" 
+              [class.has-logo]="logoUrl"  
+              (dragover)="onDragOver($event)" 
+              (dragleave)="onDragLeave($event)" 
+              (drop)="onDrop($event)" 
+              (click)="fileInput.click()"
+              [class.drag-over]="isDragOver">
+              
+              <input 
+                  type="file" 
+                  (change)="onFileChange($event)" 
+                  required 
+                  class="form-control" 
+                  accept="image/*" 
+                  #fileInput 
+                  style="display: none;" 
+              />
+      
+              <!-- FontAwesome icon and placeholder text -->
+              <ng-container *ngIf="!logoUrl">
+                <i class="fa-solid fa-upload fa-2x mb-2"></i>
+                 
+                  <p>Drag and drop your logo here or click to select</p>
+              </ng-container>
+      
+              <!-- Logo preview -->
+              <img *ngIf="logoUrl" [src]="logoUrl" alt="Logo Preview" class="logo-preview" />
+              
+              <!-- Error message -->
+              <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+          </div>
+      </div>
+      
+
+
+
+      
+        
+        <div class="col-md-6 mb-3">
+            <p>This logo will appear on the documents (invoices, quotes, etc.)</p>
+            <p>Preferred image size: 240px x 240px, &#64;72 DPI.</p>
+            <button *ngIf="logoUrl" (click)="removeLogo(fileInput)" class="btn-delete mt-2"> 
+              <i class="fa-regular fa-trash-can fa-2x"></i>
+          </button>
+          
+          
+        </div>      
+          <!-- Company Name -->
+          <div class="col-md-6 mb-3">
+            <label for="companyName">Company Name:</label>
+            <input
+              type="text"
+              id="companyName"
+              formControlName="companyName"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('companyName')?.touched && companyForm.get('companyName')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('companyName')?.touched && companyForm.get('companyName')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('companyName')?.errors?.['required']">Company name is required.</ng-container>
+              <ng-container *ngIf="companyForm.get('companyName')?.errors?.['pattern']">Only alphabets, spaces, and hyphens are allowed.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Default Currency -->
+          <div class=" col-md-6 mb-3">
+            <label for="currency">Default Currency:</label>
+            <input
+              type="text"
+              id="currency"
+              formControlName="currency"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('currency')?.touched && companyForm.get('currency')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('currency')?.touched && companyForm.get('currency')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('currency')?.errors?.['required']">Currency is required.</ng-container>
+             
+            </div>
+          </div>
+  
+          <!-- Country -->
+          <div class=" col-md-6 mb-3">
+            <label for="country">Country:</label>
+            <input
+              type="text"
+              id="country"
+              formControlName="country"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('country')?.touched && companyForm.get('country')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('country')?.touched && companyForm.get('country')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('country')?.errors?.['required']">Country is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- State -->
+          <div class=" col-md-6 mb-3">
+            <label for="state">State:</label>
+            <input
+              type="text"
+              id="state"
+              formControlName="state"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('state')?.touched && companyForm.get('state')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('state')?.touched && companyForm.get('state')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('state')?.errors?.['required']">State is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- City -->
+          <div class="col-md-6 mb-3">
+            <label for="city">City:</label>
+            <input
+              type="text"
+              id="city"
+              formControlName="city"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('city')?.touched && companyForm.get('city')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('city')?.touched && companyForm.get('city')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('city')?.errors?.['required']">City is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Address -->
+          <div class="col-md-6 mb-3">
+            <label for="address">Address:</label>
+            <textarea
+              id="address"
+              formControlName="address"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('address')?.touched && companyForm.get('address')?.invalid}"
+              required
+            ></textarea>
+            <div *ngIf="companyForm.get('address')?.touched && companyForm.get('address')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('address')?.errors?.['required']">Address is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Email -->
+          <div class="col-md-6 mb-3">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('email')?.touched && companyForm.get('email')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('email')?.touched && companyForm.get('email')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('email')?.errors?.['required']">Email is required.</ng-container>
+              <ng-container *ngIf="companyForm.get('email')?.errors?.['pattern']">Invalid email format.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Phone -->
+          <div class="col-md-6 mb-3">
+            <label for="phone">Phone:</label>
+            <input
+              type="text"
+              id="phone"
+              formControlName="phone"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('phone')?.touched && companyForm.get('phone')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('phone')?.touched && companyForm.get('phone')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('phone')?.errors?.['required']">Phone number is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- GSTIN -->
+          <div class="col-md-6 mb-3">
+            <label for="gstin">GSTIN:</label>
+            <input
+              type="text"
+              id="gstin"
+              formControlName="gstin"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('gstin')?.touched && companyForm.get('gstin')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('gstin')?.touched && companyForm.get('gstin')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('gstin')?.errors?.['required']">GSTIN is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Contact Name -->
+          <div class="col-md-6 mb-3">
+            <label for="contactName">Contact Name:</label>
+            <input
+              type="text"
+              id="contactName"
+              formControlName="contactName"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('contactName')?.touched && companyForm.get('contactName')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('contactName')?.touched && companyForm.get('contactName')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('contactName')?.errors?.['required']">Contact name is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Pin Code -->
+          <div class="col-md-6 mb-3">
+            <label for="pinCode">Pin Code:</label>
+            <input
+              type="text"
+              id="pinCode"
+              formControlName="pinCode"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('pinCode')?.touched && companyForm.get('pinCode')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('pinCode')?.touched && companyForm.get('pinCode')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('pinCode')?.errors?.['required']">Pin code is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Website -->
+          <div class="col-md-6 mb-3">
+            <label for="website">Website:</label>
+            <input
+              type="text"
+              id="website"
+              formControlName="website"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('website')?.touched && companyForm.get('website')?.invalid}"
+            />
+            <div *ngIf="companyForm.get('website')?.touched && companyForm.get('website')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('website')?.errors?.['pattern']">Invalid website format.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Taxation Type -->
+          <div class="col-md-6 mb-3">
+            <label for="taxationType">Taxation Type:</label>
+            <select
+              id="taxationType"
+              formControlName="taxationType"
+              class="form-control"
+              required
+            >
+              <option value="" disabled>Select Taxation Type</option>
+              <option value="GST">GST</option>
+              <option value="Non-GST">Non-GST</option>
+              <option value="Composition Scheme">Composition Scheme</option>
+            </select>
+            <div *ngIf="companyForm.get('taxationType')?.touched && companyForm.get('taxationType')?.invalid" class="text-danger">
+              <ng-container *ngIf="companyForm.get('taxationType')?.errors?.['required']">Taxation type is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Service Tax No -->
+          <div class="col-md-6 mb-3">
+            <label for="serviceTaxNo">Service Tax No:</label>
+            <input
+              type="text"
+              id="serviceTaxNo"
+              formControlName="serviceTaxNo"
+              class="form-control"
+              [ngClass]="{'is-invalid': companyForm.get('serviceTaxNo')?.touched && companyForm.get('serviceTaxNo')?.invalid}"
+              required
+            />
+            <div *ngIf="companyForm.get('serviceTaxNo')?.touched && companyForm.get('serviceTaxNo')?.errors" class="text-danger">
+              <ng-container *ngIf="companyForm.get('serviceTaxNo')?.errors?.['required']">Service Tax No is required.</ng-container>
+            </div>
+          </div>
+  
+          <!-- Bank Details -->
+          <div class="col-md-12 mb-3">
+          <h3>Bank Details</h3>
+         </div>
+            <div class="col-md-6 mb-3">
+              <label for="bankName">Bank Name:</label>
+              <input
+                type="text"
+                id="bankName"
+                formControlName="bankName"
+                class="form-control"
+                [ngClass]="{'is-invalid': companyForm.get('bankDetails.bankName')?.touched && companyForm.get('bankDetails.bankName')?.invalid}"
+                required
+              />
+              <div *ngIf="companyForm.get('bankDetails.bankName')?.touched && companyForm.get('bankDetails.bankName')?.errors" class="text-danger">
+                <ng-container *ngIf="companyForm.get('bankDetails.bankName')?.errors?.['required']">Bank name is required.</ng-container>
+              </div>
+            </div>
+  
+            <div class="col-md-6 mb-3">
+              <label for="branchName">Branch Name:</label>
+              <input
+                type="text"
+                id="branchName"
+                formControlName="branchName"
+                class="form-control"
+                [ngClass]="{'is-invalid': companyForm.get('bankDetails.branchName')?.touched && companyForm.get('bankDetails.branchName')?.invalid}"
+                required
+              />
+              <div *ngIf="companyForm.get('bankDetails.branchName')?.touched && companyForm.get('bankDetails.branchName')?.errors" class="text-danger">
+                <ng-container *ngIf="companyForm.get('bankDetails.branchName')?.errors?.['required']">Branch name is required.</ng-container>
+              </div>
+            </div>
+  
+            <div class="col-md-6 mb-3">
+              <label for="adCode">AD Code:</label>
+              <input
+                type="text"
+                id="adCode"
+                formControlName="adCode"
+                class="form-control"
+                [ngClass]="{'is-invalid': companyForm.get('bankDetails.adCode')?.touched && companyForm.get('bankDetails.adCode')?.invalid}"
+                required
+              />
+              <div *ngIf="companyForm.get('bankDetails.adCode')?.touched && companyForm.get('bankDetails.adCode')?.errors" class="text-danger">
+                <ng-container *ngIf="companyForm.get('bankDetails.adCode')?.errors?.['required']">AD Code is required.</ng-container>
+              </div>
+            </div>
+  
+            <div class="col-md-6 mb-3">
+              <label for="upiId">UPI ID:</label>
+              <input
+                type="text"
+                id="upiId"
+                formControlName="upiId"
+                class="form-control"
+                [ngClass]="{'is-invalid': companyForm.get('bankDetails.upiId')?.touched && companyForm.get('bankDetails.upiId')?.invalid}"
+                required
+              />
+              <div *ngIf="companyForm.get('bankDetails.upiId')?.touched && companyForm.get('bankDetails.upiId')?.errors" class="text-danger">
+                <ng-container *ngIf="companyForm.get('bankDetails.upiId')?.errors?.['required']">UPI ID is required.</ng-container>
+              </div>
+            </div>
+  
+            <div class="col-md-6 mb-3">
+              <label for=" ">Account Number:</label>
+              <input
+                type="text"
+                id="accountNumber"
+                formControlName="accountNumber"
+                class="form-control"
+                [ngClass]="{'is-invalid': companyForm.get('bankDetails.accountNumber')?.touched && companyForm.get('bankDetails.accountNumber')?.invalid}"
+                required
+              />
+              <div *ngIf="companyForm.get('bankDetails.accountNumber')?.touched && companyForm.get('bankDetails.accountNumber')?.errors" class="text-danger">
+                <ng-container *ngIf="companyForm.get('bankDetails.accountNumber')?.errors?.['required']">Account number is required.</ng-container>
+              </div>
+            </div>
+  
+            <div class="col-md-6 mb-3">
+              <label for="ifscCode">IFSC Code:</label>
+              <input
+                type="text"
+                id="ifscCode"
+                formControlName="ifscCode"
+                class="form-control"
+                [ngClass]="{'is-invalid': companyForm.get('bankDetails.ifscCode')?.touched && companyForm.get('bankDetails.ifscCode')?.invalid}"
+                required
+              />
+              <div *ngIf="companyForm.get('bankDetails.ifscCode')?.touched && companyForm.get('bankDetails.ifscCode')?.errors" class="text-danger">
+                <ng-container *ngIf="companyForm.get('bankDetails.ifscCode')?.errors?.['required']">IFSC code is required.</ng-container>
+              </div>
+            </div>
+  
+            <div class="col-md-6 mb-3">
+              <label for="swiftCode">SWIFT Code:</label>
+              <input
+                type="text"
+                id="swiftCode"
+                formControlName="swiftCode"
+                class="form-control"
+                [ngClass]="{'is-invalid': companyForm.get('bankDetails.swiftCode')?.touched && companyForm.get('bankDetails.swiftCode')?.invalid}"
+                required
+              />
+              <div *ngIf="companyForm.get('bankDetails.swiftCode')?.touched && companyForm.get('bankDetails.swiftCode')?.errors" class="text-danger">
+                <ng-container *ngIf="companyForm.get('bankDetails.swiftCode')?.errors?.['required']">SWIFT code is required.</ng-container>
+              </div>
+            </div>
+  
+            <div class="col-md-6 mb-3">
+              <label for="accountHolderName">Account Holder Name:</label>
+              <input
+                type="text"
+                id="accountHolderName"
+                formControlName="accountHolderName"
+                class="form-control"
+                [ngClass]="{'is-invalid': companyForm.get('bankDetails.accountHolderName')?.touched && companyForm.get('bankDetails.accountHolderName')?.invalid}"
+                required
+              />
+              <div *ngIf="companyForm.get('bankDetails.accountHolderName')?.touched && companyForm.get('bankDetails.accountHolderName')?.errors" class="text-danger">
+                <ng-container *ngIf="companyForm.get('bankDetails.accountHolderName')?.errors?.['required']">Account holder name is required.</ng-container>
+              </div>
+            </div>
+          </div>
+  <!-- Extra fieldss -->
+ <!-- Toggle Button for Extra Fields -->
+<!-- <div class="d-flex justify-content-start mb-3">
+  <button type="button" (click)="toggleExtraFields()" class="btn btn-secondary">
+    {{ showExtraFields ? 'Hide Extra Fields Options' : 'Show Extra Fields Options' }}
+  </button>
+</div> -->
+
+<div class="d-flex justify-content-start mb-3">
+  <button 
+    type="button" 
+    (click)="toggleExtraFields()" 
+    class="custom-button">
+    {{ showExtraFields ? 'Hide extra fields options' : 'Show extra fields options' }}
+  </button>
+</div>
+
+
+<!-- Extra Fields Section -->
+<div *ngIf="showExtraFields">
+  <div class="row">
+  <!-- TIN No Field -->
+  <div class="col-md-6 mb-3">
+    <label for="tinNo">TIN No:</label>
+    <input
+      type="text"
+      id="tinNo"
+      formControlName="tinNo"
+      class="form-control"
+      [ngClass]="{'is-invalid': companyForm.get('tinNo')?.touched && companyForm.get('tinNo')?.invalid}"
+    />
+    <div *ngIf="companyForm.get('tinNo')?.touched && companyForm.get('tinNo')?.errors" class="text-danger">
+      <ng-container *ngIf="companyForm.get('tinNo')?.errors?.['required']">TIN No is required.</ng-container>
+    </div>
+  </div>
+
+  <!-- LST Field -->
+  <div class="col-md-6 mb-3">
+    <label for="lst">LST:</label>
+    <input
+      type="text"
+      id="lst"
+      formControlName="lst"
+      class="form-control"
+      [ngClass]="{'is-invalid': companyForm.get('lst')?.touched && companyForm.get('lst')?.invalid}"
+    />
+    <div *ngIf="companyForm.get('lst')?.touched && companyForm.get('lst')?.errors" class="text-danger">
+      <ng-container *ngIf="companyForm.get('lst')?.errors?.['required']">LST is required.</ng-container>
+    </div>
+  </div>
+
+  <!-- PAN Field -->
+  <div class="col-md-6 mb-3">
+    <label for="pan">PAN:</label>
+    <input
+      type="text"
+      id="pan"
+      formControlName="pan"
+      class="form-control"
+      [ngClass]="{'is-invalid': companyForm.get('pan')?.touched && companyForm.get('pan')?.invalid}"
+    />
+    <div *ngIf="companyForm.get('pan')?.touched && companyForm.get('pan')?.errors" class="text-danger">
+      <ng-container *ngIf="companyForm.get('pan')?.errors?.['required']">PAN is required.</ng-container>
+    </div>
+  </div>
+
+  <!-- FSSAI No Field -->
+  <div class="col-md-6 mb-3">
+    <label for="fassaiNo">FSSAI No:</label>
+    <input
+      type="text"
+      id="fassaiNo"
+      formControlName="fassaiNo"
+      class="form-control"
+      [ngClass]="{'is-invalid': companyForm.get('fassaiNo')?.touched && companyForm.get('fassaiNo')?.invalid}"
+    />
+    <div *ngIf="companyForm.get('fassaiNo')?.touched && companyForm.get('fassaiNo')?.errors" class="text-danger">
+      <ng-container *ngIf="companyForm.get('fassaiNo')?.errors?.['required']">FSSAI No is required.</ng-container>
+    </div>
+  </div>
+
+  <!-- DL No Field -->
+  <div class="col-md-6 mb-3">
+    <label for="dlNo">DL No:</label>
+    <input
+      type="text"
+      id="dlNo"
+      formControlName="dlNo"
+      class="form-control"
+      [ngClass]="{'is-invalid': companyForm.get('dlNo')?.touched && companyForm.get('dlNo')?.invalid}"
+    />
+    <div *ngIf="companyForm.get('dlNo')?.touched && companyForm.get('dlNo')?.errors" class="text-danger">
+      <ng-container *ngIf="companyForm.get('dlNo')?.errors?.['required']">DL No is required.</ng-container>
+    </div>
+  </div>
+
+  <!-- CST Field -->
+  <div class="col-md-6 mb-3">
+    <label for="cst">CST:</label>
+    <input
+      type="text"
+      id="cst"
+      formControlName="cst"
+      class="form-control"
+      [ngClass]="{'is-invalid': companyForm.get('cst')?.touched && companyForm.get('cst')?.invalid}"
+    />
+    <div *ngIf="companyForm.get('cst')?.touched && companyForm.get('cst')?.errors" class="text-danger">
+      <ng-container *ngIf="companyForm.get('cst')?.errors?.['required']">CST is required.</ng-container>
+    </div>
+  </div>
+
+  <!-- TAN Field -->
+  <div class="col-md-6 mb-3">
+    <label for="tan">TAN:</label>
+    <input
+      type="text"
+      id="tan"
+      formControlName="tan"
+      class="form-control"
+      [ngClass]="{'is-invalid': companyForm.get('tan')?.touched && companyForm.get('tan')?.invalid}"
+    />
+    <div *ngIf="companyForm.get('tan')?.touched && companyForm.get('tan')?.errors" class="text-danger">
+      <ng-container *ngIf="companyForm.get('tan')?.errors?.['required']">TAN is required.</ng-container>
+    </div>
+  </div>
+</div>
+</div>
+        
+<div class="d-flex justify-content-start mb-3">
+  <button type="submit" class="btn btn-success btn-lg"><i class="fa-solid fa-check"></i>  Save</button>
+</div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

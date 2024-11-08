@@ -1,0 +1,19 @@
+.container {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  h4 {
+    color: #2b7a78;
+  }
+  
+  .btn {
+    background-color: #17252a;
+    color: white;
+    padding: 0.5rem 1rem;
+  }
+  

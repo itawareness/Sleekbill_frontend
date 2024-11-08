@@ -1,0 +1,381 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="text-center">Add Item</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="itemForm" (ngSubmit)="onAddItem()" class="needs-validation" novalidate>
+        <!-- Item Name -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="name">Item Name:</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('name')?.touched && itemForm.get('name')?.invalid
+              }"
+              required
+            />
+            <div
+              *ngIf="
+                itemForm.get('name')?.touched && itemForm.get('name')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container *ngIf="itemForm.get('name')?.errors?.['required']"
+                >Item name is required.</ng-container
+              >
+              <ng-container *ngIf="itemForm.get('name')?.errors?.['pattern']"
+                >Only alphabets, spaces, and hyphens are allowed.</ng-container
+              >
+            </div>
+          </div>
+
+          <!-- Currency -->
+          <div class="col-md-6 mb-3">
+            <label for="currency">Currency:</label>
+            <input
+            type="text"
+              id="currency"
+              formControlName="currency"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('currency')?.touched &&
+                  itemForm.get('currency')?.invalid
+              }"
+              required
+              (input)="onInputChange($event, 'currency')"
+            />
+            <div
+              *ngIf="
+                itemForm.get('currency')?.touched &&
+                itemForm.get('currency')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container
+                *ngIf="itemForm.get('currency')?.errors?.['required']"
+                >Item Currency is required.</ng-container
+              >
+              <ng-container
+                *ngIf="itemForm.get('currency')?.errors?.['pattern']"
+                >Currency should be in Upper aplhabets only</ng-container
+              >
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="col-md-6 mb-3">
+            <label for="description">Description:</label>
+            <textarea
+            type="text"
+              id="description"
+              formControlName="description"
+              class="form-control"
+            ></textarea>
+          </div>
+
+          <!-- Sales Unit Price -->
+          <div class="col-md-6 mb-3">
+            <label for="salesUnitPrice">Sales Unit Price:</label>
+            <input
+           
+              id="salesUnitPrice"
+              type="number"
+              formControlName="salesUnitPrice"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('salesUnitPrice')?.touched &&
+                  itemForm.get('salesUnitPrice')?.invalid
+              }"
+              required
+            />
+            <div
+              *ngIf="
+                itemForm.get('salesUnitPrice')?.touched &&
+                itemForm.get('salesUnitPrice')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container
+                *ngIf="itemForm.get('salesUnitPrice')?.errors?.['required']"
+              >
+                Unit price is required</ng-container
+              >
+              <ng-container
+                *ngIf="itemForm.get('salesUnitPrice')?.errors?.['pattern']"
+                >Invalid Unit Price.</ng-container
+              >
+            </div>
+          </div>
+
+          <!-- Sales Cess -->
+          <div class="col-md-6 mb-3">
+            <label for="salesCess">Sales Cess:</label>
+            <input
+           
+              id="salesCess"
+              type="number"
+              formControlName="salesCess"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('salesCess')?.touched &&
+                  itemForm.get('salesCess')?.invalid
+              }"
+              required
+            />
+            <div
+              *ngIf="
+                itemForm.get('salesCess')?.touched &&
+                itemForm.get('salesCess')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container
+                *ngIf="itemForm.get('salesCess')?.errors?.['required']"
+              >
+                Sales Cess is required</ng-container
+              >
+              <ng-container
+                *ngIf="itemForm.get('salesCess')?.errors?.['pattern']"
+                >Invalid Sales Cess</ng-container
+              >
+            </div>
+          </div>
+
+          <!-- Purchase Unit Price -->
+          <div class="col-md-6 mb-3">
+            <label for="purchaseUnitPrice">Purchase Unit Price:</label>
+            <input
+            
+              id="purchaseUnitPrice"
+              type="number"
+              formControlName="purchaseUnitPrice"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('purchaseUnitPrice')?.touched &&
+                  itemForm.get('purchaseUnitPrice')?.invalid
+              }"
+              required
+            />
+            <div
+              *ngIf="
+                itemForm.get('purchaseUnitPrice')?.touched &&
+                itemForm.get('purchaseUnitPrice')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container
+                *ngIf="itemForm.get('purchaseUnitPrice')?.errors?.['required']"
+              >
+                Purchase Unit Price is required!</ng-container
+              >
+              <ng-container
+                *ngIf="itemForm.get('purchaseUnitPrice')?.errors?.['pattern']"
+                >Invalid Purchase Unit Price</ng-container
+              >
+            </div>
+          </div>
+
+          <!-- Purchase Cess -->
+          <div class="col-md-6 mb-3">
+            <label for="purchaseCess">Purchase Cess:</label>
+            <input
+         
+              id="purchaseCess"
+              type="number"
+              formControlName="purchaseCess"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('purchaseCess')?.touched &&
+                  itemForm.get('purchaseCess')?.invalid
+              }"
+              required
+            />
+            <div
+              *ngIf="
+                itemForm.get('purchaseCess')?.touched &&
+                itemForm.get('purchaseCess')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container
+                *ngIf="itemForm.get('purchaseCess')?.errors?.['required']"
+              >
+                Purchase Cess is required!</ng-container
+              >
+              <ng-container
+                *ngIf="itemForm.get('purchaseCess')?.errors?.['pattern']"
+                >Invalid Purchase Cess</ng-container
+              >
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="quantity">Quantity:</label>
+            <input
+          
+              id="quantity"
+              type="number"
+              formControlName="quantity"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('quantity')?.touched &&
+                  itemForm.get('quantity')?.invalid
+              }"
+              required
+            />
+            <div
+              *ngIf="
+                itemForm.get('quantity')?.touched &&
+                itemForm.get('quantity')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container
+                *ngIf="itemForm.get('quantity')?.errors?.['required']"
+              >
+                Quantity is required!</ng-container
+              >
+              <ng-container
+                *ngIf="itemForm.get('quantity')?.errors?.['pattern']"
+                >Invalid Quantity Format</ng-container
+              >
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="unit">Unit:</label>
+            <input
+            type="text"
+              id="unit"
+              formControlName="unit"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('unit')?.touched && itemForm.get('unit')?.invalid
+              }"
+              required
+              
+            />
+            <div
+              *ngIf="
+                itemForm.get('unit')?.touched && itemForm.get('unit')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container *ngIf="itemForm.get('unit')?.errors?.['required']">
+                Unit is required!</ng-container
+              >
+              <ng-container *ngIf="itemForm.get('unit')?.errors?.['pattern']"
+                >Invalid Unit Format!</ng-container
+              >
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="tax">Tax:</label>
+            <input
+            type="text"
+              id="tax"
+              formControlName="tax"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('tax')?.touched && itemForm.get('tax')?.invalid
+              }"
+              required
+            />
+            <div
+              *ngIf="
+                itemForm.get('tax')?.touched && itemForm.get('tax')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container *ngIf="itemForm.get('tax')?.errors?.['required']">
+                Tax is required!</ng-container
+              >
+              <ng-container *ngIf="itemForm.get('tax')?.errors?.['pattern']"
+                >Invalid Tax Format!</ng-container
+              >
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="hsn">HSN:</label>
+            <input
+            type="text"
+              id="hsn"
+              formControlName="hsn"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('hsn')?.touched && itemForm.get('hsn')?.invalid
+              }"
+              required
+              (input)="onInputChange($event, 'hsn')"
+            />
+            <div
+              *ngIf="
+                itemForm.get('hsn')?.touched && itemForm.get('hsn')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container *ngIf="itemForm.get('hsn')?.errors?.['required']">
+                HSN is required!</ng-container
+              >
+              <ng-container *ngIf="itemForm.get('hsn')?.errors?.['pattern']"
+                >Enter 6 or 8 digits (Alphabets & Number)!</ng-container
+              >
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="sku">SKU:</label>
+            <input
+            type="text"
+              id="sku"
+              formControlName="sku"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  itemForm.get('sku')?.touched && itemForm.get('sku')?.invalid
+              }"
+              required
+              (input)="onInputChange($event, 'sku')"
+            />
+            <div
+              *ngIf="
+                itemForm.get('sku')?.touched && itemForm.get('sku')?.errors
+              "
+              class="text-danger"
+            >
+              <ng-container *ngIf="itemForm.get('sku')?.errors?.['required']">
+                SKU is required!</ng-container
+              >
+              <ng-container *ngIf="itemForm.get('sku')?.errors?.['pattern']"
+                >Enter (Alphabtes & Number) Between 6 & 12</ng-container
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success btn-lg">
+            <i class="fa-solid fa-check"></i>
+            Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

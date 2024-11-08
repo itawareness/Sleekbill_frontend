@@ -1,0 +1,37 @@
+<!-- src/app/features/client/client-list/client-list.component.html -->
+<div class="container">
+<h2 class="text-center">Client List</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Company Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>GST Treatment</th>
+      <th>GSTIN</th>
+      <th>PAN</th>
+      <th>TIN</th>
+      <th>VAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <td>{{ client.id }}</td>
+      <td>{{ client.companyName }}</td>
+      <td>{{ client.phone }}</td>
+      <td>{{ client.email }}</td>
+      <td>{{ client.gstTreatment }}</td>
+      <td>{{ client.gstin }}</td>
+      <td>{{ client.pan }}</td>
+      <td>{{ client.tin }}</td>
+      <td>{{ client.vat }}</td>
+      <!-- <td>
+         Add buttons for edit and delete actions 
+        <button (click)="editClient(client.id)">Edit</button>
+        <button (click)="deleteClient(client.id)">Delete</button>
+      </td> -->
+    </tr>
+  </tbody>
+</table>
+</div>

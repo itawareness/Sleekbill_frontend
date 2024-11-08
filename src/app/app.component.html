@@ -1,0 +1,93 @@
+<div class="container-fluid">
+  <h1 class="text-center"> <i class="fas fa-building"></i> Orage Invoice Management</h1>
+  <hr>
+  <div class="row justify-content-center mb-4">
+    <div class="col-auto">
+      <a routerLink="/clients/add" class="btn btn-success">
+        <i class="fas fa-user-plus"></i> Add Client
+      </a>
+    </div>
+    <div class="col-auto">
+      <a routerLink="/clients" class="btn">
+        <i class="fas fa-users"></i> Client List
+      </a>
+    </div>
+    <div class="col-auto">
+      <a routerLink="/vendors/add" class="btn">
+        <i class="fas fa-building"></i> Create Vendor
+      </a>
+    </div>
+    <div class="col-auto">
+      <a routerLink="/vendors" class="btn">
+        <i class="fas fa-clipboard-list"></i> Vendor List
+      </a>
+    </div>
+    <div class="col-auto">
+      <a routerLink="/add-invoice" class="btn">
+        <i class="fas fa-file-invoice"></i> Create Invoice
+      </a>
+    </div>
+    <div class="col-auto">
+      <a routerLink="/invoices-list" class="btn">
+        <i class="fas fa-file-invoice-dollar"></i> Invoice List
+      </a>
+    </div>
+    <div class="col-auto">
+      <a routerLink="/items/add" class="btn">
+        <i class="fas fa-box-open"></i> Create Items
+      </a>
+    </div>
+    <div class="col-auto">
+      <a routerLink="/items" class="btn">
+        <i class="fas fa-box"></i> Items List
+      </a>
+    </div>
+    <div class="col-auto">
+      <a routerLink="/purchase-orders/new" class="btn">
+        <i class="fas fa-shopping-cart"></i> Create Purchase Order
+      </a>
+    </div>
+    <div class="col-auto">
+      <a routerLink="/purchase-orders" class="btn">
+        <i class="fas fa-list"></i> Purchase Order List
+      </a>
+    </div>
+  
+
+
+
+
+
+    <div class="col-auto">
+      <a routerLink="/profile" class="btn icon-button">
+        <i class="fas fa-cog"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="row justify-content-center mb-4">
+
+    <div class="col-auto">
+      <a routerLink="/credit-note" class="btn">
+        <i class="fa-solid fa-note-sticky"></i> Credit Note
+      </a>
+    </div>
+
+    <div class="col-auto">
+      <a routerLink="/debit-note" class="btn">
+        <i class="fa-solid fa-note-sticky"></i> Debit Note
+      </a>
+    </div>
+
+  </div>
+
+
+
+
+  <hr />
+  <router-outlet></router-outlet>
+  <!-- app.component.html -->
+<app-dynamic-form></app-dynamic-form>
+
+</div>

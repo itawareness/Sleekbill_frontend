@@ -1,0 +1,336 @@
+<!-- <div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="text-center">Vendor Information</h2>
+    </div>
+    <div class="card-body">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="companyName">Company Name:</label>
+            <input
+              type="text"
+              id="companyName"
+              class="form-control"
+              name="companyName"
+              [(ngModel)]="vendor.companyName"
+              required
+              #companyName="ngModel"
+            />
+            <div *ngIf="companyName.invalid && companyName.touched" class="invalid-feedback">
+              Company name is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="phone">Phone:</label>
+            <input
+              type="text"
+              id="phone"
+              class="form-control"
+              name="phone"
+              [(ngModel)]="vendor.phone"
+              required
+              #phone="ngModel"
+            />
+            <div *ngIf="phone.invalid && phone.touched" class="invalid-feedback">
+              Phone number is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              name="email"
+              [(ngModel)]="vendor.email"
+              required
+              #email="ngModel"
+            />
+            <div *ngIf="email.invalid && email.touched" class="invalid-feedback">
+              Email is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="gstTreatment">GST Treatment:</label>
+            <input
+              type="text"
+              id="gstTreatment"
+              class="form-control"
+              name="gstTreatment"
+              [(ngModel)]="vendor.gstTreatment"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="gstin">GSTIN:</label>
+            <input
+              type="text"
+              id="gstin"
+              class="form-control"
+              name="gstin"
+              [(ngModel)]="vendor.gstin"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="pan">PAN:</label>
+            <input
+              type="text"
+              id="pan"
+              class="form-control"
+              name="pan"
+              [(ngModel)]="vendor.pan"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="vat">VAT:</label>
+            <input
+              type="text"
+              id="vat"
+              class="form-control"
+              name="vat"
+              [(ngModel)]="vendor.vat"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="website">Website:</label>
+            <input
+              type="url"
+              id="website"
+              class="form-control"
+              name="website"
+              [(ngModel)]="vendor.website"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="vendorCode">Vendor Code:</label>
+            <input
+              type="text"
+              id="vendorCode"
+              class="form-control"
+              name="vendorCode"
+              [(ngModel)]="vendor.vendorCode"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                id="useAsClient"
+                class="form-check-input"
+                name="useAsClient"
+                [(ngModel)]="vendor.useAsClient"
+              />
+              <label for="useAsClient" class="form-check-label">Use as Client</label>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                id="useForDispatch"
+                class="form-check-input"
+                name="useForDispatch"
+                [(ngModel)]="vendor.useForDispatch"
+              />
+              <label for="useForDispatch" class="form-check-label">Use for Dispatch</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="text-center">Vendor Information</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="vendorForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="companyName">Company Name:</label>
+            <input
+              type="text"
+              id="companyName"
+              formControlName="companyName"
+              class="form-control"
+              name="companyName"
+              [ngClass]="{'is-invalid': vendorForm.get('companyName')?.touched && vendorForm.get('companyName')?.invalid}"
+              required
+            
+            />
+            <div *ngIf="vendorForm.get('companyName')?.touched && vendorForm.get('companyName')?.errors" class="text-danger">
+              <ng-container *ngIf="vendorForm.get('companyName')?.errors?.['required']">Company name is required.</ng-container>
+              <ng-container *ngIf="vendorForm.get('companyName')?.errors?.['pattern']">Only alphabets, spaces, and hyphens are allowed.</ng-container>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="phone">Phone:</label>
+            <input
+              type="text"
+              id="phone"
+              formControlName="phone"
+              class="form-control"
+              name="phone"
+              [ngClass]="{'is-invalid': vendorForm.get('phone')?.touched && vendorForm.get('phone')?.invalid}"
+              required
+              
+            />
+            <div *ngIf="vendorForm.get('phone')?.touched && vendorForm.get('phone')?.errors" class="text-danger">
+              <ng-container *ngIf="vendorForm.get('phone')?.errors?.['required']">Phone number is required.</ng-container>
+              <ng-container *ngIf="vendorForm.get('phone')?.errors?.['pattern']">Phone number must be exactly 10 digits.</ng-container>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              name="email"
+              [ngClass]="{'is-invalid': vendorForm.get('email')?.touched && vendorForm.get('email')?.invalid}"
+              required
+             
+            />
+            <div *ngIf="vendorForm.get('email')?.touched && vendorForm.get('email')?.errors" class="text-danger">
+              <ng-container *ngIf="vendorForm.get('email')?.errors?.['required']">Email is required.</ng-container>
+              <ng-container *ngIf="vendorForm.get('email')?.errors?.['pattern']">Invalid email format.</ng-container>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="gstTreatment">GST Treatment:</label>
+            <input
+              type="text"
+              id="gstTreatment"
+              formControlName="gstTreatment"
+              class="form-control"
+              name="gstTreatment"
+          
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="gstin">GSTIN:</label>
+            <input
+              type="text"
+              id="gstin"
+              formControlName="gstin"
+              class="form-control"
+              name="gstin"
+              [ngClass]="{'is-invalid': vendorForm.get('gstin')?.touched && vendorForm.get('gstin')?.invalid}"
+              required
+              />
+              <div *ngIf="vendorForm.get('gstin')?.touched && vendorForm.get('gstin')?.errors" class="text-danger">
+                <ng-container *ngIf="vendorForm.get('gstin')?.errors?.['required']">GSTIN is required.</ng-container>
+                <ng-container *ngIf="vendorForm.get('gstin')?.errors?.['pattern']">GSTIN format be like- 27ABCDE1234F2Z5</ng-container>
+              </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="pan">PAN:</label>
+            <input
+              type="text"
+              id="pan"
+              formControlName="pan"
+              class="form-control"
+              name="pan"
+              [ngClass]="{'is-invalid': vendorForm.get('pan')?.touched && vendorForm.get('pan')?.invalid}"
+              required
+              />
+              <div *ngIf="vendorForm.get('pan')?.touched && vendorForm.get('pan')?.errors" class="text-danger">
+                <ng-container *ngIf="vendorForm.get('pan')?.errors?.['required']">PAN is required.</ng-container>
+                <ng-container *ngIf="vendorForm.get('pan')?.errors?.['pattern']">PAN format be like ABCDE1234F</ng-container>
+              </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="vat">VAT:</label>
+            <input
+              type="text"
+              id="vat"
+              formControlName="vat"
+              class="form-control"
+              name="vat"
+              [ngClass]="{'is-invalid': vendorForm.get('vat')?.touched && vendorForm.get('vat')?.invalid}"
+              required
+              />
+              <div *ngIf="vendorForm.get('vat')?.touched && vendorForm.get('vat')?.errors" class="text-danger">
+                <ng-container *ngIf="vendorForm.get('vat')?.errors?.['required']">VAT is required.</ng-container>
+                <ng-container *ngIf="vendorForm.get('vat')?.errors?.['pattern']">VAT format be like 27-1234567890-VAT</ng-container>
+              </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="website">Website:</label>
+            <input
+              type="url"
+              id="website"              
+              formControlName="website"
+              class="form-control"
+              name="website"
+              [ngClass]="{'is-invalid': vendorForm.get('website')?.touched && vendorForm.get('website')?.invalid}"
+            />
+            <div *ngIf="vendorForm.get('website')?.touched && vendorForm.get('website')?.errors" class="text-danger">
+           Website format be like www.example.com
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="vendorCode">Vendor Code:</label>
+            <input
+              type="text"
+              id="vendorCode"
+              formControlName="vendorCode"
+              class="form-control"
+              name="vendorCode"
+            
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                id="useAsClient"
+                formControlName="useAsClient"
+                class="form-check-input"
+                name="useAsClient"
+               
+              />
+              <label for="useAsClient" class="form-check-label">Use as Client</label>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                id="useForDispatch"
+                formControlName="useForDispatch"
+                class="form-check-input"
+                name="useForDispatch"
+                
+              />
+              <label for="useForDispatch" class="form-check-label">Use for Dispatch</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success btn-lg">
+            <i class="fa-solid fa-check"></i>
+            Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<!-- src/app/invoices-list/invoices-list.component.html -->
+<div class="container">
+<h2 class="text-center">Invoices List</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <th>Invoice Id</th>
+      <th>Client Name</th>
+      <th>Invoice No</th>
+      <th>Invoice Date</th>
+      <th>Invoice Due Date</th>
+       <th>Item Name</th>
+       <th>Item Quantity</th>
+       <th>Item Price</th>
+       <th>Item Discount</th>
+       <th>Total</th>
+       <th>Actions</th>
+        </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let invoice of invoices">
+      <td>{{ invoice.invoice_Id }}</td>
+      <td>{{ invoice.client_name }}</td>
+      <td>{{ invoice.invoice_No }}</td>
+      <td>{{ invoice.invoice_date }}</td>
+      <td>{{ invoice.invoice_due_date }}</td>
+      <td>{{ invoice.item_name }}</td>
+      <td>{{ invoice.item_quantity }}</td>
+      <td>{{ invoice.item_price }}</td>
+      <td>{{ invoice.item_discount }}</td>
+      <td>{{ invoice.total }}</td>     
+      <td>
+        <!-- <button (click)="editInvoice(invoice.invoice_Id)" class="btn btn-warning">Edit</button>
+        <button (click)="deleteInvoice(invoice.invoice_Id)" class="btn btn-danger">Delete</button> -->
+        <button (click)="editInvoice(invoice.invoice_Id!)" class="btn btn-warning">Edit</button> |
+        <button (click)="deleteInvoice(invoice.invoice_Id!)" class="btn btn-danger">Delete</button>
+
+      </td> 
+    </tr>
+  </tbody>
+</table>
+</div>

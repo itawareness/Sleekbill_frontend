@@ -1,0 +1,154 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Edit Invoice</h2>
+    <form (ngSubmit)="onUpdate()" #invoiceForm="ngForm"> <!-- Added template variable -->
+      <!-- Client Name and Invoice No -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="client_name" class="form-label">Client Name:</label>
+          <input [(ngModel)]="invoice.client_name" name="client_name" id="client_name" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label for="invoice_No" class="form-label">Invoice No:</label>
+          <input [(ngModel)]="invoice.invoice_No" name="invoice_No" id="invoice_No" type="number" class="form-control">
+        </div>
+      </div>
+  
+      <!-- Invoice Date and Due Date -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="invoice_date" class="form-label">Invoice Date:</label>
+          <input [(ngModel)]="invoice.invoice_date" name="invoice_date" id="invoice_date" type="date" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label for="invoice_due_date" class="form-label">Invoice Due Date:</label>
+          <input [(ngModel)]="invoice.invoice_due_date" name="invoice_due_date" id="invoice_due_date" type="date" class="form-control">
+        </div>
+      </div>
+  
+      <!-- Purchase No and Date -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="purchase_No" class="form-label">Purchase No:</label>
+          <input [(ngModel)]="invoice.purchase_No" name="purchase_No" id="purchase_No" type="number" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label for="purchase_date" class="form-label">Purchase Date:</label>
+          <input [(ngModel)]="invoice.purchase_date" name="purchase_date" id="purchase_date" type="date" class="form-control">
+        </div>
+      </div>
+  
+      <!-- Payment Terms and Tax Selection -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="payment_terms" class="form-label">Payment Terms:</label>
+          <input [(ngModel)]="invoice.payment_terms" name="payment_terms" id="payment_terms" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label for="tax_selection_on" class="form-label">Tax Selection On:</label>
+          <input [(ngModel)]="invoice.tax_selection_on" name="tax_selection_on" id="tax_selection_on" class="form-control">
+        </div>
+      </div>
+  
+      <!-- Export Type and Currency -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="export_type" class="form-label">Export Type:</label>
+          <input [(ngModel)]="invoice.export_type" name="export_type" id="export_type" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label for="export_currency" class="form-label">Export Currency:</label>
+          <input [(ngModel)]="invoice.export_currency" name="export_currency" id="export_currency" class="form-control">
+        </div>
+      </div>
+  
+      <!-- Country Supply and Place Supply -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="country_supply" class="form-label">Country Supply:</label>
+          <input [(ngModel)]="invoice.country_supply" name="country_supply" id="country_supply" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label for="place_supply" class="form-label">Place Supply:</label>
+          <input [(ngModel)]="invoice.place_supply" name="place_supply" id="place_supply" class="form-control">
+        </div>
+      </div>
+  
+      <!-- Excise Duty and Advance Payment -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="excise_duty" class="form-label">Excise Duty:</label>
+          <input [(ngModel)]="invoice.excise_duty" name="excise_duty" id="excise_duty" type="number" class="form-control" (input)="calculateTotal()">
+        </div>
+        <div class="col-md-6">
+          <label for="advance_payment" class="form-label">Advance Payment:</label>
+          <input [(ngModel)]="invoice.advance_payment" name="advance_payment" id="advance_payment" class="form-control">
+        </div>
+      </div>
+  
+      <!-- Item Name and Description -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="item_name" class="form-label">Item Name:</label>
+          <input [(ngModel)]="invoice.item_name" name="item_name" id="item_name" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label for="item_description" class="form-label">Item Description:</label>
+          <input [(ngModel)]="invoice.item_description" name="item_description" id="item_description" class="form-control">
+        </div>
+      </div>
+  
+      <!-- Item Unit, Quantity, Price, and Discount -->
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <label for="item_unit" class="form-label">Item Unit:</label>
+          <input [(ngModel)]="invoice.item_unit" name="item_unit" id="item_unit" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label for="item_quantity" class="form-label">Item Quantity:</label>
+          <input [(ngModel)]="invoice.item_quantity" name="item_quantity" id="item_quantity" type="number" class="form-control" (input)="calculateTotal()" required>
+        </div>
+        <div class="col-md-3">
+          <label for="item_price" class="form-label">Item Price:</label>
+          <input [(ngModel)]="invoice.item_price" name="item_price" id="item_price" type="number" class="form-control" (input)="calculateTotal()" required>
+        </div>
+        <div class="col-md-3">
+          <label for="item_discount" class="form-label">Item Discount (%):</label>
+          <input [(ngModel)]="invoice.item_discount" name="item_discount" id="item_discount" type="number" class="form-control" (input)="calculateTotal()">
+        </div>
+      </div>
+  
+      GST
+      <div class="row mb-3">
+        <!-- <div class="col-md-6">
+          <label for="tax_cgst_sgst_igst" class="form-label">Tax (CGST/SGST/IGST):</label>
+          <input [(ngModel)]="invoice.tax_cgst_sgst_igst" name="tax_cgst_sgst_igst" id="tax_cgst_sgst_igst" type="number" class="form-control" (input)="calculateTotal()">
+        </div> -->
+        <div class="col-md-6">
+            <label for="tax_cgst_sgst_igst" class="form-label">Tax (CGST/SGST/IGST):</label>
+            <select [(ngModel)]="invoice.tax_cgst_sgst_igst" name="tax_cgst_sgst_igst" id="tax_cgst_sgst_igst" class="form-control" (change)="calculateTotal()">
+              <option value="" disabled selected>Select GST</option>
+              <option value="5">5%</option>
+              <option value="12">12%</option>
+              <option value="18">18%</option>
+              <option value="28">28%</option>
+            </select>
+          </div>
+
+        <div class="col-md-6">
+          <label for="shipping_charges" class="form-label">Shipping Charges:</label>
+          <input [(ngModel)]="invoice.shipping_charges" name="shipping_charges" id="shipping_charges" type="number" class="form-control" (input)="calculateTotal()">
+        </div>
+      </div>
+  
+      <!-- Total -->
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <label for="total" class="form-label">Total:</label>
+          <input [(ngModel)]="invoice.total" name="total" id="total" type="number" class="form-control" readonly>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Update Invoice</button>
+    </form>
+  </div>
+  

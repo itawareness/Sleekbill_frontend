@@ -1,0 +1,140 @@
+<div class="container mt-5" >
+
+  <form [formGroup]="creditNoteForm" (ngSubmit)="onSubmit()" class="container mt-4 border border-secondary rounded p-4">
+    <h2>Credit Note Form</h2>
+    <hr>
+    <div class="row">      
+      <div class="col-md-6 mb-3">
+        <label for="clientName" class="form-label">Client Name</label>
+        <input id="clientName" type="text" class="form-control" formControlName="clientName" [ngClass]="{ 'is-invalid': creditNoteForm.get('clientName')?.invalid && creditNoteForm.get('clientName')?.touched }" />
+        <div *ngIf="creditNoteForm.get('clientName')?.invalid && creditNoteForm.get('clientName')?.touched" class="invalid-feedback">
+          Client name is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="number" class="form-label">Number</label>
+        <input id="number" type="text" class="form-control" formControlName="number" [ngClass]="{ 'is-invalid': creditNoteForm.get('number')?.invalid && creditNoteForm.get('number')?.touched }" />
+        <div *ngIf="creditNoteForm.get('number')?.invalid && creditNoteForm.get('number')?.touched" class="invalid-feedback">
+          Number is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Row: Date and Invoice Number -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input id="date" type="date" class="form-control" formControlName="date" [ngClass]="{ 'is-invalid': creditNoteForm.get('date')?.invalid && creditNoteForm.get('date')?.touched }" />
+        <div *ngIf="creditNoteForm.get('date')?.invalid && creditNoteForm.get('date')?.touched" class="invalid-feedback">
+          Date is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="invoiceNumber" class="form-label">Invoice Number</label>
+        <input id="invoiceNumber" type="text" class="form-control" formControlName="invoiceNumber" [ngClass]="{ 'is-invalid': creditNoteForm.get('invoiceNumber')?.invalid && creditNoteForm.get('invoiceNumber')?.touched }" />
+        <div *ngIf="creditNoteForm.get('invoiceNumber')?.invalid && creditNoteForm.get('invoiceNumber')?.touched" class="invalid-feedback">
+          Invoice number is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Third Row: Reason (spans the full row) -->
+    <div class="row">
+      <div class="col-12 mb-3">
+        <label for="reason" class="form-label">Reason</label>
+        <textarea id="reason" class="form-control" formControlName="reason" [ngClass]="{ 'is-invalid': creditNoteForm.get('reason')?.invalid && creditNoteForm.get('reason')?.touched }"></textarea>
+        <div *ngIf="creditNoteForm.get('reason')?.invalid && creditNoteForm.get('reason')?.touched" class="invalid-feedback">
+          Reason is required.
+        </div>
+      </div>
+    </div>
+
+    <h3>Items</h3>
+    <div formArrayName="items">
+      <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="mb-3">
+        <h4>Item {{i + 1}}</h4>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="itemName" class="form-label">Item Name:</label>
+            <input id="itemName" formControlName="itemName" class="form-control" />
+            <div *ngIf="item.get('itemName')?.invalid && item.get('itemName')?.touched" class="text-danger">
+              Item Name is required.
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="description" class="form-label">Description:</label>
+            <input id="description" formControlName="description" class="form-control" />
+          </div>
+
+          <div class="col-md-4">
+            <label for="unit" class="form-label">Unit:</label>
+            <input id="unit" formControlName="unit" class="form-control" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="hsnSac" class="form-label">HSN/SAC:</label>
+            <input id="hsnSac" type="number" formControlName="hsnSac" class="form-control" (input)="calculateTotal(i)" />
+            <div *ngIf="item.get('hsnSac')?.invalid && item.get('hsnSac')?.touched" class="text-danger">
+              hsnSac is required.
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="quantity" class="form-label">Quantity:</label>
+            <input id="quantity" type="number" formControlName="quantity" class="form-control" (input)="calculateTotal(i)" />
+            <div *ngIf="item.get('quantity')?.invalid && item.get('quantity')?.touched" class="text-danger">
+              Quantity is required.
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="price" class="form-label">Price:</label>
+            <input id="price" type="number" formControlName="price" class="form-control" (input)="calculateTotal(i)" />
+            <div *ngIf="item.get('price')?.invalid && item.get('price')?.touched" class="text-danger">
+              Price is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="discount" class="form-label">Discount(%):</label>
+            <input id="discount" type="number" formControlName="discount" class="form-control" (input)="calculateTotal(i)" />
+            <div *ngIf="item.get('discount')?.hasError('discountOutOfRange') && item.get('discount')?.touched" class="text-danger">
+              Discount must be between 0 and 100.
+            </div>
+          </div>
+
+
+          <div class="col-md-4">
+            <label for="total" class="form-label">Total:</label>
+            <input id="total" type="text" formControlName="total" class="form-control" readonly />
+          </div>
+        </div>
+
+        <!-- Conditional rendering for Remove button: Only show for second item onward -->
+        <button type="button" (click)="removeItem(i)" class="btn btn-danger" *ngIf="i > 0">
+          <i class="fa-solid fa-trash-can"></i>
+          Remove Item
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-3 d-flex justify-content-between align-items-center">
+      <button type="button" (click)="addItem()" class="btn btn-secondary">
+        <i class="fas fa-plus-square me-1"></i>
+        Add Item
+      </button>
+
+      <button type="submit" class="btn btn-success" [disabled]="creditNoteForm.invalid">
+        <i class="fa-solid fa-check"></i>
+        Save
+      </button>
+    </div>
+  </form>
+</div>

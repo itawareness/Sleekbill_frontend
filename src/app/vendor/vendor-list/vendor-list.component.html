@@ -1,0 +1,41 @@
+<div class="container">
+    <h2 class="text-center">Vendors List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Vendor Id</th>
+          <th>Company Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>GST Treatment</th>
+          <th>GSTIN</th>
+          <th>PAN</th>
+          <th>VAT</th>
+          <th>Vendor Code</th>
+          <th>Website</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vendor of vendors">
+          <td>{{ vendor.id }}</td>
+          <td>{{ vendor.companyName }}</td>
+          <td>{{ vendor.phone }}</td>
+          <td>{{ vendor.email }}</td>
+          <td>{{ vendor.gstTreatment }}</td>
+          <td>{{ vendor.gstin }}</td>
+          <td>{{ vendor.pan }}</td>
+          <td>{{ vendor.vat }}</td>
+          <td>{{ vendor.vendorCode }}</td>
+          <td>{{ vendor.website }}</td>
+          
+         
+
+          <!-- <td>
+             <button class="btn btn-info" (click)="editVendor(vendor.id)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteVendor(vendor.id)">Delete</button> 
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

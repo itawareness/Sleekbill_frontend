@@ -1,0 +1,58 @@
+.app-container {
+    text-align: center;
+    margin: 2rem;
+  }
+  
+  h1 {
+    color: #17252a;
+  }
+  
+  
+  /* Default style for all buttons */
+  .btn {
+    background-color: #1c1c1c !important;  /* Force the dark color */
+    color: white !important;
+    border: none !important;
+  }
+  
+  /* Keep the green color for the 'Add Client' button */
+  .btn-success {
+    background-color: #28a745 !important;  /* Force the green color */
+    color: white !important;
+  }
+  .icon-button {
+    background-color: transparent !important; /* Removes the background color */
+    border: none; /* Removes the border */
+    padding: 0; /* Removes any padding */
+    margin: 0; /* Removes margin */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    display: inline-flex; /* Allows proper alignment */
+    align-items: center; /* Centers icon vertically */
+    line-height: 1; /* Ensures no extra space around the icon */
+    margin-left: 80px;
+  }
+  
+  .icon-button i {
+    color: black; /* Sets the color of the icon to black */
+    font-size: 36px; /* Increase the size of the icon (adjust as needed) */
+  }
+  
+  .icon-button:hover i {
+    color: #007bff; /* Changes the icon color to blue on hover */
+  }
+  
+  .icon-button:focus {
+    outline: none; /* Removes the outline when focused */
+  }
+  .icon-button:focus {
+    outline: none; /* Removes the outline when focused */
+    box-shadow: none; /* Ensures no box shadow is applied */
+  }
+    
+  .btn:focus {
+    outline: none; /* Removes the outline when focused */
+    box-shadow: none; /* Ensures no box shadow is applied */
+  }
+  .btn:hover i {
+    color: #007bff; /* Changes the icon color to blue on hover */
+  }

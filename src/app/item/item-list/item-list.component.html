@@ -1,0 +1,32 @@
+<div class="container mt-4">
+    <h2 class="text-center">Item List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Item Id</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Sales Unit Price</th>
+          <th>Currency</th>
+          <th>Quantity</th>
+          <th>Unit</th>
+          <th>Tax</th>
+          <th>SKU</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.salesUnitPrice }}</td>
+          <td>{{ item.currency }}</td>
+          <td>{{ item.quantity }} </td>
+          <td>{{ item.unit }}</td>
+          <td>{{ item.tax }}</td>
+          <td>{{ item.sku }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

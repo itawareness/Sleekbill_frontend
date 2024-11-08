@@ -1,0 +1,387 @@
+
+<div class="container mt-5 border p-4">
+    <h2 class="text-center">Invoice Form</h2>
+    <hr>
+    <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+        <!-- Required Fields -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="client_name">Client Name <span class="text-danger">*</span></label>
+                    <input
+                        id="client_name"
+                        formControlName="client_name"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('client_name')?.invalid && invoiceForm.get('client_name')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('client_name')?.invalid && invoiceForm.get('client_name')?.touched" class="invalid-feedback">
+                        Client name is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="invoice_No">Invoice Number <span class="text-danger">*</span></label>
+                    <input
+                        id="invoice_No"
+                        formControlName="invoice_No"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('invoice_No')?.invalid && invoiceForm.get('invoice_No')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('invoice_No')?.invalid && invoiceForm.get('invoice_No')?.touched" class="invalid-feedback">
+                        Invoice number is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="invoice_date">Invoice Date <span class="text-danger">*</span></label>
+                    <input
+                        id="invoice_date"
+                        type="date"
+                        formControlName="invoice_date"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('invoice_date')?.invalid && invoiceForm.get('invoice_date')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('invoice_date')?.invalid && invoiceForm.get('invoice_date')?.touched" class="invalid-feedback">
+                        Invoice date is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="invoice_due_date">Invoice Due Date <span class="text-danger">*</span></label>
+                    <input
+                        id="invoice_due_date"
+                        type="date"
+                        formControlName="invoice_due_date"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('invoice_due_date')?.invalid && invoiceForm.get('invoice_due_date')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('invoice_due_date')?.invalid && invoiceForm.get('invoice_due_date')?.touched" class="invalid-feedback">
+                        Invoice due date is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="purchase_No">Purchase Number <span class="text-danger">*</span></label>
+                    <input
+                        id="purchase_No"
+                        formControlName="purchase_No"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('purchase_No')?.invalid && invoiceForm.get('purchase_No')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('purchase_No')?.invalid && invoiceForm.get('purchase_No')?.touched" class="invalid-feedback">
+                        Purchase number is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="purchase_date">Purchase Date <span class="text-danger">*</span></label>
+                    <input
+                        id="purchase_date"
+                        type="date"
+                        formControlName="purchase_date"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('purchase_date')?.invalid && invoiceForm.get('purchase_date')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('purchase_date')?.invalid && invoiceForm.get('purchase_date')?.touched" class="invalid-feedback">
+                        Purchase date is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="payment_terms">Payment Terms <span class="text-danger">*</span></label>
+                    <input
+                        id="payment_terms"
+                        formControlName="payment_terms"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('payment_terms')?.invalid && invoiceForm.get('payment_terms')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('payment_terms')?.invalid && invoiceForm.get('payment_terms')?.touched" class="invalid-feedback">
+                        Payment terms are required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="tax_selection_on">Tax Selection <span class="text-danger">*</span></label>
+                    <select
+                        id="tax_selection_on"
+                        formControlName="tax_selection_on"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('tax_selection_on')?.invalid && invoiceForm.get('tax_selection_on')?.touched}"
+                    >
+                        <option value="">Select Tax</option>
+                        <option value="CGST">CGST</option>
+                        <option value="SGST">SGST</option>
+                        <option value="IGST">IGST</option>
+                    </select>
+                    <div *ngIf="invoiceForm.get('tax_selection_on')?.invalid && invoiceForm.get('tax_selection_on')?.touched" class="invalid-feedback">
+                        Tax selection is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="export_type">Export Type <span class="text-danger">*</span></label>
+                    <input
+                        id="export_type"
+                        formControlName="export_type"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('export_type')?.invalid && invoiceForm.get('export_type')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('export_type')?.invalid && invoiceForm.get('export_type')?.touched" class="invalid-feedback">
+                        Export type is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="export_currency">Export Currency <span class="text-danger">*</span></label>
+                    <input
+                        id="export_currency"
+                        formControlName="export_currency"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('export_currency')?.invalid && invoiceForm.get('export_currency')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('export_currency')?.invalid && invoiceForm.get('export_currency')?.touched" class="invalid-feedback">
+                        Export currency is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="country_supply">Country Supply <span class="text-danger">*</span></label>
+                    <input
+                        id="country_supply"
+                        formControlName="country_supply"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('country_supply')?.invalid && invoiceForm.get('country_supply')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('country_supply')?.invalid && invoiceForm.get('country_supply')?.touched" class="invalid-feedback">
+                        Country supply is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="place_supply">Place Supply <span class="text-danger">*</span></label>
+                    <input
+                        id="place_supply"
+                        formControlName="place_supply"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('place_supply')?.invalid && invoiceForm.get('place_supply')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('place_supply')?.invalid && invoiceForm.get('place_supply')?.touched" class="invalid-feedback">
+                        Place supply is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="excise_duty">Excise Duty (%)</label>
+                    <input
+                        id="excise_duty"
+                        type="number"
+                        formControlName="excise_duty"
+                        class="form-control"
+                        (input)="calculateTotal()"
+                        [ngClass]="{'is-invalid': invoiceForm.get('excise_duty')?.invalid && invoiceForm.get('excise_duty')?.touched}"
+                    />
+                </div>
+            </div>
+            
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="advance_payment">Advance Payment</label>
+                    <input
+                        id="advance_payment"
+                        type="number"
+                        formControlName="advance_payment"
+                        class="form-control"
+                    />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="invoice_type">Invoice Type</label>
+                    <input
+                        id="invoice_type"
+                        formControlName="invoice_type"
+                        class="form-control"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="item_name">Item Name <span class="text-danger">*</span></label>
+                    <input
+                        id="item_name"
+                        formControlName="item_name"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': invoiceForm.get('item_name')?.invalid && invoiceForm.get('item_name')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('item_name')?.invalid && invoiceForm.get('item_name')?.touched" class="invalid-feedback">
+                        Item name is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="item_description">Item Description</label>
+                    <input
+                        id="item_description"
+                        formControlName="item_description"
+                        class="form-control"
+                    />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="hsn_sac">HSN/SAC</label>
+                    <input
+                        id="hsn_sac"
+                        formControlName="hsn_sac"
+                        class="form-control"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="item_unit">Item Unit</label>
+                    <input
+                        id="item_unit"
+                        formControlName="item_unit"
+                        class="form-control"
+                    />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="item_quantity">Item Quantity<span class="text-danger">*</span></label>
+                    <input
+                        id="item_quantity"
+                        type="number"
+                        formControlName="item_quantity"
+                        class="form-control"
+                        (input)="calculateTotal()"
+                        [ngClass]="{'is-invalid': invoiceForm.get('item_quantity')?.invalid && invoiceForm.get('item_quantity')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('item_quantity')?.invalid && invoiceForm.get('item_quantity')?.touched" class="invalid-feedback">
+                        Item quantity is required and must be at least 1.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="item_price">Item Price <span class="text-danger">*</span></label>
+                    <input
+                        id="item_price"
+                        type="number"
+                        formControlName="item_price"
+                        class="form-control"
+                        (input)="calculateTotal()"
+                        [ngClass]="{'is-invalid': invoiceForm.get('item_price')?.invalid && invoiceForm.get('item_price')?.touched}"
+                    />
+                    <div *ngIf="invoiceForm.get('item_price')?.invalid && invoiceForm.get('item_price')?.touched" class="invalid-feedback">
+                        Item price is required and must be greater than zero.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="item_discount">Item Discount(%)</label>
+                    <input
+                        id="item_discount"
+                        type="number"
+                        formControlName="item_discount"
+                        class="form-control"
+                        (input)="calculateTotal()"
+                    />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="tax_cgst_sgst_igst">GST (%)</label>
+                    <select id="tax_cgst_sgst_igst" formControlName="tax_cgst_sgst_igst" class="form-control" (change)="calculateTotal()">
+                        <option value="0">Select GST</option>
+                        <option value="5">5%</option>
+                        <option value="12">12%</option>
+                        <option value="18">18%</option>
+                        <option value="28">28%</option>
+                    </select>
+                </div>
+            </div>
+            
+            
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="shipping_charges">Shipping Charges</label>
+                    <input
+                        id="shipping_charges"
+                        type="number"
+                        formControlName="shipping_charges"
+                        class="form-control"
+                        (input)="calculateTotal()"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="total">Total</label>
+                    <input id="total" type="text" formControlName="total" class="form-control" readonly />
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-success" [disabled]="invoiceForm.invalid">
+                <i class="fa-solid fa-check"></i>
+                Save</button>
+        </div>
+    </form>
+
+    
+</div>

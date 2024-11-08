@@ -1,0 +1,17 @@
+<!-- dynamic-form.component.html -->
+<form [formGroup]="myForm" (ngSubmit)="submitForm()">
+  <div formArrayName="rows">
+    <div *ngFor="let row of rows.controls; let i = index" [formGroupName]="i" class="row">
+      <input formControlName="itemName" placeholder="Item Name" [readonly]="!editMode[i]" />
+      <input formControlName="quantity" placeholder="Quantity" type="number" [readonly]="!editMode[i]" />
+      <input formControlName="price" placeholder="Price" type="number" [readonly]="!editMode[i]" />
+      
+      <button *ngIf="editMode[i]" type="button" (click)="saveRow(i)">Save</button>
+      <button *ngIf="!editMode[i]" type="button" (click)="editRow(i)">Edit</button>
+      <button type="button" (click)="removeRow(i)">Remove</button>
+    </div>
+  </div>
+
+  <button type="button" (click)="addRow()">Add Item</button>
+  <button type="submit">Submit</button>
+</form>

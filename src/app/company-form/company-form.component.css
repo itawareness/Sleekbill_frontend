@@ -1,0 +1,144 @@
+f
+     /* Remove the clear (cross) sign from text inputs */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"] {
+  -webkit-appearance: none; /* Disable the cross sign in WebKit browsers */
+  -moz-appearance: none; /* Disable the cross sign in Firefox */
+  appearance: none; /* General appearance reset */
+  background: none; /* Remove background */
+  border: 1px solid #ced4da; /* Default border */
+}
+.logo-upload {
+  width: 520px; /* Fixed width */
+  height: 150px; /* Fixed height */
+  background-color: #62704E; /* Blue background */
+  color: #fff; /* White text color */
+  border: none; /* No border when empty */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* Center icon and text */
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.logo-upload.has-logo {
+  background-color: transparent; /* Transparent when logo is present */
+  border: 2px dotted #a0a0a0; /* Gray dotted border when logo is uploaded */
+}
+
+.logo-preview {
+  max-width: 100%; /* Scale logo */
+  max-height: 100%; /* Scale logo */
+  border-radius: 5px;
+}
+
+/* Centering text and icon within the box */
+.logo-upload p, .logo-upload .logo-icon {
+  font-size: 18px;
+  margin: 0;
+}
+
+.logo-icon {
+  font-size: 36px; /* Icon size */
+  margin-bottom: 10px; /* Space between icon and text */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.custom-button {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 2.8571428571em;
+  height: 2.8571428571em;
+  padding: 0 1.4285714286em;
+  margin: 0;
+  border: none; /* Ensure there's no border */
+  min-width: 8.5714285714em;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: normal;
+  color: #808a92;
+  background-color: #e4eaec; /* Background color */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.custom-button:hover {
+  background-color: #f1f8fa; /* Slightly lighter gray on hover */
+}
+
+.custom-button:focus, 
+.custom-button:active {
+  outline: none; /* Remove outline on focus */
+  box-shadow: none; /* Remove any shadow */
+}
+
+/* Additional styles to ensure no outline appears on button press */
+.custom-button:focus-visible {
+  outline: none; /* Remove focus outline */
+}
+
+.custom-button:active {
+  outline: none; /* Remove outline on active state */
+  background-color: #e4eaec; /* Maintain background color when active */
+}
+/* delete logo css */
+.btn-delete {
+  background-color: transparent; /* Removes the background color */
+  border: none; /* Removes the border */
+  box-shadow: none; /* Removes any shadow */
+  color: #dc3545; /* Sets the icon color (red in this case) */
+  cursor: pointer; /* Ensures the button appears clickable */
+}
+
+.btn-delete:hover {
+  background-color: transparent; /* Ensures no background on hover */
+  color: #b02a37; /* Optional: darker color on hover */
+}
+
+.btn-delete:focus, 
+.btn-delete:active {
+  outline: none; /* Removes outline on focus */
+  box-shadow: none; /* Removes any shadow */
+}
+/* end of delete logo */
+.btn-delete {
+  background-color: transparent; /* Removes the background color */
+  border: none; /* Removes the border */
+  box-shadow: none; /* Removes any shadow */
+  color: #dc3545; /* Sets the icon color (red in this case) */
+  cursor: pointer; /* Ensures the button appears clickable */
+}
+
+.btn-delete:hover {
+  background-color: transparent; /* Ensures no background on hover */
+  color: #b02a37; /* Optional: darker color on hover */
+}
+
+.btn-delete:focus, 
+.btn-delete:active {
+  outline: none; /* Removes outline on focus */
+  box-shadow: none; /* Removes any shadow */
+}
+

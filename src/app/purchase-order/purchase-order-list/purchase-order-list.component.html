@@ -1,0 +1,33 @@
+
+
+
+  <div class="container mt-4">
+    <h2 class="text-center">Purchase Order List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th>Vendor Name</th>
+            <th>Order Number</th>
+       
+            <th>Valid Untill</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of purchaseOrders">
+            <td>{{ order.id }}</td>
+            <td>{{ order.vendorName }}</td>
+            <td>{{ order.orderNumber }}</td>
+           
+            <td>{{ order.validUntil }}</td>
+           
+               <!--   <td>
+           <button (click)="editPurchaseOrder(order.id)" class="btn btn-info">Edit</button> | 
+                <button (click)="deletePurchaseOrder(order.id)" class="btn btn- btn-danger">Delete</button> 
+              </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

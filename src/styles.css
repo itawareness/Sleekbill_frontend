@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+
+  
+  /* Optional styles for better presentation */
+  .text-danger {
+    font-size: 0.9em; /* Smaller font for error messages */
+  }
+  
+  /* Make the button larger */
+  .btn-lg {
+    padding: 10px 20px; /* Adjust button padding */
+    font-size: 16px; /* Adjust button font size */
+  }
+  
+  /* Add red border for invalid inputs */
+  .is-invalid {
+    border-color: red !important;
+  }
+ 
+
+
+/* Optional: Red border for invalid inputs when touched */
+input:focus:invalid {
+  border-color: red; /* Change the border to red for invalid inputs when focused */
+}
+
+
+  
