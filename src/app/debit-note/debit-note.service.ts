@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DebitNoteService {
-  private apiUrl = 'http://localhost:8081/api/debit-notes';
+  private apiUrl = 'http://localhost:8080/api/debit-notes';
 
   constructor(private http: HttpClient) {}
 

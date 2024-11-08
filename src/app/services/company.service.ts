@@ -7,7 +7,7 @@ import { Company } from '../models/company.model';
   providedIn: 'root',
 })
 export class CompanyService {
-  private apiUrl = 'http://localhost:8081/profiles';
+  private apiUrl = 'http://localhost:8080/profiles';
 
   constructor(private http: HttpClient) {}
 

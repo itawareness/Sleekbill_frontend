@@ -7,7 +7,7 @@ import { Vendor } from './models/vendor.model';
   providedIn: 'root',
 })
 export class VendorService {
-  private apiUrl = 'http://localhost:8081/vendors'; // Replace with your API endpoint
+  private apiUrl = 'http://localhost:8080/vendors'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) {}
 

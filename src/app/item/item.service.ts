@@ -7,7 +7,7 @@ import { Item } from './item.model';
   providedIn: 'root'
 })
 export class ItemService {
-  private apiUrl = 'http://localhost:8081/items'; // Update with your API URL
+  private apiUrl = 'http://localhost:8080/items'; // Update with your API URL
 
   constructor(private http: HttpClient) {}
 
