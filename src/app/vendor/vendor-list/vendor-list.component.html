@@ -1,5 +1,18 @@
-<div class="container">
-    <h2 class="text-center">Vendors List</h2>
+<div class="container d-flex flex-column">
+  <h2 class="text-center">Vendors List</h2>
+
+  <div class="d-flex justify-content-center">
+    <input
+      type="text"
+      class="form-control mb-3 search-bar"
+      [(ngModel)]="searchQuery"
+      (input)="filterVendors()"
+      placeholder="Search by Company Name"
+    />
+  </div>
+  
+
+  <div class="table-container">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -16,26 +29,90 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let vendor of vendors">
+        <tr *ngFor="let vendor of paginatedVendors">
           <td>{{ vendor.id }}</td>
-          <td>{{ vendor.companyName }}</td>
-          <td>{{ vendor.phone }}</td>
-          <td>{{ vendor.email }}</td>
-          <td>{{ vendor.gstTreatment }}</td>
-          <td>{{ vendor.gstin }}</td>
-          <td>{{ vendor.pan }}</td>
-          <td>{{ vendor.vat }}</td>
-          <td>{{ vendor.vendorCode }}</td>
-          <td>{{ vendor.website }}</td>
-          
-         
+          <td 
+            [title]="vendor.companyName" 
+            data-toggle="tooltip" 
+            data-placement="top">
+            {{ vendor.companyName }}
+          </td>
+          <td 
+            [title]="vendor.phone" 
+            data-toggle="tooltip" 
+            data-placement="top">
+            {{ vendor.phone }}
+          </td>
+          <td 
+            [title]="vendor.email" 
+            data-toggle="tooltip" 
+            data-placement="top">
+            {{ vendor.email }}
+          </td>
+          <td 
+            [title]="vendor.gstTreatment" 
+            data-toggle="tooltip" 
+            data-placement="top">
+            {{ vendor.gstTreatment }}
+          </td>
+          <td 
+            [title]="vendor.gstin" 
+            data-toggle="tooltip" 
+            data-placement="top">
+            {{ vendor.gstin }}
+          </td>
+          <td 
+            [title]="vendor.pan" 
+            data-toggle="tooltip" 
+            data-placement="top">
+            {{ vendor.pan }}
+          </td>
+          <td 
+            [title]="vendor.vat" 
+            data-toggle="tooltip" 
+            data-placement="top">
+            {{ vendor.vat }}
+          </td>
+          <td 
+            [title]="vendor.vendorCode" 
+            data-toggle="tooltip" 
+            data-placement="top">
+            {{ vendor.vendorCode }}
+          </td>
+          <td 
+            [title]="vendor.website" 
+            data-toggle="tooltip" 
+            data-placement="top">
+            {{ vendor.website }}
+          </td>
+        </tr>
 
-          <!-- <td>
-             <button class="btn btn-info" (click)="editVendor(vendor.id)">Edit</button>
-            <button class="btn btn-danger" (click)="deleteVendor(vendor.id)">Delete</button> 
-          </td> -->
+        <tr *ngIf="vendors.length === 0">
+          <td colspan="10" class="text-center">
+            <div class="alert alert-warning" role="alert">
+              No vendors found
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
-  
+
+  <div class="pagination-container mt-auto">
+    <nav *ngIf="totalPages > 1" class="sticky-pagination">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 0">
+          <button class="page-link" (click)="prevPage()">Previous</button>
+        </li>
+
+        <li *ngFor="let page of [].constructor(totalPages); let i = index" class="page-item" [class.active]="i === currentPage">
+          <button class="page-link" (click)="goToPage(i)">{{ i + 1 }}</button>
+        </li>
+
+        <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+          <button class="page-link" (click)="nextPage()">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

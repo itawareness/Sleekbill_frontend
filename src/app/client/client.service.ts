@@ -32,7 +32,6 @@
 
 //   // Additional methods like updateClient, deleteClient can be added here
 // }
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -48,24 +47,27 @@ interface PaginatedResponse {
   providedIn: 'root',
 })
 export class ClientService {
-  private apiUrl = 'http://localhost:8080/api/clients'; // Your backend API URL
+  private apiUrl = 'http://localhost:8080/clients'; // Your backend API URL
 
   constructor(private http: HttpClient) {}
 
-   // Method to get clients with pagination and search query
-   getClients(page: number, size: number, searchQuery: string = ''): Observable<PaginatedResponse> {
-    let params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString())
-      .set('search', searchQuery); // Pass empty string if search is not provided
 
-    return this.http.get<PaginatedResponse>(this.apiUrl, { params });
+ getClients(page: number, size: number, searchQuery: string = ''): Observable<PaginatedResponse> {
+  let params = new HttpParams()
+    .set('page', page.toString())
+    .set('size', size.toString());
+
+  if (searchQuery) {
+    params = params.set('search', searchQuery);
   }
+  return this.http.get<PaginatedResponse>(`${this.apiUrl}/getClients`, { params });
 
-  
+}
+// Method to add a new client (POST request)
+addClient(client: Client): Observable<Client> {
+  // Call the POST endpoint to add a new client
+  return this.http.post<Client>(`${this.apiUrl}/addClients`, client);
+}
 
 
-  addClient(client: Client): Observable<Client> {
-         return this.http.post<Client>(this.apiUrl, client);
-      }
 }

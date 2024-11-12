@@ -8,41 +8,57 @@ import { Vendor } from '../models/vendor.model';
   styleUrls: ['./vendor-list.component.css']
 })
 export class VendorListComponent implements OnInit {
-  vendors: Vendor[] = [];
+  vendors: Vendor[] = []; 
+  currentPage: number = 0; 
+  totalVendors: number = 0;
+  totalPages: number = 0; 
+  pageSize: number = 5; 
+  searchQuery: string = ''; 
 
   constructor(private vendorService: VendorService) {}
 
   ngOnInit(): void {
-    this.getVendors();
+    this.loadVendors();
   }
 
-  // Fetch the list of vendors from the service
-  getVendors(): void {
-    this.vendorService.getVendors().subscribe(
-      (data: Vendor[]) => {
-        this.vendors = data;
-      },
-      (error) => {
-        console.log('Error fetching vendor list', error);
-      }
-    );
+
+  loadVendors(): void {
+    this.vendorService.getVendors(this.currentPage, this.pageSize, this.searchQuery).subscribe((response) => {
+      this.vendors = response.content; 
+      this.totalVendors = response.totalElements; 
+      this.totalPages = response.totalPages;
+    });
   }
 
-  // Method to edit a vendor (by ID)
-  editVendor(id: number): void {
-    // Logic to navigate to the edit page
+  nextPage(): void {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.loadVendors(); 
+    }
   }
 
-  // Method to delete a vendor (by ID)
-  deleteVendor(id: number): void {
-    this.vendorService.deleteVendor(id).subscribe(
-      (response) => {
-        console.log('Vendor deleted successfully');
-        this.getVendors(); // Refresh the list after deletion
-      },
-      (error) => {
-        console.log('Error deleting vendor', error);
-      }
-    );
+
+  prevPage(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.loadVendors();
+    }
+  }
+
+
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.loadVendors(); 
+  }
+
+
+  filterVendors(): void {
+    this.currentPage = 0; 
+    this.loadVendors(); 
+  }
+
+
+  get paginatedVendors(): Vendor[] {
+    return this.vendors;
   }
 }
