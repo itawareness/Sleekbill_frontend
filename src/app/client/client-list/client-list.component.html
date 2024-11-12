@@ -1,37 +1,120 @@
-<!-- src/app/features/client/client-list/client-list.component.html -->
-<div class="container">
-<h2 class="text-center">Client List</h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Company Name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>GST Treatment</th>
-      <th>GSTIN</th>
-      <th>PAN</th>
-      <th>TIN</th>
-      <th>VAT</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let client of clients">
-      <td>{{ client.id }}</td>
-      <td>{{ client.companyName }}</td>
-      <td>{{ client.phone }}</td>
-      <td>{{ client.email }}</td>
-      <td>{{ client.gstTreatment }}</td>
-      <td>{{ client.gstin }}</td>
-      <td>{{ client.pan }}</td>
-      <td>{{ client.tin }}</td>
-      <td>{{ client.vat }}</td>
-      <!-- <td>
-         Add buttons for edit and delete actions 
-        <button (click)="editClient(client.id)">Edit</button>
-        <button (click)="deleteClient(client.id)">Delete</button>
-      </td> -->
-    </tr>
-  </tbody>
-</table>
+<div class="container d-flex flex-column">
+  <h2 class="text-center">Client List</h2>
+
+  <!-- Search Bar -->
+  <input
+    type="text"
+    class="form-control mb-3"
+    [(ngModel)]="searchQuery"
+    (input)="filterClients()"
+    placeholder="Search by Company Name"
+  />
+
+  <!-- Display Clients Table -->
+  <div class="table-container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Company Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>GST Treatment</th>
+          <th>GSTIN</th>
+          <th>PAN</th>
+          <th>TIN</th>
+          <th>VAT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of paginatedClients">
+          <td>{{ client.id }}</td>
+          <td 
+            [title]="client.companyName" 
+            data-toggle="tooltip" 
+            data-placement="top"
+          >
+            {{ client.companyName }}
+          </td>
+          <td 
+            [title]="client.phone" 
+            data-toggle="tooltip" 
+            data-placement="top"
+          >
+            {{ client.phone }}
+          </td>
+          <td 
+            [title]="client.email" 
+            data-toggle="tooltip" 
+            data-placement="top"
+          >
+            {{ client.email }}
+          </td>
+          <td 
+            [title]="client.gstTreatment" 
+            data-toggle="tooltip" 
+            data-placement="top"
+          >
+            {{ client.gstTreatment }}
+          </td>
+          <td 
+            [title]="client.gstin" 
+            data-toggle="tooltip" 
+            data-placement="top"
+          >
+            {{ client.gstin }}
+          </td>
+          <td 
+            [title]="client.pan" 
+            data-toggle="tooltip" 
+            data-placement="top"
+          >
+            {{ client.pan }}
+          </td>
+          <td 
+            [title]="client.tin" 
+            data-toggle="tooltip" 
+            data-placement="top"
+          >
+            {{ client.tin }}
+          </td>
+          <td 
+            [title]="client.vat" 
+            data-toggle="tooltip" 
+            data-placement="top"
+          >
+            {{ client.vat }}
+          </td>
+        </tr>
+
+        <tr *ngIf="clients.length === 0">
+          <td colspan="9" class="text-center">
+            <div class="alert alert-warning" role="alert">
+              No clients found
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-container mt-auto">
+    <nav *ngIf="totalPages > 1" class="sticky-pagination">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 0">
+          <button class="page-link" (click)="prevPage()">Previous</button>
+        </li>
+
+        <li *ngFor="let page of [].constructor(totalPages); let i = index" class="page-item" [class.active]="i === currentPage">
+          <button class="page-link" (click)="goToPage(i)">{{ i + 1 }}</button>
+        </li>
+
+        <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+          <button class="page-link" (click)="nextPage()">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
+

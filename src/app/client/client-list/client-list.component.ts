@@ -1,5 +1,3 @@
-// src/app/features/client/client-list/client-list.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../client.service';
 import { Client } from '../models/client.model';
@@ -11,37 +9,59 @@ import { Client } from '../models/client.model';
 })
 export class ClientListComponent implements OnInit {
   clients: Client[] = [];
+  currentPage: number = 0; 
+  totalClients: number = 0; 
+  totalPages: number = 0; 
+  pageSize: number = 5; 
+  searchQuery: string = '';
 
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
-    this.loadClients();
+    this.loadClients(); // Load initial clients when component is initialized
   }
 
-
-  getClients(): void {
-    this.clientService.getClients().subscribe((data: Client[]) => {
-      this.clients = data; // Assign the fetched data to clients
-    });
-  }
-
-  editClient(clientId: number): void {
-    console.log(`Edit client with ID: ${clientId}`);
-    // Here you can navigate to the edit client page or open a modal
-    // For example: this.router.navigate(['/clients/edit', clientId]);
-  }
-
-  // deleteClient(clientId: number): void {
-  //   console.log(`Delete client with ID: ${clientId}`);
-  //   // Call the delete method from your service
-  //   this.clientService.deleteClient(clientId).subscribe(() => {
-  //     this.getClients(); // Refresh the client list after deletion
-  //   });
-  // }
 
   loadClients(): void {
-    this.clientService.getClients().subscribe((data) => {
-      this.clients = data;
+    // Fetch data from the server
+    this.clientService.getClients(this.currentPage, this.pageSize, this.searchQuery).subscribe((response) => {
+      this.clients = response.content; 
+      this.totalClients = response.totalElements; 
+      this.totalPages = response.totalPages; // Total pages available
     });
   }
+
+  // Go to the next page
+  nextPage(): void {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.loadClients(); 
+    }
+  }
+
+  // Go to the previous page
+  prevPage(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.loadClients(); 
+    }
+  }
+
+  // Go to a specific page
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.loadClients(); 
+  }
+
+
+  filterClients(): void {
+    this.currentPage = 0; 
+    this.loadClients(); 
+  }
+
+  // Getter to get the currently paginated clients
+  get paginatedClients(): Client[] {
+    return this.clients;
+  }
 }
+

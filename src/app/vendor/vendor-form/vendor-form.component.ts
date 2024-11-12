@@ -1,61 +1,3 @@
-// //
-
-// import { Component, OnInit } from '@angular/core';
-// import { Vendor } from '../models/vendor.model';
-// import { VendorService } from '../vendor.service';
-// import { NgForm } from '@angular/forms'; // Import NgForm
-// import { ValidationService } from '../../shared/validation.service';
-// @Component({
-//   selector: 'app-vendor-form',
-//   templateUrl: './vendor-form.component.html',
-//   styleUrls: ['./vendor-form.component.css']
-// })
-// export class VendorFormComponent implements OnInit {
-//   vendor: Vendor = {
-//     companyName: '',
-//     phone: '',
-//     email: '',
-//     gstTreatment: '',
-//     gstin: '',
-//     pan: '',
-//     vat: '',
-//     website: '',
-//     vendorCode: '',
-//     useAsClient: false,
-//     useForDispatch: false
-//   };
-
-//   constructor(private vendorService: VendorService) {}
-
-//   ngOnInit(): void {}
-
-//   onSubmit(form: NgForm): void {
-//     // Check if the form is valid
-//     if (form.invalid) {
-//       // Mark all controls as touched to display validation errors
-//       this.validateAllFields(form);
-//       return;
-//     }
-
-//     // Proceed with the submission if the form is valid
-//     this.vendorService.addVendor(this.vendor).subscribe(() => {
-//       // Show an alert after data is saved
-//       alert('Vendor added successfully!');
-
-//       // Reset the form
-//       form.resetForm();
-//     });
-//   }
-
-//   private validateAllFields(form: NgForm): void {
-//     Object.keys(form.controls).forEach((field) => {
-//       const control = form.controls[field];
-//       control.markAsTouched({ onlySelf: true });
-//     });
-//   }
-// }
-
-//
 
 import { Component, OnInit } from '@angular/core';
 ////import { Vendor } from '../models/vendor.model';
@@ -70,21 +12,7 @@ import { ValidationService } from '../../shared/validation.service';
 })
 export class VendorFormComponent implements OnInit {
   vendorForm!: FormGroup;
-
-  // vendor: Vendor = {
-  //   companyName: '',
-  //   phone: '',
-  //   email: '',
-  //   gstTreatment: '',
-  //   gstin: '',
-  //   pan: '',
-  //   vat: '',
-  //   website: '',
-  //   vendorCode: '',
-  //   useAsClient: false,
-  //   useForDispatch: false
-  // };
-
+ 
   constructor(
     private vendorService: VendorService,
     private validationService: ValidationService,

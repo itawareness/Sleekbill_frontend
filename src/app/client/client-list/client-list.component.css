@@ -1,16 +1,79 @@
-/* src/app/features/client/client-list/client-list.component.css */
 
+.container {
+  position: relative; 
+  padding-bottom: 60px;
+  margin-bottom: 20px; 
+}
+
+
+.table {
+  width: 100%; /* Ensure the table takes full width */
+}
+
+/* Keeps pagination fixed at the bottom */
+.pagination-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white; /* Keeps it visible against the page background */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+/* Optional: Responsiveness for mobile devices */
+@media (max-width: 576px) {
+  .pagination {
+    font-size: 0.8rem; /* Smaller font size for mobile */
+  }
+
+  .page-item {
+    margin: 0 2px; /* Adjust margins for smaller screens */
+  }
+}
+
+
+container {
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.table-container {
+  overflow-y: auto;
+  max-height: 600px;
+  display: block;
+}
+
+/* Fixed table layout */
 table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
+  table-layout: fixed;
+  width: 100%;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+/* Handle text overflow with ellipsis */
+td {
+  padding: 8px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+.form-control {
+  width: 100%;
+}
+
+/* Pagination container styling */
+.pagination-container {
+  padding-top: 15px;
+}
