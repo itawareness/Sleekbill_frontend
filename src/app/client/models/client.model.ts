@@ -12,5 +12,8 @@ export interface Client {
     vat: string;
     website: string;
     useAsVendor: boolean;
+
+    selected?: boolean; // Default value is false
+
   }
   
