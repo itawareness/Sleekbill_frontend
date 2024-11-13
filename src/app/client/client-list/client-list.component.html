@@ -1,21 +1,39 @@
 <div class="container d-flex flex-column">
   <h2 class="text-center">Client List</h2>
+  <div class="row">
+    <!-- Search Box on the left side with reduced width -->
+    <div class="col-md-4 col-8">
+      <input
+        type="text"
+        class="form-control mb-3"
+        [(ngModel)]="searchQuery"
+        (input)="filterClients()"
+        placeholder="Search by Company Name"
+      />
+    </div>
+  
+    <!-- Export to Excel button on the right side -->
+    <div class="col-md-8 col-4 d-flex justify-content-md-end align-items-md-center">
+      <button class="btn btn-success" (click)="downloadExcel()">Export to Excel</button>
+    </div>
+  </div>
+  
 
-  <!-- Search Bar -->
-  <input
-    type="text"
-    class="form-control mb-3"
-    [(ngModel)]="searchQuery"
-    (input)="filterClients()"
-    placeholder="Search by Company Name"
-  />
 
   <!-- Display Clients Table -->
   <div class="table-container">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>ID</th>
+          <!-- Header checkbox -->
+          <th style="text-align: center;">
+            <input
+              type="checkbox"
+              (change)="toggleSelectAll($event)"
+              [checked]="isAllSelected()"
+            />
+          </th>
+          <th>Client Id</th>
           <th>Company Name</th>
           <th>Phone</th>
           <th>Email</th>
@@ -28,88 +46,52 @@
       </thead>
       <tbody>
         <tr *ngFor="let client of paginatedClients">
-          <td>{{ client.id }}</td>
-          <td 
-            [title]="client.companyName" 
-            data-toggle="tooltip" 
-            data-placement="top"
-          >
-            {{ client.companyName }}
+          <!-- Row checkbox aligned to the header checkbox -->
+          <td style="text-align: center;">
+            <input
+              type="checkbox"
+              [(ngModel)]="client.selected"
+              (change)="onSelectionChange()"
+            />
           </td>
-          <td 
-            [title]="client.phone" 
-            data-toggle="tooltip" 
-            data-placement="top"
-          >
-            {{ client.phone }}
-          </td>
-          <td 
-            [title]="client.email" 
-            data-toggle="tooltip" 
-            data-placement="top"
-          >
-            {{ client.email }}
-          </td>
-          <td 
-            [title]="client.gstTreatment" 
-            data-toggle="tooltip" 
-            data-placement="top"
-          >
-            {{ client.gstTreatment }}
-          </td>
-          <td 
-            [title]="client.gstin" 
-            data-toggle="tooltip" 
-            data-placement="top"
-          >
-            {{ client.gstin }}
-          </td>
-          <td 
-            [title]="client.pan" 
-            data-toggle="tooltip" 
-            data-placement="top"
-          >
-            {{ client.pan }}
-          </td>
-          <td 
-            [title]="client.tin" 
-            data-toggle="tooltip" 
-            data-placement="top"
-          >
-            {{ client.tin }}
-          </td>
-          <td 
-            [title]="client.vat" 
-            data-toggle="tooltip" 
-            data-placement="top"
-          >
-            {{ client.vat }}
-          </td>
+          <td [title]="client.id" data-toggle="tooltip" data-placement="top">{{ client.id }}</td>
+          <td [title]="client.companyName" data-toggle="tooltip" data-placement="top">{{ client.companyName }}</td>
+          <td [title]="client.phone" data-toggle="tooltip" data-placement="top">{{ client.phone }}</td>
+          <td [title]="client.email" data-toggle="tooltip" data-placement="top">{{ client.email }}</td>
+          <td [title]="client.gstTreatment" data-toggle="tooltip" data-placement="top">{{ client.gstTreatment }}</td>
+          <td [title]="client.gstin" data-toggle="tooltip" data-placement="top">{{ client.gstin }}</td>
+          <td [title]="client.pan" data-toggle="tooltip" data-placement="top">{{ client.pan }}</td>
+          <td [title]="client.tin" data-toggle="tooltip" data-placement="top">{{ client.tin }}</td>
+          <td [title]="client.vat" data-toggle="tooltip" data-placement="top">{{ client.vat }}</td>
         </tr>
 
-        <tr *ngIf="clients.length === 0">
-          <td colspan="9" class="text-center">
-            <div class="alert alert-warning" role="alert">
-              No clients found
-            </div>
-          </td>
-        </tr>
+   <!-- No clients found message -->
+   <tr *ngIf="clients.length === 0">
+    <td colspan="10" class="text-center">
+      <div class="alert alert-warning mb-0" role="alert">
+        No clients found
+      </div>
+    </td>
+  </tr>
       </tbody>
     </table>
   </div>
 
+  <!-- Bulk Actions (Delete Selected) -->
+  <div class="bulk-actions" *ngIf="isAnyClientSelected()">
+    <button class="btn btn-tomato" (click)="deleteSelectedClients()"><i class="fa-regular fa-trash-can"></i> Delete </button>
+  </div>
+
   <!-- Pagination Controls -->
   <div class="pagination-container mt-auto">
-    <nav *ngIf="totalPages > 1" class="sticky-pagination">
+    <nav *ngIf="totalClients > 0" class="sticky-pagination"> <!-- Show pagination when there are clients -->
       <ul class="pagination justify-content-center">
         <li class="page-item" [class.disabled]="currentPage === 0">
           <button class="page-link" (click)="prevPage()">Previous</button>
         </li>
-
         <li *ngFor="let page of [].constructor(totalPages); let i = index" class="page-item" [class.active]="i === currentPage">
           <button class="page-link" (click)="goToPage(i)">{{ i + 1 }}</button>
         </li>
-
         <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
           <button class="page-link" (click)="nextPage()">Next</button>
         </li>
@@ -117,4 +99,3 @@
     </nav>
   </div>
 </div>
-

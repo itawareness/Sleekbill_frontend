@@ -56,3 +56,9 @@
   .btn:hover i {
     color: #007bff; /* Changes the icon color to blue on hover */
   }
+
+body {
+    height: 100%;           /* Ensure the body takes up the full height */
+    margin: 0;              /* Remove default margin */
+    background-color: #8df3eb; /* Set your desired background color */
+  }
