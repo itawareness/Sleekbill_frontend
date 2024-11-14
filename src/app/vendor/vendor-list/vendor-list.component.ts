@@ -129,7 +129,10 @@ if(this.vendors.length==0 && this.currentPage > 0){
     // This will handle when a client is selected or deselected.
   }
 
-
+// Assuming `clients` is the list of clients
+getSelectedCount(): number {
+  return this.vendors.filter(vendor => vendor.selected).length;
+}
 
   downloadExcel() {
     this.vendorService.exportVendorToExcel(this.currentPage, this.pageSize).subscribe(response => {
