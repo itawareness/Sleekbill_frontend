@@ -11,6 +11,7 @@ export interface Vendor {
     vendorCode?: string;
     useAsClient?: boolean;
     useForDispatch?: boolean;
+    selected?: boolean;
   }
   
 

@@ -23,22 +23,37 @@ export class ClientListComponent implements OnInit {
     this.loadClients(); // Load initial clients when component is initialized
   }
 
+  // loadClients(): void {
+  //   this.clientService.getClients(this.currentPage, this.pageSize, this.searchQuery).subscribe((response) => {
+  //     this.clients = response.content;
+  //     this.totalClients = response.totalElements;
+  //     this.totalPages = response.totalPages;
+
+  //     // Adjust currentPage if the current page has no clients after deletion
+  //     if (this.currentPage >= this.totalPages) {
+  //       this.currentPage = this.totalPages - 1; // Go to last available page
+  //       if (this.currentPage < 0) {
+  //         this.currentPage = 0; // Prevent negative page index
+  //       }
+  //       this.loadClients(); // Reload the new page
+  //     }
+  //   });
+  // }
+
   loadClients(): void {
     this.clientService.getClients(this.currentPage, this.pageSize, this.searchQuery).subscribe((response) => {
       this.clients = response.content;
       this.totalClients = response.totalElements;
       this.totalPages = response.totalPages;
-
-      // Adjust currentPage if the current page has no clients after deletion
-      if (this.currentPage >= this.totalPages) {
-        this.currentPage = this.totalPages - 1; // Go to last available page
-        if (this.currentPage < 0) {
-          this.currentPage = 0; // Prevent negative page index
-        }
-        this.loadClients(); // Reload the new page
+  
+      // If no clients are found and we are on the last page, set currentPage to the previous valid page
+      if (this.clients.length === 0 && this.currentPage > 0) {
+        this.currentPage--;  // Go back to the previous page
+        this.loadClients();   // Reload clients for the previous page
       }
     });
   }
+  
 
 
 
@@ -75,14 +90,14 @@ export class ClientListComponent implements OnInit {
     return this.clients;
   }
 
-  // Delete a single client
-  deleteClient(clientId: number): void {
-    if (confirm('Are you sure you want to delete this client?')) {
-      this.clientService.deleteClient(clientId).subscribe(() => {
-        this.loadClients();
-      });
-    }
-  }
+  // // Delete a single client
+  // deleteClient(clientId: number): void {
+  //   if (confirm('Are you sure you want to delete this client?')) {
+  //     this.clientService.deleteClient(clientId).subscribe(() => {
+  //       this.loadClients();
+  //     });
+  //   }
+  // }
 
  // Delete selected clients (bulk delete)
  deleteSelectedClients(): void {

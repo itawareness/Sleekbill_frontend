@@ -80,3 +80,18 @@
   }
  
   
+/* Custom "Tomato" Button */
+.btn-tomato {
+  background-color: #FF6347;  /* Tomato color */
+  border-color: #FF6347;      /* Border color */
+  color: white;               /* Text color */
+}
+
+.btn-tomato:hover {
+  background-color: #E55347;  /* Darker shade of Tomato for hover effect */
+  border-color: #E55347;
+}
+
+.btn-tomato:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.5);  /* Optional: Focus effect */
+}
