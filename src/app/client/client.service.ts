@@ -75,10 +75,10 @@ export class ClientService {
     return this.http.post<Client>(`${this.apiUrl}/addClients`, client);
   }
 
-  // Delete a single client
-  deleteClient(clientId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/deleteClient/${clientId}`);
-  }
+  // // Delete a single client
+  // deleteClient(clientId: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.apiUrl}/deleteClient/${clientId}`);
+  // }
 
   // Delete multiple selected clients (bulk delete)
   deleteSelectedClients(clientIds: number[]): Observable<void> {

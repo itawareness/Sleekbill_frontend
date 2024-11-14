@@ -33,7 +33,7 @@ input:focus:invalid {
 html, body {
   height: 100%;             /* Ensure the body takes up the full height */
   margin: 0;                /* Remove default margin */
-  background-color: #cddfda; /* Set the desired background color */
+  background-color: #a1b7ea; /* Set the desired background color */
   font-family: Arial, sans-serif; /* Optional: Set your preferred font */
 }
 

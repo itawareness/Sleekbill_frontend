@@ -36,8 +36,22 @@ addVendor(vendor: Vendor): Observable<Vendor> {
 }
 
 
+  // Delete multiple selected clients (bulk delete)
+  deleteSelectedVendors(vendorIds: number[]): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/deleteVendors`, vendorIds);
+  }
 
+  // Method to download paginated client data as an Excel file
+  exportVendorToExcel(page: number, size: number): Observable<Blob> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
 
+    return this.http.get(`${this.apiUrl}/exportVendors`, {
+      params: params,
+      responseType: 'blob' // Since we are downloading a file
+    });
+  }
 
 
 
