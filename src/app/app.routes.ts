@@ -32,6 +32,7 @@ import { PurchaseOrderFormComponent } from './purchase-order/purchase-order-form
 import { CompanyFormComponent } from './company-form/company-form.component';
 import { CreditNoteFormComponent } from './credit-note/credit-note.component';
 import { DebitNoteFormComponent } from './debit-note/debit-note.component';
+import { ItemsComponent } from './items/items.component';
 
 const routes: Routes = [ // Redirect to invoice list
   // Route for the invoice list
@@ -55,8 +56,8 @@ const routes: Routes = [ // Redirect to invoice list
   //  { path: 'vendors', component: VendorListComponent },
   //  { path: 'vendors/add', component: VendorFormComponent },
   //  { path: 'vendors/edit/:id', component: VendorFormComponent },
-
-  { path: '', redirectTo: '/invoices-list', pathMatch: 'full' }, // Route for editing an invoice with a specific ID
+  { path: 'items-test', component: ItemsComponent },
+  { path: '', redirectTo: '/clients', pathMatch: 'full' }, // Route for editing an invoice with a specific ID
   //{ path: '**', redirectTo: '/invoices' } // Wildcard route redirects to invoice list
 ];
 
