@@ -1,0 +1,431 @@
+<div class="container ">
+  <div class="card">
+
+    <div class="card-body">
+      <h3 class="text-center">Add New Tax Invoice</h3>
+      <hr>
+      <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+              <label for="client_name">Client Name </label>
+              <select
+                id="client_name"
+               
+                class="form-control"
+              >
+                <option value="" disabled selected>Select Client</option>
+                <!-- Loop through clientList and create options dynamically -->
+                <!-- <option *ngFor="let client of clientList" [value]="client.id">{{ client.name }}</option> -->
+              </select>
+            </div>
+          </div>
+          
+          
+
+        <div class="col-md-3 mb-3">
+          <div class="form-group">
+            <label for="invoice_no"
+              >Invoice No <span class="text-danger"></span></label
+            >
+            <input
+              id="invoice_no"
+        
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+              <label for="invoice_date">Invoice Date <span class="text-danger"></span></label>
+              <input
+                id="invoice_date"
+                type="date"
+             
+                class="form-control"
+              />
+            </div>
+          </div>
+          
+          <div class="col-md-3 mb-3">
+            <div class="form-group">
+              <label for="due_date">Due Date <span class="text-danger"></span></label>
+              <input
+                id="due_date"
+                type="date"
+              
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <div class="form-group">
+              <label for="po_no"
+                >PO No <span class="text-danger"></span></label
+              >
+              <input
+                id="po_no"
+             
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <div class="form-group">
+              <label for="po_date">PO Date <span class="text-danger"></span></label>
+              <input
+                id="po_date"
+                type="date"
+            
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <div class="form-group">
+              <label for="payment_terms">Payment Terms <span class="text-danger"></span></label>
+              <select
+                id="payment_terms"
+       
+                class="form-control"
+              >
+                <option value="">On Receipt</option>
+                <option value="">NET 7</option>
+                <option value="">NET 15</option>
+                <option value="">NET 30</option>
+                <option value="">NET 45</option>
+                <option value="">NET 60</option>
+                <option value="">NET 90</option>
+                <option value="">Specific Date</option>
+                <!-- Loop through clientList and create options dynamically -->
+                <option></option> 
+              </select>
+            </div>
+          </div>
+          
+      </div>
+   
+
+<hr>
+
+  <table
+    class="table table-bordered"
+    style="width: 100%; max-width: 2000px; font-size: 14px"
+  >
+    <thead>
+      <tr class="text-center">
+        <th style="width: 5%; padding: 5px">Sr. No.</th>
+        <th style="width: 12%; padding: 5px">Item Name</th>
+        <th style="width: 15%; padding: 5px">Description</th>
+        <th style="width: 10%; padding: 5px">HSN/SAC</th>
+        <th style="width: 8%; padding: 5px">Quantity</th>
+        <th style="width: 10%; padding: 5px">Price</th>
+        <th style="width: 10%; padding: 5px">Discount (%)</th>
+        <th style="width: 8%; padding: 5px">GST (%)</th>
+        <th style="width: 12%; padding: 5px">Total</th>
+        <th style="width: 15%; padding: 5px">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Loop through the items array -->
+      <tr
+        *ngFor="let item of items.controls; let i = index"
+        [formGroup]="getItemFormGroup(i)"
+      >
+        <td class="text-center" style="padding: 5px">{{ i + 1 }}</td>
+
+        <!-- Item Name -->
+        <td>
+          <select
+            *ngIf="!isReadOnly(i)"
+            formControlName="itemName"
+            (change)="onItemChange(i)"
+            class="form-control form-control-sm"
+            style="width: 100%; height: 28px; padding: 2px; text-align: left"
+          >
+            <option value="" disabled selected>Select Item</option>
+            <option *ngFor="let item of itemList" [value]="item.name">
+              {{ item.name }}
+            </option>
+          </select>
+          <span *ngIf="isReadOnly(i)" style="line-height: 28px">{{
+            getItemFormGroup(i).get("itemName")?.value
+          }}</span>
+        </td>
+
+        <!-- Description -->
+    <!-- Description -->
+<!-- Description -->
+<td>
+  <div style="position: relative;">
+    <input
+      *ngIf="!isReadOnly(i)"
+      type="text"
+      formControlName="description"
+      class="form-control form-control-sm"
+      placeholder="Description"
+      maxlength="1000"
+      (input)="updateCharacterCount(i)"
+      style="width: 100%; height: 28px; padding: 2px; text-align: left"
+    />
+    <!-- Show remaining characters only when editing mode is active -->
+    <small
+      *ngIf="!isReadOnly(i) && showCharCount"
+      class="text-muted"
+      style="position: absolute; right: 0; top: 30px;"
+    >
+      {{ getRemainingCharacters(i) }} characters left
+    </small>
+    <span *ngIf="isReadOnly(i)" style="line-height: 28px">
+      {{ getItemFormGroup(i).get("description")?.value }}
+    </span>
+  </div>
+</td>
+
+
+        <!-- HSN/SAC -->
+        <td>
+          <input
+            *ngIf="!isReadOnly(i)"
+            type="text"
+            formControlName="hsnSac"
+            class="form-control form-control-sm"
+            placeholder="HSN/SAC"
+            style="width: 100%; height: 28px; padding: 2px; text-align: left"
+          />
+          <span *ngIf="isReadOnly(i)" style="line-height: 28px">{{
+            getItemFormGroup(i).get("hsnSac")?.value
+          }}</span>
+        </td>
+
+        <!-- Quantity -->
+        <td>
+          <input
+            *ngIf="!isReadOnly(i)"
+            type="number"
+            formControlName="itemQuantity"
+            class="form-control form-control-sm"
+            (input)="calculateTotal(i)"
+            placeholder="Quantity"
+            style="width: 100%; height: 28px; padding: 2px; text-align: right"
+          />
+          <span *ngIf="isReadOnly(i)" style="line-height: 28px">{{
+            getItemFormGroup(i).get("itemQuantity")?.value
+          }}</span>
+        </td>
+
+        <!-- Price -->
+        <td>
+          <input
+            *ngIf="!isReadOnly(i)"
+            type="number"
+            formControlName="itemPrice"
+            class="form-control form-control-sm"
+            (input)="calculateTotal(i)"
+            placeholder="Price"
+            style="width: 100%; height: 28px; padding: 2px; text-align: right"
+          />
+          <span *ngIf="isReadOnly(i)" style="line-height: 28px">
+            {{ getItemFormGroup(i).get("itemPrice")?.value | currency : "INR" }}
+          </span>
+        </td>
+
+        <!-- Discount -->
+        <td>
+          <input
+            *ngIf="!isReadOnly(i)"
+            type="number"
+            formControlName="itemDiscount"
+            class="form-control form-control-sm"
+            (input)="calculateTotal(i)"
+            placeholder="Discount (%)"
+            style="width: 100%; height: 28px; padding: 2px; text-align: right"
+          />
+          <!-- Display a dash if discount is blank or null -->
+          <span *ngIf="isReadOnly(i)" style="line-height: 28px">
+            {{ getItemFormGroup(i).get("itemDiscount")?.value || "-" }}
+          </span>
+        </td>
+
+        <!-- GST -->
+        <td>
+          <input
+            *ngIf="!isReadOnly(i)"
+            type="number"
+            formControlName="itemGst"
+            class="form-control form-control-sm"
+            (input)="calculateTotal(i)"
+            placeholder="GST (%)"
+            style="width: 100%; height: 28px; padding: 2px; text-align: right"
+          />
+          <span *ngIf="isReadOnly(i)" style="line-height: 28px">{{
+            getItemFormGroup(i).get("itemGst")?.value || "-" 
+          }}</span>
+        </td>
+
+        <!-- Total -->
+        <!-- Total -->
+        <!-- Total -->
+        <td>
+          <input
+            *ngIf="!isReadOnly(i)"
+            type="number"
+            formControlName="total"
+            class="form-control form-control-sm"
+            [disabled]="true"
+            placeholder="Total"
+            style="width: 100%; height: 28px; padding: 2px; text-align: right"
+          />
+          <span *ngIf="isReadOnly(i)" style="line-height: 28px">{{
+            getItemFormGroup(i).get("total")?.value | currency : "INR"
+          }}</span>
+        </td>
+
+        <!-- Actions: Add line or save/delete -->
+        <td class="text-center" style="padding: 5px">
+          <div *ngIf="!isReadOnly(i)">
+            <!-- Show Save and Delete buttons if in edit mode -->
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              (click)="saveLine(i)"
+              style="
+                padding: 3px 10px;
+                font-size: 12px;
+                background: none;
+                border: none;
+              "
+            >
+              <i class="fas fa-save"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="deleteLine(i)"
+              style="
+                padding: 3px 10px;
+                font-size: 12px;
+                background: none;
+                border: none;
+              "
+            >
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+          <div *ngIf="isReadOnly(i)">
+            <!-- Show Edit button when it's in read-only mode -->
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              (click)="editLine(i)"
+              style="
+                padding: 3px 10px;
+                font-size: 12px;
+                background: none;
+                border: none;
+              "
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="deleteLine(i)"
+              style="
+                padding: 3px 10px;
+                font-size: 12px;
+                background: none;
+                border: none;
+              "
+            >
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <!-- Add Line button at the end of the table (outside loop) -->
+      <tr>
+        <td colspan="10" class="text-center">
+          <button type="button" class="btn btn-info" (click)="addLine()">
+            <i class="fas fa-plus"></i> Add Line
+          </button>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>
+  <div class="container">
+    <div class="row">
+      <!-- Subtotal Row -->
+      <div class="col-md-12 mb-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <strong class="title-fixed">Subtotal (Excluding GST):</strong>
+          <strong>{{ subtotal | currency: "INR" : "symbol" : "1.2-2" }}</strong>
+        </div>
+      </div>
+  
+      <!-- Total GST Row -->
+      <div class="col-md-12 mb-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <strong class="title-fixed">Total GST:</strong>
+          <strong>{{ totalGST | currency: "INR" : "symbol" : "1.2-2" }}</strong>
+        </div>
+      </div>
+  
+      <!-- Grand Total Row -->
+      <div class="col-md-12 mb-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <strong class="title-fixed">Grand Total (Subtotal + GST):</strong>
+          <strong>{{ grandTotal | currency: "INR" : "symbol" : "1.2-2" }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  <div class="row">
+    <!-- Other form fields -->
+  
+    <div class="col-md-6 mb-3">
+      <div class="form-group">
+        <label for="po_description">
+          Terms & Conditions  <span class="text-danger"></span>
+        </label>
+        <textarea
+          id="po_description"
+          class="form-control"
+          rows="4"
+        
+        ></textarea>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-6 mb-3">
+      <div class="form-group">
+        <label for="po_description">
+          Private Notes(not shown to Client) <span class="text-danger"></span>
+        </label>
+        <textarea
+          id="po_description"
+          class="form-control"
+          rows="4"
+         
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+</div>
+</div>

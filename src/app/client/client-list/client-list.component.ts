@@ -147,6 +147,10 @@ export class ClientListComponent implements OnInit {
     // This will handle when a client is selected or deselected.
   }
 
+// Assuming `clients` is the list of clients
+getSelectedCount(): number {
+  return this.clients.filter(client => client.selected).length;
+}
 
 
   downloadExcel() {

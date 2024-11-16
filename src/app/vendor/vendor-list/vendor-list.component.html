@@ -112,7 +112,7 @@
         </tr>
 
         <tr *ngIf="vendors.length === 0">
-          <td colspan="10" class="text-center">
+          <td colspan="11" class="text-center">
             <div class="alert alert-warning" role="alert">
               no vendors found
             </div>
@@ -124,7 +124,7 @@
 
    <!-- Bulk Actions (Delete Selected) -->
    <div class="bulk-actions" *ngIf="isAnyVendorSelected()">
-    <button class="btn btn-tomato" (click)="deleteSelectedVendors()"><i class="fa-regular fa-trash-can"></i> Delete </button>
+    <button class="btn btn-tomato" (click)="deleteSelectedVendors()"><i class="fa-regular fa-trash-can"></i> Delete ({{ getSelectedCount() }}) </button>
   </div>
 
   <div class="pagination-container mt-auto">

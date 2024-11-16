@@ -18,6 +18,7 @@ import { CompanyFormModule } from './company-form/company-form.module';
 import { CreditNoteFormComponent } from './credit-note/credit-note.component';
 import { DebitNoteFormComponent } from './debit-note/debit-note.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { ItemsComponent } from './items/items.component';
 
 
 
@@ -30,7 +31,9 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     InvoiceListComponent,
     CreditNoteFormComponent,
     DebitNoteFormComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    ItemsComponent
+    
     //ClientFormComponent // Declare your component here
   ],
   imports: [
@@ -42,8 +45,8 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     ReactiveFormsModule, // Add it to imports array
     ItemModule,
     PurchaseOrderModule,
-    CompanyFormModule
-    
+    CompanyFormModule,
+  
   ],
   providers: [ValidationService],
   bootstrap: [AppComponent] 

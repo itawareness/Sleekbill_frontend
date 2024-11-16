@@ -79,7 +79,7 @@
 
   <!-- Bulk Actions (Delete Selected) -->
   <div class="bulk-actions" *ngIf="isAnyClientSelected()">
-    <button class="btn btn-tomato" (click)="deleteSelectedClients()"><i class="fa-regular fa-trash-can"></i> Delete </button>
+    <button class="btn btn-tomato" (click)="deleteSelectedClients()"><i class="fa-regular fa-trash-can"></i> Delete ({{ getSelectedCount() }}) </button>
   </div>
 
   <!-- Pagination Controls -->

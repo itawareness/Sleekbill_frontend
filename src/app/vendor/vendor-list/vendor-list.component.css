@@ -95,3 +95,4 @@
 .btn-tomato:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.5);  /* Optional: Focus effect */
 }
+/* Align the Search, Delete, and Export buttons in a row */
