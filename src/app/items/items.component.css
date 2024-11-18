@@ -98,3 +98,26 @@
   display: flex;
   justify-content: flex-end; /* Moves everything to the right side */
 }
+/* Fix Footer Section at the Bottom */
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px 0;
+  z-index: 999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Center the Buttons with Spacing */
+.footer-container .row {
+  display: flex;
+  justify-content: center;
+}
+
+/* Custom Button Style */
+.custom-btn {
+  margin: 0 0px; /* Adds spacing of 0.5 cm between buttons */
+  padding: 5px 15px;
+}

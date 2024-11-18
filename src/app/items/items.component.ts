@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 import { Item } from '../item/item.model';
 import { ItemService } from './items.service';
+import { Client } from '../client/models/client.model';
 
 @Component({
   selector: 'app-items',
@@ -13,20 +14,43 @@ export class ItemsComponent implements OnInit {
   invoiceListForm !:FormGroup
   isAddLineVisible: boolean = true; // Define the visibility property
   itemsForm: FormGroup;
+  clients: Client[] = [];
   itemList: Item[] = []; // List to store items fetched from backend
 subtotal: number = 0;
 totalGST: number = 0;
 grandTotal: number = 0;
+isSpecificDateSelected: boolean = false;
 
   constructor(private fb: FormBuilder, private itemService: ItemService) {
     this.itemsForm = this.fb.group({
       items: this.fb.array([]),
     });
+
+    this.invoiceListForm = this.fb.group({
+      paymentTerms: ['on_receipt'],
+      dueDate: [{ value: '', disabled: true }], // Disable the field initially
+      clientName: [''],
+      invoiceNo: [''],
+      invoiceDate: [''],
+      //due_date: [''],
+      poNo: [''],
+      poDate: [''],
+     // paymentTerms: [''],
+      termsAndConditions: [''],
+      privateNotes: [''],
+      items: this.fb.array([])  // To store items
+    
+    });
   }
 
   ngOnInit(): void {
     this.fetchItems();
+    this.fetchClients();
     this.addLine(); // Add the first line to the table on init
+   this.setDefaultDueDate();
+   this.onPaymentTermsChange();
+
+
   }
 
   // Fetch items from the backend
@@ -38,6 +62,18 @@ grandTotal: number = 0;
       },
       (error) => {
         console.error('Error fetching items', error);
+      }
+    );
+  }
+
+  fetchClients(): void {
+    this.itemService.getClients().subscribe(
+      (data: Client[]) => {
+        this.clients = data; // Set the fetched client list
+        console.log('CLients fetched successfully', this.clients);
+      },
+      (error) => {
+        console.error('Error fetching clients:', error);
       }
     );
   }
@@ -80,54 +116,101 @@ onSaveLine(): void {
   this.showCharCount = false; // Hide the character count after saving
 }
 
-  addLine(): void {
-    // Create a new item form group
-    const itemGroup = this.fb.group({
-        itemName: ['', Validators.required],
-        description: [''],
-        hsnSac: [''],
-        itemUnit: [''],
-        itemQuantity: [''],
-        itemPrice: [''],
-        itemDiscount: [''],
-        itemGst: [''],
-        total: [{ value: '', disabled: true }],
-        isReadOnly: [false],
-    });
+//   addLine(): void {
+//     // Create a new item form group
+//     const itemGroup = this.fb.group({
+//         itemName: ['', Validators.required],
+//         description: [''],
+//         hsnSac: [''],
+//         itemUnit: [''],
+//         itemQuantity: [''],
+//         itemPrice: [''],
+//         itemDiscount: [''],
+//         itemGst: [''],
+//         total: [{ value: '', disabled: true }],
+//         isReadOnly: [false],
+//     });
 
-    // Add the new item to the form array
-    this.items.push(itemGroup);
+//     // Add the new item to the form array
+//     this.items.push(itemGroup);
 
-    // Optionally, mark the newly added line as editable (not read-only)
-    this.items.at(this.items.length - 1).get('isReadOnly')?.setValue(false);
+//     // Optionally, mark the newly added line as editable (not read-only)
+//     this.items.at(this.items.length - 1).get('isReadOnly')?.setValue(false);
+// }
+
+addLine(): void {
+  // Create a new empty item form group
+  const itemGroup = this.fb.group({
+    itemName: ['', Validators.required], // Empty fields initially
+    description: [''],
+    hsnSac: [''],
+    itemUnit: [''],
+    itemQuantity: ['1', Validators.required],
+    itemPrice: ['', Validators.required],
+    itemDiscount: [''],
+    itemGst: [''],
+    total: [{ value: '', disabled: true }],
+    isReadOnly: [false], // New line is editable initially
+  });
+
+  // Add the new item to the form array
+  this.items.push(itemGroup);
+
+  // Automatically focus on the newly added line for editing (optional)
+  const index = this.items.length - 1;
+  this.items.at(index).get('isReadOnly')?.setValue(false); // Set to editable mode
 }
-saveLine(index: number): void {
-    // Get the current item form group at the specified index
-    const item = this.items.at(index);
 
-    // Ensure the form is valid before saving
-    if (item.valid) {
-        // Recalculate the total for the current line before saving
-        this.calculateTotal(index);
 
-        // Mark the current line as read-only after saving
-        item.get('isReadOnly')?.setValue(true);
+
+// saveLine(index: number): void {
+//     // Get the current item form group at the specified index
+//     const item = this.items.at(index);
+
+//     // Ensure the form is valid before saving
+//     if (item.valid) {
+//         // Recalculate the total for the current line before saving
+//         this.calculateTotal(index);
+
+//         // Mark the current line as read-only after saving
+//         item.get('isReadOnly')?.setValue(true);
         
-        // Optionally, you can disable editing if needed
-        item.get('isEditMode')?.setValue(false);
+//         // Optionally, you can disable editing if needed
+//         item.get('isEditMode')?.setValue(false);
 
-        // Recalculate overall totals after saving
-        this.subtotal = this.getSubtotal();
-        this.totalGST = this.getTotalGST();
-        this.grandTotal = this.getGrandTotal();
+//         // Recalculate overall totals after saving
+//         this.subtotal = this.getSubtotal();
+//         this.totalGST = this.getTotalGST();
+//         this.grandTotal = this.getGrandTotal();
 
-        // Add a new line after saving the current one (if applicable)
-        // You can uncomment the line below if needed to add a new line after save
-        // this.addLine();
-    } else {
-        // Optionally handle validation errors if the form is invalid
-        console.log("Form is invalid, cannot save");
-    }
+//         // Add a new line after saving the current one (if applicable)
+//         // You can uncomment the line below if needed to add a new line after save
+//         // this.addLine();
+//     } else {
+//         // Optionally handle validation errors if the form is invalid
+//         console.log("Form is invalid, cannot save");
+//     }
+// }
+
+
+saveLine(index: number): void {
+  // Get the current item form group at the specified index
+  const item = this.items.at(index);
+
+  // Ensure the form is valid before saving
+  if (item.valid) {
+      // Recalculate the total for the current line before saving
+      this.calculateTotal(index);
+
+      // Set the item as read-only after saving
+      item.get('isReadOnly')?.setValue(true);
+      this.subtotal = this.getSubtotal();
+              this.totalGST = this.getTotalGST();
+              this.grandTotal = this.getGrandTotal();
+      console.log('Item saved:', item.value);
+  } else {
+      console.error('Form is invalid. Please fill out the required fields.');
+  }
 }
 
 
@@ -252,7 +335,114 @@ getGrandTotal(): number {
   const totalGST = this.getTotalGST();
   return subtotal + totalGST;
 }
+setDefaultDueDate() {
+  const today = new Date();
+  const todayStr = this.formatDate(today);
+  this.invoiceListForm.get('dueDate')?.setValue(todayStr); // Set default due date
+}
+
+onPaymentTermsChange(): void {
+  const paymentTerm = this.invoiceListForm.get('paymentTerms')?.value;
+  const today = new Date();
+
+  let newDueDate = '';
+  switch (paymentTerm) {
+    case 'on_receipt':
+      newDueDate = this.formatDate(today); // Due date is today
+      this.isSpecificDateSelected = false;
+      break;
+    case 'net_7':
+      newDueDate = this.formatDate(this.addDays(today, 7)); // 7 days later
+      this.isSpecificDateSelected = false;
+      break;
+      case 'net_15':
+        newDueDate = this.formatDate(this.addDays(today, 15)); // 15 days from today
+        this.isSpecificDateSelected = false;
+        break;
+
+      case 'net_30':
+        newDueDate = this.formatDate(this.addDays(today, 30)); // 30 days from today
+        this.isSpecificDateSelected = false;
+        break;
+
+      case 'net_45':
+        newDueDate = this.formatDate(this.addDays(today, 45)); // 45 days from today
+        this.isSpecificDateSelected = false;
+        break;
+
+      case 'net_60':
+        newDueDate = this.formatDate(this.addDays(today, 60)); // 60 days from today
+        this.isSpecificDateSelected = false;
+        break;
+
+      case 'net_90':
+        newDueDate = this.formatDate(this.addDays(today, 90)); // 90 days from today
+        this.isSpecificDateSelected = false;
+        break;
+    case 'specific_date':
+      this.isSpecificDateSelected = true;
+      this.invoiceListForm.get('dueDate')?.enable(); // Enable due date picker
+      return;  // Don't set due date for specific date case
+    // Add cases for other payment terms...
+  }
+
+  // Set the new due date
+  this.invoiceListForm.get('dueDate')?.setValue(newDueDate);
+  if (!this.isSpecificDateSelected) {
+    this.invoiceListForm.get('dueDate')?.disable(); // Disable when not specific date
+  }
+}
+
+addDays(date: Date, days: number): Date {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+formatDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
 
 
+
+
+addItem() {
+  const itemGroup = this.fb.group({
+    itemName: [''],
+    description: [''],
+    hsnSac: [''],
+    itemQuantity: [0],
+    itemPrice: [0],
+    itemDiscount: [0],
+    itemGst: [0],
+    total: [0]
+  });
+  this.items.push(itemGroup);
+}
+
+submitForm() {
+  const formData = this.invoiceListForm.value;
+
+  const invoiceData = {
+    clientId: formData.clientName,
+    invoiceNo: formData.invoiceNo,
+    invoiceDate: formData.invoiceDate,
+    dueDate: formData.dueDate,
+    poNo: formData.poNo,
+    poDate: formData.poDate,
+    paymentTerms: formData.paymentTerms,
+    termsAndConditions: formData.termsAndConditions,
+    privateNotes: formData.privateNotes,
+    items: formData.items
+  };
+  console.log('formData:>>>>>>>',formData);  // Check the structure of the data before sending
+
+  this.itemService.createInvoice(invoiceData).subscribe(response => {
+    console.log('Invoice created:', response);
+  });
+}
 
 }

@@ -4,23 +4,23 @@
     <div class="card-body">
       <h3 class="text-center">Add New Tax Invoice</h3>
       <hr>
+      <form [formGroup]="invoiceListForm">
       <div class="row">
         <div class="col-md-3 mb-3">
-            <div class="form-group">
-              <label for="client_name">Client Name </label>
-              <select
-                id="client_name"
-               
-                class="form-control"
-              >
-                <option value="" disabled selected>Select Client</option>
-                <!-- Loop through clientList and create options dynamically -->
-                <!-- <option *ngFor="let client of clientList" [value]="client.id">{{ client.name }}</option> -->
-              </select>
-            </div>
+          <div class="form-group">
+            <label for="client_name">Client Name</label>
+            <select
+              id="client_name"
+              class="form-control"
+              formControlName="clientName"
+            >
+              <option value="" disabled selected>Select Client</option>
+              <!-- Loop through clientList and create options dynamically -->
+              <option *ngFor="let client of clients" [value]="client.id">{{ client.companyName }}</option>
+            </select>
           </div>
-          
-          
+        </div>
+        
 
         <div class="col-md-3 mb-3">
           <div class="form-group">
@@ -29,7 +29,7 @@
             >
             <input
               id="invoice_no"
-        
+              formControlName="invoiceNo"
               class="form-control"
             />
           </div>
@@ -41,7 +41,7 @@
               <input
                 id="invoice_date"
                 type="date"
-             
+                formControlName="invoiceDate"
                 class="form-control"
               />
             </div>
@@ -53,9 +53,9 @@
               <input
                 id="due_date"
                 type="date"
-              
+                formControlName="dueDate"
                 class="form-control"
-              />
+                [readonly]="!isSpecificDateSelected" />
             </div>
           </div>
 
@@ -66,7 +66,7 @@
               >
               <input
                 id="po_no"
-             
+                formControlName="poNo"
                 class="form-control"
               />
             </div>
@@ -78,7 +78,7 @@
               <input
                 id="po_date"
                 type="date"
-            
+                formControlName="poDate"
                 class="form-control"
               />
             </div>
@@ -89,19 +89,18 @@
               <label for="payment_terms">Payment Terms <span class="text-danger"></span></label>
               <select
                 id="payment_terms"
-       
                 class="form-control"
+                formControlName="paymentTerms"
+                (change)="onPaymentTermsChange()"
               >
-                <option value="">On Receipt</option>
-                <option value="">NET 7</option>
-                <option value="">NET 15</option>
-                <option value="">NET 30</option>
-                <option value="">NET 45</option>
-                <option value="">NET 60</option>
-                <option value="">NET 90</option>
-                <option value="">Specific Date</option>
-                <!-- Loop through clientList and create options dynamically -->
-                <option></option> 
+                <option value="on_receipt">On Receipt</option>
+                <option value="net_7">NET 7</option>
+                <option value="net_15">NET 15</option>
+                <option value="net_30">NET 30</option>
+                <option value="net_45">NET 45</option>
+                <option value="net_60">NET 60</option>
+                <option value="net_90">NET 90</option>
+                <option value="specific_date">Specific Date</option>
               </select>
             </div>
           </div>
@@ -403,12 +402,12 @@
           id="po_description"
           class="form-control"
           rows="4"
-        
+          formControlName="termsAndConditions"
         ></textarea>
       </div>
     </div>
 
-
+    
 
     <div class="col-md-6 mb-3">
       <div class="form-group">
@@ -419,13 +418,44 @@
           id="po_description"
           class="form-control"
           rows="4"
-         
+          formControlName="privateNotes"
         ></textarea>
       </div>
     </div>
   </div>
 
+
+
+
   
+<!-- Buttons Section -->
+<div class="footer-container">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <!-- Preview Button -->
+      <button type="button" class="btn btn-secondary btn-sm custom-btn" (click)="submitForm()">
+        <i class="fas fa-eye"></i> Save Invoice
+      </button>
+    </div>
+
+    <div class="col-auto">
+      <!-- Save Draft Button -->
+      <button type="button" class="btn btn-warning btn-sm custom-btn">
+        <i class="fas fa-save"></i> Save Draft
+      </button>
+    </div>
+
+    <div class="col-auto">
+      <!-- Cancel Button -->
+      <button type="button" class="btn btn-danger btn-sm custom-btn">
+        <i class="fas fa-times"></i> Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+</form>
+
 </div>
 </div>
 </div>
