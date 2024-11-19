@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Item } from '../item/item.model';
 import { ItemService } from './items.service';
 import { Client } from '../client/models/client.model';
+import { InvoiceModel } from './invoice-Item.model';
 
 @Component({
   selector: 'app-items',
@@ -11,7 +12,7 @@ import { Client } from '../client/models/client.model';
   styleUrls: ['./items.component.css'],
 })
 export class ItemsComponent implements OnInit {
-  invoiceListForm !:FormGroup
+  invoiceListForm :FormGroup
   isAddLineVisible: boolean = true; // Define the visibility property
   itemsForm: FormGroup;
   clients: Client[] = [];
@@ -20,29 +21,44 @@ subtotal: number = 0;
 totalGST: number = 0;
 grandTotal: number = 0;
 isSpecificDateSelected: boolean = false;
+savedItems: any[] = [];
+constructor(private fb: FormBuilder, private itemService: ItemService) {
+  this.itemsForm = this.fb.group({
+    items: this.fb.array([]),
+  });
 
-  constructor(private fb: FormBuilder, private itemService: ItemService) {
-    this.itemsForm = this.fb.group({
-      items: this.fb.array([]),
-    });
+  this.invoiceListForm = this.fb.group({
+    paymentTerms: ['on_receipt'],
+    dueDate: [{ value: '', disabled: true }],
+    clientId: [null],
+    invoiceNo: [''],
+    invoiceDate: [''],
+    poNo: [''],
+    poDate: [''],
+    termsAndConditions: [''],
+    privateNotes: [''],
+    items: this.fb.array([]), // FormArray for items
+  });
+}
 
-    this.invoiceListForm = this.fb.group({
-      paymentTerms: ['on_receipt'],
-      dueDate: [{ value: '', disabled: true }], // Disable the field initially
-      clientName: [''],
-      invoiceNo: [''],
-      invoiceDate: [''],
-      //due_date: [''],
-      poNo: [''],
-      poDate: [''],
-     // paymentTerms: [''],
-      termsAndConditions: [''],
-      privateNotes: [''],
-      items: this.fb.array([])  // To store items
-    
-    });
-  }
+get invoiceItems(): FormArray {
+  return this.invoiceListForm.get('itemList') as FormArray;
+}
 
+// saveItem(): FormGroup {
+//   return this.fb.group({
+//     itemName: [''],
+//     description: [''],
+//     hsnSac: [''],
+//     itemQuantity: [''],
+//     itemPrice: [''],
+//     itemDiscount: [''],
+//     itemGst: [''],
+//     total: [{ value: 0, disabled: true }],
+//     isReadOnly: [false],
+//   });
+// }
+  
   ngOnInit(): void {
     this.fetchItems();
     this.fetchClients();
@@ -207,6 +223,7 @@ saveLine(index: number): void {
       this.subtotal = this.getSubtotal();
               this.totalGST = this.getTotalGST();
               this.grandTotal = this.getGrandTotal();
+              this.savedItems.push(item.value);
       console.log('Item saved:', item.value);
   } else {
       console.error('Form is invalid. Please fill out the required fields.');
@@ -235,7 +252,6 @@ calculateTotal(index: number): void {
   item.get('total')?.setValue(total);
 }
 
- 
 
  // Check if it's the first add line
  isAddLine(index: number): boolean {
@@ -409,40 +425,144 @@ formatDate(date: Date): string {
 
 
 
-addItem() {
-  const itemGroup = this.fb.group({
-    itemName: [''],
-    description: [''],
-    hsnSac: [''],
-    itemQuantity: [0],
-    itemPrice: [0],
-    itemDiscount: [0],
-    itemGst: [0],
-    total: [0]
-  });
-  this.items.push(itemGroup);
+// addItem() {
+//   this.invoiceItems.push(this.savedItem());
+// }
+
+
+addItem(itemData: any): void {
+  const items = this.items;
+  items.push(this.fb.group({
+    itemName: [itemData.itemName || '', Validators.required],
+    description: [itemData.description || ''],
+    hsnSac: [itemData.hsnSac || ''],
+    itemQuantity: [itemData.itemQuantity || 1, [Validators.required, Validators.min(1)]],
+    itemPrice: [itemData.itemPrice || 0, [Validators.required, Validators.min(0)]],
+    itemDiscount: [itemData.itemDiscount || 0, [Validators.min(0)]],
+    itemGst: [itemData.itemGst || 0, [Validators.min(0)]],
+    total: [{ value: 0, disabled: true }],
+    isReadOnly: [false],
+  }));
 }
 
-submitForm() {
+
+// submitForm() {
+//   const formData = this.invoiceListForm.value;
+
+//   const invoiceData = {
+//     clientId: formData.clientName,
+//     invoiceNo: formData.invoiceNo,
+//     invoiceDate: formData.invoiceDate,
+//     dueDate: formData.dueDate,
+//     poNo: formData.poNo,
+//     poDate: formData.poDate,
+//     paymentTerms: formData.paymentTerms,
+//     termsAndConditions: formData.termsAndConditions,
+//     privateNotes: formData.privateNotes,
+//     items: formData.items
+//   };
+//   console.log('formData:>>>>>>>',formData);  // Check the structure of the data before sending
+
+//   this.itemService.createInvoice(invoiceData).subscribe(response => {
+//     console.log('Invoice created:', response);
+//   });
+// }
+
+
+
+// submitForm() {
+//   // Enable disabled fields to include them in form value
+//   this.invoiceListForm.get('dueDate')?.enable();
+
+//   const formData = this.invoiceListForm.value;
+  
+//   // const invoiceData: InvoiceModel = {
+//   //   clientId: formData.clientName,
+//   //   invoiceNo: formData.invoiceNo,
+//   //   invoiceDate: formData.invoiceDate,
+//   //   dueDate: formData.dueDate,
+//   //   poNo: formData.poNo,
+//   //   poDate: formData.poDate,
+//   //   paymentTerms: formData.paymentTerms,
+//   //   termsAndConditions: formData.termsAndConditions,
+//   //   privateNotes: formData.privateNotes,
+//   //   invoiceItems: formData.items.map((item: any) => ({
+//   //     itemName: item.itemName,
+//   //     description: item.description,
+//   //     hsnSac: item.hsnSac,
+//   //     itemQuantity: Number(item.itemQuantity),
+//   //     itemPrice: Number(item.itemPrice),
+//   //     itemDiscount: Number(item.itemDiscount),
+//   //     itemGst: Number(item.itemGst),
+//   //     total: Number(item.total),
+//   //   })),
+//   // };
+
+//   //console.log('Submitting Invoice Data:', invoiceData); // Debug to see the final structure
+//   console.log('before Submitting Invoice Data:', formData);
+//   this.itemService.createInvoice(formData).subscribe(
+   
+//     (response) => {
+//       console.log('Invoice created successfully:', response);
+//     },
+//     (error) => {
+//       console.error('Error creating invoice:', error);
+//     }
+//   );
+
+//   // Re-disable the due date field if needed
+//   this.invoiceListForm.get('dueDate')?.disable();
+// }
+
+ // Submit the form and collect all items
+ submitForm(): void {
+  // Clear previous saved items list
+  this.invoiceListForm.get('dueDate')?.enable();
+  this.savedItems = [];  
+
+  // Collect invoice details
   const formData = this.invoiceListForm.value;
 
+  // Collect items from the form (assuming `this.items` is your items form array)
+  this.items.controls.forEach((_, index) => {
+    this.saveLine(index);  // Assuming saveLine method saves the item data
+  });
+
+  // Structure the data for sending to the backend
   const invoiceData = {
-    clientId: formData.clientName,
+    client: {
+      id: formData.clientId, // Wrap clientId in a client object
+    },
     invoiceNo: formData.invoiceNo,
     invoiceDate: formData.invoiceDate,
     dueDate: formData.dueDate,
-    poNo: formData.poNo,
-    poDate: formData.poDate,
     paymentTerms: formData.paymentTerms,
-    termsAndConditions: formData.termsAndConditions,
+    poDate: formData.poDate,
+    poNo: formData.poNo,
     privateNotes: formData.privateNotes,
-    items: formData.items
+    termsAndConditions: formData.termsAndConditions,
+    itemList: this.savedItems
   };
-  console.log('formData:>>>>>>>',formData);  // Check the structure of the data before sending
 
-  this.itemService.createInvoice(invoiceData).subscribe(response => {
-    console.log('Invoice created:', response);
-  });
+  console.log('Data to be sent:', invoiceData);
+
+  if (this.savedItems.length > 0) {
+    // Send the structured data to the backend via your service
+    this.itemService.createInvoice(invoiceData).subscribe(response => {
+      console.log('Items saved successfully:', response);
+
+    }, error => {
+      console.error('Error saving items:', error);
+    });
+  } else {
+    console.error('No items to save');
+  }
+
+
+  this.invoiceListForm.get('dueDate')?.disable();
 }
+
+
+
 
 }

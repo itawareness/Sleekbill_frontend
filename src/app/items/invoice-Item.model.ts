@@ -9,12 +9,13 @@ export interface InvoiceItem {
     itemDiscount: number;
     itemGst: number;
     total: number;
+    
   }
   
   export interface InvoiceModel {
-    clientId: string;
+    clientId:number;
     invoiceNo: string;
-    invoiceDate:Date;
+    invoiceDate: Date;
     dueDate: Date;
     poNo: string;
     poDate: Date;

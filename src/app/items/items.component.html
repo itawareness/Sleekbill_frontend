@@ -8,11 +8,11 @@
       <div class="row">
         <div class="col-md-3 mb-3">
           <div class="form-group">
-            <label for="client_name">Client Name</label>
+            <label for="clientId">Client Name</label>
             <select
-              id="client_name"
+              id="clientId"
               class="form-control"
-              formControlName="clientName"
+              formControlName="clientId"
             >
               <option value="" disabled selected>Select Client</option>
               <!-- Loop through clientList and create options dynamically -->
@@ -24,11 +24,11 @@
 
         <div class="col-md-3 mb-3">
           <div class="form-group">
-            <label for="invoice_no"
+            <label for="invoiceNo"
               >Invoice No <span class="text-danger"></span></label
             >
             <input
-              id="invoice_no"
+              id="invoiceNo"
               formControlName="invoiceNo"
               class="form-control"
             />
@@ -37,9 +37,9 @@
 
         <div class="col-md-3 mb-3">
             <div class="form-group">
-              <label for="invoice_date">Invoice Date <span class="text-danger"></span></label>
+              <label for="invoiceDate">Invoice Date <span class="text-danger"></span></label>
               <input
-                id="invoice_date"
+                id="invoiceDate"
                 type="date"
                 formControlName="invoiceDate"
                 class="form-control"
@@ -49,9 +49,9 @@
           
           <div class="col-md-3 mb-3">
             <div class="form-group">
-              <label for="due_date">Due Date <span class="text-danger"></span></label>
+              <label for="dueDate">Due Date <span class="text-danger"></span></label>
               <input
-                id="due_date"
+                id="dueDate"
                 type="date"
                 formControlName="dueDate"
                 class="form-control"
@@ -61,11 +61,11 @@
 
           <div class="col-md-3 mb-3">
             <div class="form-group">
-              <label for="po_no"
+              <label for="poNo"
                 >PO No <span class="text-danger"></span></label
               >
               <input
-                id="po_no"
+                id="poNo"
                 formControlName="poNo"
                 class="form-control"
               />
@@ -74,9 +74,9 @@
 
           <div class="col-md-3 mb-3">
             <div class="form-group">
-              <label for="po_date">PO Date <span class="text-danger"></span></label>
+              <label for="poDate">PO Date <span class="text-danger"></span></label>
               <input
-                id="po_date"
+                id="poDate"
                 type="date"
                 formControlName="poDate"
                 class="form-control"
@@ -86,9 +86,9 @@
 
           <div class="col-md-3 mb-3">
             <div class="form-group">
-              <label for="payment_terms">Payment Terms <span class="text-danger"></span></label>
+              <label for="paymentTerms">Payment Terms <span class="text-danger"></span></label>
               <select
-                id="payment_terms"
+                id="paymentTerms"
                 class="form-control"
                 formControlName="paymentTerms"
                 (change)="onPaymentTermsChange()"
@@ -395,11 +395,11 @@
   
     <div class="col-md-6 mb-3">
       <div class="form-group">
-        <label for="po_description">
+        <label for="termsAndConditions">
           Terms & Conditions  <span class="text-danger"></span>
         </label>
         <textarea
-          id="po_description"
+          id="termsAndConditions"
           class="form-control"
           rows="4"
           formControlName="termsAndConditions"
@@ -411,11 +411,11 @@
 
     <div class="col-md-6 mb-3">
       <div class="form-group">
-        <label for="po_description">
+        <label for="privateNotes">
           Private Notes(not shown to Client) <span class="text-danger"></span>
         </label>
         <textarea
-          id="po_description"
+          id="privateNotes"
           class="form-control"
           rows="4"
           formControlName="privateNotes"
@@ -438,19 +438,19 @@
       </button>
     </div>
 
-    <div class="col-auto">
-      <!-- Save Draft Button -->
+    <!-- <div class="col-auto">
+
       <button type="button" class="btn btn-warning btn-sm custom-btn">
         <i class="fas fa-save"></i> Save Draft
       </button>
     </div>
 
     <div class="col-auto">
-      <!-- Cancel Button -->
+
       <button type="button" class="btn btn-danger btn-sm custom-btn">
         <i class="fas fa-times"></i> Cancel
       </button>
-    </div>
+    </div> -->
   </div>
 </div>
 
