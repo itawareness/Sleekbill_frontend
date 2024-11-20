@@ -5,6 +5,7 @@ import { Item } from '../item/item.model';
 import { ItemService } from './items.service';
 import { Client } from '../client/models/client.model';
 import { InvoiceModel } from './invoice-Item.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-items',
@@ -30,7 +31,7 @@ constructor(private fb: FormBuilder, private itemService: ItemService) {
   this.invoiceListForm = this.fb.group({
     paymentTerms: ['on_receipt'],
     dueDate: [{ value: '', disabled: true }],
-    clientId: [null],
+    clientId: [null, Validators.required],
     invoiceNo: [''],
     invoiceDate: [''],
     poNo: [''],
@@ -178,55 +179,32 @@ addLine(): void {
 }
 
 
-
-// saveLine(index: number): void {
-//     // Get the current item form group at the specified index
-//     const item = this.items.at(index);
-
-//     // Ensure the form is valid before saving
-//     if (item.valid) {
-//         // Recalculate the total for the current line before saving
-//         this.calculateTotal(index);
-
-//         // Mark the current line as read-only after saving
-//         item.get('isReadOnly')?.setValue(true);
-        
-//         // Optionally, you can disable editing if needed
-//         item.get('isEditMode')?.setValue(false);
-
-//         // Recalculate overall totals after saving
-//         this.subtotal = this.getSubtotal();
-//         this.totalGST = this.getTotalGST();
-//         this.grandTotal = this.getGrandTotal();
-
-//         // Add a new line after saving the current one (if applicable)
-//         // You can uncomment the line below if needed to add a new line after save
-//         // this.addLine();
-//     } else {
-//         // Optionally handle validation errors if the form is invalid
-//         console.log("Form is invalid, cannot save");
-//     }
-// }
-
-
 saveLine(index: number): void {
   // Get the current item form group at the specified index
   const item = this.items.at(index);
 
   // Ensure the form is valid before saving
   if (item.valid) {
-      // Recalculate the total for the current line before saving
-      this.calculateTotal(index);
+    // Recalculate the total for the current line before saving
+    this.calculateTotal(index);
 
-      // Set the item as read-only after saving
-      item.get('isReadOnly')?.setValue(true);
-      this.subtotal = this.getSubtotal();
-              this.totalGST = this.getTotalGST();
-              this.grandTotal = this.getGrandTotal();
-              this.savedItems.push(item.value);
-      console.log('Item saved:', item.value);
+    // Use getRawValue() to include disabled fields like 'total'
+    const itemData = item.getRawValue();
+
+    // Set the item as read-only after saving
+    item.get('isReadOnly')?.setValue(true);
+
+    // Update subtotal, total GST, and grand total
+    this.subtotal = this.getSubtotal();
+    this.totalGST = this.getTotalGST();
+    this.grandTotal = this.getGrandTotal();
+
+    // Push the raw value of the item into savedItems
+    this.savedItems.push(itemData);
+
+    console.log('Item saved:', itemData);
   } else {
-      console.error('Form is invalid. Please fill out the required fields.');
+    console.error('Form is invalid. Please fill out the required fields.');
   }
 }
 
@@ -306,8 +284,9 @@ editLine(index: number): void {
         hsnSac: selectedItem.hsn,
         itemUnit: selectedItem.unit,
         itemQuantity: selectedItem.quantity,
-        itemPrice: selectedItem.tax,
+        itemPrice: selectedItem.salesUnitPrice,
         itemGst: selectedItem.tax,
+       
       });
   
       // Recalculate the total after updating price
@@ -444,80 +423,10 @@ addItem(itemData: any): void {
     isReadOnly: [false],
   }));
 }
-
-
-// submitForm() {
-//   const formData = this.invoiceListForm.value;
-
-//   const invoiceData = {
-//     clientId: formData.clientName,
-//     invoiceNo: formData.invoiceNo,
-//     invoiceDate: formData.invoiceDate,
-//     dueDate: formData.dueDate,
-//     poNo: formData.poNo,
-//     poDate: formData.poDate,
-//     paymentTerms: formData.paymentTerms,
-//     termsAndConditions: formData.termsAndConditions,
-//     privateNotes: formData.privateNotes,
-//     items: formData.items
-//   };
-//   console.log('formData:>>>>>>>',formData);  // Check the structure of the data before sending
-
-//   this.itemService.createInvoice(invoiceData).subscribe(response => {
-//     console.log('Invoice created:', response);
-//   });
-// }
-
-
-
-// submitForm() {
-//   // Enable disabled fields to include them in form value
-//   this.invoiceListForm.get('dueDate')?.enable();
-
-//   const formData = this.invoiceListForm.value;
-  
-//   // const invoiceData: InvoiceModel = {
-//   //   clientId: formData.clientName,
-//   //   invoiceNo: formData.invoiceNo,
-//   //   invoiceDate: formData.invoiceDate,
-//   //   dueDate: formData.dueDate,
-//   //   poNo: formData.poNo,
-//   //   poDate: formData.poDate,
-//   //   paymentTerms: formData.paymentTerms,
-//   //   termsAndConditions: formData.termsAndConditions,
-//   //   privateNotes: formData.privateNotes,
-//   //   invoiceItems: formData.items.map((item: any) => ({
-//   //     itemName: item.itemName,
-//   //     description: item.description,
-//   //     hsnSac: item.hsnSac,
-//   //     itemQuantity: Number(item.itemQuantity),
-//   //     itemPrice: Number(item.itemPrice),
-//   //     itemDiscount: Number(item.itemDiscount),
-//   //     itemGst: Number(item.itemGst),
-//   //     total: Number(item.total),
-//   //   })),
-//   // };
-
-//   //console.log('Submitting Invoice Data:', invoiceData); // Debug to see the final structure
-//   console.log('before Submitting Invoice Data:', formData);
-//   this.itemService.createInvoice(formData).subscribe(
-   
-//     (response) => {
-//       console.log('Invoice created successfully:', response);
-//     },
-//     (error) => {
-//       console.error('Error creating invoice:', error);
-//     }
-//   );
-
-//   // Re-disable the due date field if needed
-//   this.invoiceListForm.get('dueDate')?.disable();
-// }
-
- // Submit the form and collect all items
- submitForm(): void {
+submitForm(): void {
   // Clear previous saved items list
   this.invoiceListForm.get('dueDate')?.enable();
+ 
   this.savedItems = [];  
 
   // Collect invoice details
@@ -547,22 +456,57 @@ addItem(itemData: any): void {
   console.log('Data to be sent:', invoiceData);
 
   if (this.savedItems.length > 0) {
-    // Send the structured data to the backend via your service
-    this.itemService.createInvoice(invoiceData).subscribe(response => {
-      console.log('Items saved successfully:', response);
+    // Display SweetAlert2 confirmation before sending data
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to save this invoice?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, save it!',
+      cancelButtonText: 'No, cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Send the structured data to the backend via your service
+        this.itemService.createInvoice(invoiceData).subscribe(response => {
+          console.log('Items saved successfully:', response);
 
-    }, error => {
-      console.error('Error saving items:', error);
+          // Show success alert
+          Swal.fire({
+            title: 'Success!',
+            text: 'Invoice has been saved successfully.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+
+        }, error => {
+          console.error('Error saving items:', error);
+
+          // Show error alert
+          Swal.fire({
+            title: 'Error!',
+            text: 'There was an issue saving the invoice.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        });
+      } else {
+        console.log('Invoice saving was cancelled');
+      }
     });
   } else {
     console.error('No items to save');
-  }
 
+    // Show warning if no items are selected
+    Swal.fire({
+      title: 'Warning!',
+      text: 'There are no items to save. Please add items to the invoice.',
+      icon: 'warning',
+      confirmButtonText: 'OK'
+    });
+  }
 
   this.invoiceListForm.get('dueDate')?.disable();
 }
-
-
 
 
 }
