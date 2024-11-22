@@ -68,10 +68,11 @@ body {
   width: 250px;
   height: 100vh;
   position: fixed;
-  background: linear-gradient(180deg, #266a95 0%, #012942 100%); /* Gradient background */
+  background-color: #083551 !important; /* Ensure this rule overrides any other */
   transition: all 0.3s;
   z-index: 1000;
 }
+
 
 /* Sidebar header styling */
 .sidebar-header {
@@ -164,5 +165,7 @@ body {
 
 /* Optional: Adjust sidebar links when hovered for better UX */
 .nav-link:hover {
-  background-color: #35759c;
+  background-color: #08639bb9;
 }
+
+

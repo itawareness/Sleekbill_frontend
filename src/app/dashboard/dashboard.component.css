@@ -1,0 +1,74 @@
+.container-fluid {
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+  .card {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+/* Styling for the statistics cards */
+.stats-card {
+  background-color: #072d45; /* Background color */
+  color: rgb(255, 255, 255); /* Text color */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover transition */
+  border: none; /* Remove border */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow initially */
+  opacity: 1; /* Full opacity */
+  will-change: transform, box-shadow; /* Optimize for transform changes */
+  position: relative; /* To allow proper movement during hover */
+}
+
+/* Hover effect */
+.stats-card:hover {
+  transform: translateY(-5px); /* Move card up */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+  opacity: 0.9; /* Slight opacity change on hover */
+}
+
+/* Card body center alignment */
+.stats-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px; /* Adjust as per design preference */
+}
+
+/* Prevent text from being blurred on hover */
+.stats-card .card-body h5, .stats-card .card-body h6 {
+  transition: none; /* No transition on text elements */
+  will-change: initial; /* Prevent text from being affected by hover */
+}
+  /* Custom background color for the buttons */
+.custom-btn {
+  background-color: #072d45; /* Apply the background color */
+  border-color: #072d45; /* Ensure the border matches the background color */
+}
+
+.custom-btn:hover {
+  background-color: #072d45; /* Slightly darker shade on hover */
+  border-color: #072d45; /* Matching border color on hover */
+}
+/* Optional custom spacing */
+.card-body .row {
+  gap: 20px; /* Adds spacing between the text and button */
+}
+/* Custom button styles */
+.custom-btn {
+  background-color: #eccc37; /* Background color */
+  color: white; /* Text color */
+  border-radius: 50px; /* Rounded corners */
+  padding: 08px 20px; /* Standard padding */
+  font-size: 16px; /* Standard text size */
+  border: none; /* No border */
+  transition: none; /* Disable hover effect */
+}
+
+/* Prevent hover effect */
+.custom-btn:hover {
+  background-color: #eccc37; /* Keep background same */
+  color: white; /* Keep text color same */
+  transform: none; /* Prevent any scaling */
+  box-shadow: none; /* Prevent shadow on hover */
+}
+
