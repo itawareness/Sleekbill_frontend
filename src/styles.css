@@ -30,11 +30,11 @@ input:focus:invalid {
   /* styles.css or styles.scss */
 
 /* Apply background color to entire page */
-html, body {
-  height: 100%;             /* Ensure the body takes up the full height */
-  margin: 0;                /* Remove default margin */
-  background-color: #a8d0e6; /* Set the desired background color */
-  font-family: Arial, sans-serif; /* Optional: Set your preferred font */
-}
+/* html, body {
+  height: 100%;           
+  margin: 0;               
+  background-color: #a8d0e6; 
+  font-family: Arial, sans-serif; 
+}  */
 
 

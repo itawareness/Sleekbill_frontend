@@ -19,6 +19,7 @@ import { CreditNoteFormComponent } from './credit-note/credit-note.component';
 import { DebitNoteFormComponent } from './debit-note/debit-note.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ItemsComponent } from './items/items.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -32,7 +33,8 @@ import { ItemsComponent } from './items/items.component';
     CreditNoteFormComponent,
     DebitNoteFormComponent,
     DynamicFormComponent,
-    ItemsComponent
+    ItemsComponent,
+    DashboardComponent,
     
     //ClientFormComponent // Declare your component here
   ],
