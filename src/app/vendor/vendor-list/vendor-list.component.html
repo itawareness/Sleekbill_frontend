@@ -1,8 +1,8 @@
-<div class="container d-flex flex-column">
+ <div class="container d-flex flex-column">
   <h2 class="text-center">Vendors List</h2>
 
   <div class="row">
-    <!-- Search Box on the left side with reduced width -->
+   
     <div class="col-md-4 col-8">
       <input
         type="text"
@@ -13,7 +13,7 @@
       />
     </div>
   
-    <!-- Export to Excel button on the right side -->
+
     <div class="col-md-8 col-4 d-flex justify-content-md-end align-items-md-center">
       <button class="btn btn-success" (click)="downloadExcel()">Export to Excel</button>
     </div>
@@ -23,7 +23,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-           <!-- Header checkbox -->
+      
            <th style="text-align: center;">
             <input
               type="checkbox"
@@ -46,7 +46,7 @@
       <tbody>
         <tr *ngFor="let vendor of paginatedVendors">
 
-           <!-- Row checkbox aligned to the header checkbox -->
+     
            <td style="text-align: center;">
             <input
               type="checkbox"
@@ -122,7 +122,7 @@
     </table>
   </div>
 
-   <!-- Bulk Actions (Delete Selected) -->
+
    <div class="bulk-actions" *ngIf="isAnyVendorSelected()">
     <button class="btn btn-tomato" (click)="deleteSelectedVendors()"><i class="fa-regular fa-trash-can"></i> Delete ({{ getSelectedCount() }}) </button>
   </div>
@@ -144,4 +144,4 @@
       </ul>
     </nav>
   </div>
-</div>
+</div> 

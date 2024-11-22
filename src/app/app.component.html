@@ -1,95 +1,64 @@
-<div class="container-fluid">
-  <h1 class="text-center"> <i class="fas fa-building"></i> Orage Invoice Management</h1>
-  <hr>
-  <div class="row justify-content-center mb-4">
-    <div class="col-auto">
-      <a routerLink="/clients/add" class="btn btn-success">
-        <i class="fas fa-user-plus"></i> Add Client
-      </a>
+<div class="d-flex">
+  <nav id="sidebar" class="sidebar bg-dark text-white">
+    <div class="sidebar-header text-center py-3">
+      <h4>
+        Orage Invoice
+      </h4>
+      <button id="sidebarToggle" class="btn btn-sm btn-light d-lg-none" (click)="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
-    <div class="col-auto">
-      <a routerLink="/clients" class="btn">
-        <i class="fas fa-users"></i> Client List
+    <nav class="nav flex-column">
+      <a routerLink="" class="nav-link text-white d-flex align-items-center">
+        <i class="fa-solid fa-house me-4 icon-large"></i> <span>Dashboard</span>
       </a>
-    </div>
-    <div class="col-auto">
-      <a routerLink="/vendors/add" class="btn">
-        <i class="fas fa-building"></i> Create Vendors
+      <a routerLink="/clients/add" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-user-plus me-4 icon-large"></i> <span>Add Client</span>
       </a>
-    </div>
-    <div class="col-auto">
-      <a routerLink="/vendors" class="btn">
-        <i class="fas fa-clipboard-list"></i> Vendor List
+      <a routerLink="/clients" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-users me-4 icon-large"></i> <span>Client List</span>
       </a>
-    </div>
-    <div class="col-auto">
-      <a routerLink="/add-invoice" class="btn">
-        <i class="fas fa-file-invoice"></i> Create Invoice
+      <a routerLink="/vendors/add" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-building me-4 icon-large"></i> <span>Create Vendors</span>
       </a>
-    </div>
-    <div class="col-auto">
-      <a routerLink="/invoices-list" class="btn">
-        <i class="fas fa-file-invoice-dollar"></i> Invoice List
+      <a routerLink="/vendors" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-clipboard-list me-4 icon-large"></i> <span>Vendor List</span>
       </a>
-    </div>
-    <div class="col-auto">
-      <a routerLink="/items/add" class="btn">
-        <i class="fas fa-box-open"></i> Create Items
+      <a routerLink="/add-invoice" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-file-invoice me-4 icon-large"></i> <span>Create Invoice</span>
       </a>
-    </div>
-    <div class="col-auto">
-      <a routerLink="/items" class="btn">
-        <i class="fas fa-box"></i> Items List
+      <a routerLink="/invoices-list" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-file-invoice-dollar me-4 icon-large"></i> <span>Invoice List</span>
       </a>
-    </div>
-    <div class="col-auto">
-      <a routerLink="/purchase-orders/new" class="btn">
-        <i class="fas fa-shopping-cart"></i> Create Purchase Order
+      <a routerLink="/items/add" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-box-open me-4 icon-large"></i> <span>Create Items</span>
       </a>
-    </div>
-    <div class="col-auto">
-      <a routerLink="/purchase-orders" class="btn">
-        <i class="fas fa-list"></i> Purchase Order List
+      <a routerLink="/items" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-box me-4 icon-large"></i> <span>Items List</span>
       </a>
-    </div>
-  
-    <div class="col-auto">
-      <a routerLink="/profile" class="btn icon-button">
-        <i class="fas fa-cog"></i>
+      <a routerLink="/purchase-orders/new" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-shopping-cart me-4 icon-large"></i> <span>Create Purchase Order</span>
       </a>
-    </div>
+      <a routerLink="/purchase-orders" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-list me-4 icon-large"></i> <span>Purchase Order List</span>
+      </a>
+      <a routerLink="/profile" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-cog me-4 icon-large"></i> <span>Profile</span>
+      </a>
+      <a routerLink="/credit-note" class="nav-link text-white d-flex align-items-center">
+        <i class="fa-solid fa-note-sticky me-4 icon-large"></i> <span>Credit Note</span>
+      </a>
+      <a routerLink="/debit-note" class="nav-link text-white d-flex align-items-center">
+        <i class="fa-solid fa-note-sticky me-4 icon-large"></i> <span>Debit Note</span>
+      </a>
+      <a routerLink="/items-test" class="nav-link text-white d-flex align-items-center">
+        <i class="fa-solid fa-note-sticky me-4 icon-large"></i> <span>Item-Test</span>
+      </a>
+    </nav>
+  </nav>
 
+  <!-- Main Content -->
+  <div class="content flex-grow-1">
+    <router-outlet></router-outlet>
   </div>
-
-  <div class="row justify-content-center mb-4">
-
-    <div class="col-auto">
-      <a routerLink="/credit-note" class="btn">
-        <i class="fa-solid fa-note-sticky"></i> Credit Note
-      </a>
-    </div>
-
-    <div class="col-auto">
-      <a routerLink="/debit-note" class="btn">
-        <i class="fa-solid fa-note-sticky"></i> Debit Note
-      </a>
-    </div>
-
-    <div class="col-auto">
-      <a routerLink="/items-test" class="btn">
-        <i class="fa-solid fa-note-sticky"></i> item-Test
-      </a>
-    </div>
-
-
-  </div>
-
-
-
-
-  <hr />
-  <router-outlet></router-outlet>
-  <!-- app.component.html -->
-<!-- <app-dynamic-form></app-dynamic-form> -->
-<h1></h1>
 </div>

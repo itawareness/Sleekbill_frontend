@@ -1,9 +1,10 @@
 <div class="container mt-4">
   <div class="card">
+    <div class="card-body">
     <div class="card-header bg-primary text-white">
       <h2 class="text-center">Add Client</h2>
     </div>
-    <div class="card-body">
+
       <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
         <div class="row">
           <!-- Company Name -->

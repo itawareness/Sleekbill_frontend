@@ -62,3 +62,107 @@ body {
     margin: 0;              /* Remove default margin */
     background-color: #8df3eb; /* Set your desired background color */
   }
+
+/* Sidebar Styling */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(180deg, #266a95 0%, #012942 100%); /* Gradient background */
+  transition: all 0.3s;
+  z-index: 1000;
+}
+
+/* Sidebar header styling */
+.sidebar-header {
+  background-color: #012942; /* Bright blue for header */
+  padding: 1rem;
+  color: white;
+}
+
+/* Nav link styling */
+.nav-link {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  color: #d1d1d1; /* Lighter gray for text */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for nav links */
+.nav-link:hover {
+  background-color: #ffffff; /* Darker background on hover */
+  color: #ffffff; /* White text on hover */
+}
+
+/* Active link styling */
+.nav-link.active {
+  background-color: #28a745; /* Green color for active links */
+  color: #ffffff; /* White text for active links */
+}
+
+/* Content area (main page) */
+.content {
+  margin-left: 250px;
+  transition: margin-left 0.3s;
+}
+
+/* Collapsed Sidebar */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed .nav-link {
+  text-align: center;
+  padding: 0.8rem 0.5rem;
+  font-size: 0.9rem;
+}
+
+.sidebar.collapsed .nav-link i {
+  margin-right: 0;
+}
+
+.sidebar.collapsed .content {
+  margin-left: 70px;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    left: -250px;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+}
+
+/* Increase the size of icons */
+.icon-large {
+  font-size: 1.5rem; /* Adjust icon size */
+}
+
+/* Adjust spacing between icons and text */
+.nav-link i {
+  margin-right: 20px; /* Increased space between icon and text */
+}
+
+/* Ensure vertical alignment for the nav items */
+.nav-link.d-flex {
+  display: flex;
+  align-items: center; /* Ensures vertical alignment of icon and text */
+}
+
+/* Optional: Additional spacing for the sidebar */
+.sidebar {
+  width: 250px;
+}
+
+/* Optional: Adjust sidebar links when hovered for better UX */
+.nav-link:hover {
+  background-color: #35759c;
+}
