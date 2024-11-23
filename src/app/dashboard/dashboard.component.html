@@ -14,134 +14,155 @@
                   </div>
                 </div> 
               </div>
-              
-              
-<!-- Card for Navigation Links -->
-<div class="card mt-3">
-    <div class="card-header">
-        <strong>GET STARTED</strong>
-    </div>
-    <div class="card-body">
-        <!-- Unordered List with Bullet Points -->
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a href="#">Start your trial</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/clients/add">Add a client</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/vendors/add">Add a Vendor</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/items/add">Add an Item</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/add-invoice">Add a Invoice</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/purchase-orders/new">Add Purchase Order</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/credit-note">Add Credit Note</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/debit-note">Add Debit Note</a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">Configure GST</a>
-            </li>
-        
-            
-        </ul>
-    </div>
+ 
+
+
+              <!-- Card for Navigation Links -->
+<div class="mt-3">
+  <div class="card-header border-0 text-dark-blue">
+    <strong>GET STARTED</strong>
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-unstyled">
+      <li class="mb-2">
+        <a href="" class="text-secondary">&gt; Start your trial</a>
+      </li>
+      <li class="mb-2">
+        <a href="/clients/add" class="text-secondary">&gt; Add a client</a>
+      </li>
+      <li class="mb-2">
+        <a href="/vendors/add" class="text-secondary">&gt; Add a Vendor</a>
+      </li>
+      <li class="mb-2">
+        <a href="/items/add" class="text-secondary">&gt; Add an Item</a>
+      </li>
+      <li class="mb-2">
+        <a href="/add-invoice" class="text-secondary">&gt; Add an Invoice</a>
+      </li>
+      <li class="mb-2">
+        <a href="/credit-note" class="text-secondary">&gt; Add Credit Note</a>
+      </li>
+      <li class="mb-2">
+        <a href="/debit-note" class="text-secondary">&gt; Add Debit Note</a>
+      </li>
+      <li class="mb-2">
+        <a href="/purchase-orders/new" class="text-secondary">&gt; Add Purchase Order</a>
+      </li>
+    </ul>
+  </div>
 </div>
+
+
         </div>
-<!-- 
-         <div class="col-md-9">
-            <div class="card">
-                <div class="card-header">
-                    <strong>INVOICED VS PAID (90 DAYS)</strong>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-3">
-                        <h4 class="text-success">₹2,42,480.00</h4>
-                        <h4 class="text-danger">Overdue: ₹2,31,186.00</h4>
-                    </div>
-                    <canvas id="financialGraph"></canvas>
-                </div>
+
+        <div class="col-md-9">
+          <div class="card custom-card-height">
+            <div class="card-header">
+              <strong>INVOICED VS PAID (90 DAYS)</strong>
             </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-3">
+                <h4 class="text-success">₹2,42,480.00</h4>
+                <h4 class="text-danger">Overdue: ₹2,31,186.00</h4>
+              </div>
+              <div class="chart-container">
+                <canvas id="financialGraph" class="custom-canvas"></canvas>
+              </div>
+            </div>
+          </div>
         </div>
+        
+        
     </div> 
 
-
-
-    <div class="row text-center mb-4">
-      
-        <div class="col-md-3 mb-3">
-          <div class="card stats-card">
-            <div class="card-body">
-              <h6>Clients / Customers</h6>
-              <h5>7</h5>
-            </div>
-          </div>
-        </div>
-      
-   
-        <div class="col-md-3 mb-3">
-          <div class="card stats-card">
-            <div class="card-body">
-              <h6>Items</h6>
-              <h5>4</h5>
-            </div>
-          </div>
-        </div>
-      
-   
-        <div class="col-md-3 mb-3">
-          <div class="card stats-card">
-            <div class="card-body">
-              <h6>Invoices</h6>
-              <h5>14</h5>
-            </div>
-          </div>
-        </div>
-      
- 
-        <div class="col-md-3 mb-3">
-          <div class="card stats-card">
-            <div class="card-body">
-              <h6>Quotes & Proformas</h6>
-              <h5>3</h5>
-            </div>
+    <div class="row text-center ">
+      <!-- Clients / Customers Card -->
+      <div class="col-md-3 mb-3">
+        <div class="card stats-card">
+          <div class="card-body">
+            <i class="fa-solid fa-users fa-2x  "></i>
+            <h6>Clients / Customers</h6>
+            <h5>{{ clientCount }}</h5>
           </div>
         </div>
       </div>
-      
-      <div class="row text-center mb-4">
-        <div class="col-md-2">
-          <a href="/clients/add" class="btn btn-primary btn-block custom-btn">Add Clients</a>
-        </div>
-        <div class="col-md-2">
-          <a href="/add-items" class="btn btn-primary btn-block custom-btn">Add Items</a>
-        </div>
-        <div class="col-md-2">
-          <a href="/add-invoices" class="btn btn-primary btn-block custom-btn">Add Invoices</a>
-        </div>
-        <div class="col-md-2">
-          <a href="/add-quotes" class="btn btn-primary btn-block custom-btn">Add Quotes</a>
-        </div>
-        <div class="col-md-2">
-          <a href="/add-bills" class="btn btn-primary btn-block custom-btn">Add Bills</a>
+    
+      <!-- Items Card -->
+      <div class="col-md-3 mb-3">
+        <div class="card stats-card">
+          <div class="card-body">
+            <i class="fa-solid fa-users fa-2x  "></i>
+            <h6>Vendors / Suppliers</h6>
+            <h5>{{ vendorCount }}</h5>
+          </div>
         </div>
       </div>
+    
+      <!-- Invoices Card -->
+      <div class="col-md-3 mb-3">
+        <div class="card stats-card">
+          <div class="card-body">
+            <i class="fa-solid fa-boxes-stacked fa-2x "></i>
+            <h6>Items</h6>
+            <h5>{{ itemCount }}</h5>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Quotes & Proformas Card -->
+      <div class="col-md-3 mb-3">
+        <div class="card stats-card">
+          <div class="card-body">
+            <i class="fa-solid fa-file-invoice-dollar fa-2x "></i>
+            <h6>Invoices</h6>
+            <h5>5</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+     <!--      <div class="row text-center mb-4">
+        <div class="col-md-2">
+          <a href="/clients/add" class="btn btn-primary btn-block custom-button">
+            <i class="fas fa-user-plus me-4"></i> Add Clients
+          </a>
+        </div>
+        <div class="col-md-2">
+          <a href="/vendors/add" class="btn btn-primary btn-block custom-button">
+            <i class="fas fa-box me-2"></i> Add Vendors
+          </a>
+        </div>
+        <div class="col-md-2">
+          <a href="/add-invoice" class="btn btn-primary btn-block custom-button">
+            <i class="fas fa-file-invoice me-2"></i> Add Invoices
+          </a>
+        </div>
+        <div class="col-md-2">
+          <a href="/items/add" class="btn btn-primary btn-block custom-button">
+            <i class="fas fa-user-plus me-2"></i> Add Items
+          </a>
+        </div>
+        <div class="col-md-2">
+          <a href="/purchase-orders/new" class="btn btn-primary btn-block custom-button">
+            <i class="fas fa-receipt me-2"></i> Add Bills
+          </a>
+        </div>
+        <div class="col-md-2">
+          <a href="/credit-note" class="btn btn-primary btn-block custom-button">
+            <i class="fas fa-receipt me-2"></i> Add Credit Note
+          </a>
+        </div>
+      </div>
+      
       
   
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 mx-auto">
         <div class="card">
-          <div class="card-header">Request a GST Demo</div>
+          <div class="card-header text-center">
+            <strong>Request a GST Demo</strong>
+          </div>
           <div class="card-body">
             <form>
               <div class="mb-3">
@@ -156,23 +177,40 @@
               <div class="mb-3">
                 <textarea class="form-control" rows="3" placeholder="Message"></textarea>
               </div>
-              <button class="btn btn-success btn-block">Submit</button>
+              <div class="text-center">
+                <button class="btn" style="background-color: #46be8a; color: white;">Request a Demo</button>
+              </div>
             </form>
           </div>
         </div>
       </div>
+      
       <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">Quick Tips on Using Sleek Bill</div>
+        <div class="card tips-card">
+          <div class="card-header">
+            <strong>Quick Tips on Using Sleek Bill</strong>
+          </div>
           <div class="card-body">
             <ul class="list-group">
-              <li class="list-group-item">Add invoice details</li>
-              <li class="list-group-item">How to add a client?</li>
-              <li class="list-group-item">How to apply CGST, SGST, IGST?</li>
-              <li class="list-group-item">How to remove your company's logo?</li>
+              <li class="list-group-item d-flex align-items-center">
+                <span class="me-2">+</span> Add invoice details
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <span class="me-2">+</span> How to add a client?
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <span class="me-2">+</span> How to apply CGST, SGST, IGST?
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <span class="me-2">+</span> How to remove your company's logo?
+              </li>
+              <li class="list-group-item d-flex align-items-center">
+                <span class="me-2">+</span> How to remove your company's logo?
+              </li>
             </ul>
           </div>
         </div>
       </div>
-    </div>  --> 
+      
+    </div>  -->  
   </div>

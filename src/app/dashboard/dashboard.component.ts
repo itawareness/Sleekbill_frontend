@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { ClientService } from '../client/client.service';
+import { VendorService } from '../vendor/vendor.service';
+import { ItemService } from '../item/item.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,14 +10,46 @@ import { Chart, registerables } from 'chart.js';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor() {
+
+
+  clientCount: number = 0;
+  vendorCount: number = 0;
+  itemCount: number = 0;
+  constructor(private clientService: ClientService,private vendorService: VendorService,private itemService: ItemService) {
     // Register Chart.js modules
     Chart.register(...registerables);
   }
 
   ngOnInit(): void {
     this.loadFinancialGraph();
+    this.loadClientCount();
+    this.loadVendorCount();
+    this.loadItemCount();
   }
+
+   
+  loadClientCount(): void {
+    this.clientService.getClientCount().subscribe((count) => {
+      this.clientCount = count;
+    });
+  }
+     
+  loadVendorCount(): void {
+    this.vendorService.getVendorCount().subscribe((count) => {
+      this.vendorCount = count;
+    });
+  }
+
+
+       
+  loadItemCount(): void {
+    this.itemService.getItemCount().subscribe((count) => {
+      this.itemCount = count;
+    });
+  }
+
+
+
 
   loadFinancialGraph(): void {
     const ctx = (document.getElementById('financialGraph') as HTMLCanvasElement).getContext('2d');

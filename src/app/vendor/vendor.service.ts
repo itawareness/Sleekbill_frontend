@@ -14,7 +14,7 @@ interface PaginatedResponse {
 })
 export class VendorService {
   private apiUrl = 'http://localhost:8080/vendors'; // Replace with your API endpoint
-
+  private vendorCountURL = 'http://localhost:8080/vendors/allVendorCounts';
   constructor(private http: HttpClient) {}
 
 
@@ -59,14 +59,6 @@ addVendor(vendor: Vendor): Observable<Vendor> {
 
 
 
-  // getVendors(): Observable<Vendor[]> {
-  //   return this.http.get<Vendor[]>(this.apiUrl);
-  // }
-
-  // addVendor(vendor: Vendor): Observable<Vendor> {
-  //   return this.http.post<Vendor>(this.apiUrl, vendor);
-  // }
-
   updateVendor(vendor: Vendor): Observable<Vendor> {
     return this.http.put<Vendor>(`${this.apiUrl}/${vendor.id}`, vendor);
   }
@@ -77,4 +69,11 @@ addVendor(vendor: Vendor): Observable<Vendor> {
   getVendorById(id: number): Observable<Vendor> {
     return this.http.get<Vendor>(`${this.apiUrl}/${id}`);
   }
+
+
+    
+  getVendorCount(): Observable<number> {
+    return this.http.get<number>(this.vendorCountURL);
+}
+
 }

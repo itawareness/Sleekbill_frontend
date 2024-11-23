@@ -72,3 +72,92 @@
   box-shadow: none; /* Prevent shadow on hover */
 }
 
+.custom-button {
+  background-color: #073d5cdc; /* Background color */
+  color: white; /* Text color */
+  border-radius: 50px; /* Rounded corners */
+  padding: 08px 20px; /* Standard padding */
+  font-size: 16px; /* Standard text size */
+  border: none; /* No border */
+  transition: none; /* Disable hover effect */
+}
+
+/* Reduce height of the card */
+.custom-card-height {
+  height: 400px; /* Adjust as needed */
+  overflow: hidden; /* Prevent content from spilling out */
+}
+
+/* Ensure the canvas fits properly within the card */
+.chart-container {
+  position: relative;
+  height: 250px; /* Adjust canvas height */
+  width: 100%;
+}
+
+.custom-canvas {
+  display: block;
+  max-height: 100%;
+}
+
+.btn-custom {
+  background-color: #46be8a;
+  color: white;
+}
+
+
+.text-dark-blue {
+  color: #003366; /* Dark Blue */
+}
+
+
+.list-group .text-secondary {
+  text-decoration: none;
+  color: #6c757d; /* Grey color for text */
+}
+
+.list-group .text-secondary:hover {
+  color: #495057; /* Slightly darker grey on hover */
+}
+
+.list-group .list-unstyled {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; /* Removes default bullets */
+}
+
+.list-group-item {
+  padding: 0;
+}
+
+
+.tips-card {
+  background-color: #f8f9fa; /* Light background color */
+  border: 1px solid #dee2e6; /* Subtle border */
+  border-radius: 8px;
+}
+
+.tips-card .card-header {
+  background-color: #fff; /* White background for header */
+ 
+  color: #343a40; /* Dark text */
+}
+
+.tips-card .list-group-item {
+  background-color: #f9f9f9; /* Light gray background for list items */
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 5px; /* Spacing between items */
+  font-weight: 500;
+  color: #343a40; /* Dark text */
+}
+
+.tips-card .list-group-item:hover {
+  background-color: #e9ecef; /* Slight hover effect */
+  cursor: pointer;
+}
+
+.tips-card .list-group-item span {
+  color: #007bff; /* Plus icon color */
+  font-size: 1.2rem; /* Slightly larger font for the plus icon */
+}

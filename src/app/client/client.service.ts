@@ -55,7 +55,7 @@ interface PaginatedResponse {
 })
 export class ClientService {
   private apiUrl = 'http://localhost:8080/clients'; // Your backend API URL
-
+  private clientCountURL = 'http://localhost:8080/clients/allClientCounts'; // Spring Boot endpoint
   constructor(private http: HttpClient) {}
 
   // Get paginated clients
@@ -95,5 +95,15 @@ export class ClientService {
       params: params,
       responseType: 'blob' // Since we are downloading a file
     });
+
+    
   }
+
+  
+  getClientCount(): Observable<number> {
+    return this.http.get<number>(this.clientCountURL);
+}
+
+
+
 }
