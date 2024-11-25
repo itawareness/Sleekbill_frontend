@@ -7,8 +7,8 @@ import { Item } from './item.model';
   providedIn: 'root'
 })
 export class ItemService {
-  private baseUrl = 'http://localhost:8080/items'; // Update with your API URL
-
+  private baseUrl = 'http://localhost:8080/items'; 
+  private itemCountURL = 'http://localhost:8080/items/allItemCounts'; 
   constructor(private http: HttpClient) {}
 
   createItem(item: Item): Observable<Item> {
@@ -19,4 +19,10 @@ export class ItemService {
     return this.http.get<Item[]>(`${this.baseUrl}/getAllItems`);  
   }
   
+
+    
+  getItemCount(): Observable<number> {
+    return this.http.get<number>(this.itemCountURL);
+}
+
 }

@@ -57,7 +57,7 @@ export class InvoiceComponent implements OnInit {
       export_currency: ['', Validators.required],
       country_supply: ['', Validators.required],
       place_supply: ['', Validators.required],
-      excise_duty: [, Validators.min(0)], // Initialize with 0
+      excise_duty: [, Validators.min(0)],
       advance_payment: [''],
       invoice_type: [''],
       item_name: ['', Validators.required],
@@ -178,154 +178,106 @@ export class InvoiceComponent implements OnInit {
     }
 }
 
-
- // Function to generate PDF
-  // generatePDF(invoiceData: Invoice): void {
-  //   const doc = new jsPDF();
-
-  //   doc.setFontSize(20);
-  //   doc.text('Invoice', 20, 20);
-  //   doc.setFontSize(12);
-  //   doc.text(`Client Name: ${invoiceData.client_name}`, 20, 30);
-
-  //  //doc.text(`Invoice Number: ${invoiceData.invoice_No}`, 20, 40);
-  //  // doc.text(`Invoice Date: ${invoiceData.invoice_date}`, 20, 50);
-  //  // doc.text(`Invoice Due Date: ${invoiceData.invoice_due_date}`, 20, 60);
-  //  // doc.text(`Purchase No: ${invoiceData.purchase_No}`, 20, 70);
-  // //  doc.text(`Purchase Date: ${invoiceData.purchase_date}`, 20, 80);
-  // //  doc.text(`Payment Terms: ${invoiceData.payment_terms}`, 20, 90);
-  //  // doc.text(`Tax Selection On: ${invoiceData.tax_selection_on}`, 20, 100);
-  //  // doc.text(`Export Type: ${invoiceData.export_type}`, 20, 110);
-  // //  doc.text(`Export Currency: ${invoiceData.export_currency}`, 20, 120);
-  //  // doc.text(`Country Supply: ${invoiceData.country_supply}`, 20, 130);
-  //  // doc.text(`Place Supply: ${invoiceData.place_supply}`, 20, 140);
-  //   //doc.text(`Excise Duty: ${invoiceData.excise_duty}`, 20, 150);
-  //  // doc.text(`Advance Payment: ${invoiceData.advance_payment}`, 20, 160);
-  // //  doc.text(`Invoice Type: ${invoiceData.invoice_type}`, 20, 170);
-    
-  
-  //   doc.text(`Item Name: ${invoiceData.item_name}`, 20, 180);
-  //   doc.text(`Item Description: ${invoiceData.item_description}`, 20, 190);
-  //   doc.text(`HSN/SAC: ${invoiceData.hsn_sac}`, 20, 200);
-  //   doc.text(`Item Unit: ${invoiceData.item_unit}`, 20, 210);
-  //   doc.text(`Item Quantity: ${invoiceData.item_quantity}`, 20, 220);
-  //   doc.text(`Item Price: ${invoiceData.item_price}`, 20, 230);
-  //   doc.text(`Item Discount: ${invoiceData.item_discount}`, 20, 240);
-  //   doc.text(`GST Tax: ${invoiceData.tax_cgst_sgst_igst}`, 20, 250);
-  //   doc.text(`Shipping Charges: ${invoiceData.shipping_charges}`, 20, 260);
-  //   doc.text(`Total Amount: ${invoiceData.total}`, 20, 270);
-
-  //   // Add more fields as needed
-  //   doc.save(`Invoice_${invoiceData.invoice_No}.pdf`);
-  // }
-  
-
-
-
   generatePDF(invoiceData: Invoice): void {
     const doc = new jsPDF();
 
-    // Title
-    // Get the page width
 const pageWidth = doc.internal.pageSize.getWidth();
 
-// Set font size for the title
+
 doc.setFontSize(20);
 
-// Calculate x position for right alignment of the title
+
 const titleText = `${invoiceData.invoice_type}`;
 const titleWidth = doc.getTextWidth(titleText);
-const titleX = pageWidth - titleWidth - 20; // 20 is the margin from the right
+const titleX = pageWidth - titleWidth - 20;
 
-// Draw the title on the right side
+
 doc.text(titleText, titleX, 20);
 
-// Invoice Date Information
+
 doc.setFontSize(12);
 const invoiceDate = `Invoice Date: ${invoiceData.invoice_date}`;
 const invoicedatewidth = doc.getTextWidth(invoiceDate);
-const invoiceX = pageWidth - invoicedatewidth - 20; // 20 is the margin from the right
+const invoiceX = pageWidth - invoicedatewidth - 20; 
 
-// Draw the client information on the right side
+
 doc.text(invoiceDate, invoiceX, 30);
 
 
-// Invoice Due Date Information
+
 doc.setFontSize(12);
 const invoiceDueDate = `Invoice Due Date: ${invoiceData.invoice_due_date}`;
 const invoiceduedatewidth = doc.getTextWidth(invoiceDueDate);
-const invoicedueX = pageWidth - invoiceduedatewidth - 20; // 20 is the margin from the right
+const invoicedueX = pageWidth - invoiceduedatewidth - 20; 
 
-// Draw the client information on the right side
+
 doc.text(invoiceDueDate, invoicedueX, 40);
 
 
-// Invoice Supply place Information
+
 doc.setFontSize(12);
 const supplyPlace = `Place Of Supply: ${invoiceData.place_supply}`;
 const supplyPlaceWidth = doc.getTextWidth(supplyPlace);
-const supplyX = pageWidth - supplyPlaceWidth - 20; // 20 is the margin from the right
+const supplyX = pageWidth - supplyPlaceWidth - 20;
 
-// Draw the client information on the right side
 doc.text(supplyPlace, supplyX, 50);
 
-    // Prepare data for the table with "Sr No" column
+ 
     const tableData: (string | number)[][] = [
       ['Sr No', 'Item Name', 'Description', 'HSN/SAC', 'Unit', 'Quantity', 'Price', 'Discount(%)', 'GST Tax(%)', 'Shipping Charges'],
       [
-        1, // Sr No for the single item
-        invoiceData.item_name || '', // Default to empty string if undefined
-        invoiceData.item_description || '', // Default to empty string if undefined
-        invoiceData.hsn_sac || '', // Default to empty string if undefined
-        invoiceData.item_unit || '', // Default to empty string if undefined
-        invoiceData.item_quantity || 0, // Default to 0 if undefined
-        invoiceData.item_price || 0, // Default to 0 if undefined
-        invoiceData.item_discount || 0, // Default to 0 if undefined
-        invoiceData.tax_cgst_sgst_igst || 0, // Default to 0 if undefined
-        invoiceData.shipping_charges || 0 // Default to 0 if undefined
+        1, 
+        invoiceData.item_name || '', 
+        invoiceData.item_description || '', 
+        invoiceData.hsn_sac || '', 
+        invoiceData.item_unit || '', 
+        invoiceData.item_quantity || 0, 
+        invoiceData.item_price || 0, 
+        invoiceData.item_discount || 0, 
+        invoiceData.tax_cgst_sgst_igst || 0, 
+        invoiceData.shipping_charges || 0 
       ]
     ];
 
-    // Add the table to the PDF
+
     autoTable(doc, {
-      head: [tableData[0]], // Header row
-      body: [tableData[1]], // Data row
-      startY: 60, // Start position for the table
-      theme: 'grid', // Add grid lines
+      head: [tableData[0]], 
+      body: [tableData[1]], 
+      startY: 60, 
+      theme: 'grid', 
       styles: {
         cellPadding: 2,
         fontSize: 10,
-        lineColor: [0, 0, 0], // Line color
-        lineWidth: 0.1, // Line width
+        lineColor: [0, 0, 0], 
+        lineWidth: 0.1, 
       },
       headStyles: {
-        fillColor: [42, 98, 130], // Header background color
-        textColor: [255, 255, 255], // Header text color (white for contrast)
+        fillColor: [42, 98, 130],
+        textColor: [255, 255, 255], 
       },
       didParseCell: (data) => {
-        // Add border for each cell
+      
         data.cell.styles.lineColor = [0, 0, 0];
         data.cell.styles.lineWidth = 0.1;
       },
       didDrawCell: (data) => {
-        // Draw total amount below the table
+     
         if (data.section === 'body' && data.row.index === data.table.body.length - 1) {
           const totalText = `Total Amount: ${invoiceData.total}`;
   
           doc.setFontSize(12);
-          doc.setTextColor(0, 0, 0); // Set text color to black
-          // Calculate total amount X position for right alignment
+          doc.setTextColor(0, 0, 0); 
+         
           const textWidth = doc.getTextWidth(totalText);
           const pageWidth = doc.internal.pageSize.getWidth();
-          const totalX = pageWidth - textWidth - 20; // 20 is margin from the right
+          const totalX = pageWidth - textWidth - 20; 
   
-          // Draw the total amount below the table
-          doc.text(totalText, totalX, data.cell.y + data.cell.height + 10); // 10 is the margin below the last row
+         
+          doc.text(totalText, totalX, data.cell.y + data.cell.height + 10); 
         }
       }
     });
 
-    // Save the PDF
     doc.save(`Invoice_${invoiceData.invoice_No}.pdf`);
 }
 

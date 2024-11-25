@@ -1,27 +1,27 @@
 f
-     /* Remove the clear (cross) sign from text inputs */
+
 
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="url"] {
-  -webkit-appearance: none; /* Disable the cross sign in WebKit browsers */
-  -moz-appearance: none; /* Disable the cross sign in Firefox */
-  appearance: none; /* General appearance reset */
-  background: none; /* Remove background */
-  border: 1px solid #ced4da; /* Default border */
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
+  background: none; 
+  border: 1px solid #ced4da; 
 }
 .logo-upload {
-  width: 520px; /* Fixed width */
-  height: 150px; /* Fixed height */
-  background-color: #266a95; /* Blue background */
-  color: #fff; /* White text color */
-  border: none; /* No border when empty */
+  width: 520px; 
+  height: 150px; 
+  background-color: #266a95; 
+  color: #fff; 
+  border: none; 
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; /* Center icon and text */
+  flex-direction: column; 
   cursor: pointer;
   text-align: center;
   position: relative;
@@ -29,25 +29,25 @@ input[type="url"] {
 }
 
 .logo-upload.has-logo {
-  background-color: transparent; /* Transparent when logo is present */
-  border: 2px dotted #a0a0a0; /* Gray dotted border when logo is uploaded */
+  background-color: transparent; 
+  border: 2px dotted #a0a0a0;
 }
 
 .logo-preview {
-  max-width: 100%; /* Scale logo */
-  max-height: 100%; /* Scale logo */
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 5px;
 }
 
-/* Centering text and icon within the box */
+
 .logo-upload p, .logo-upload .logo-icon {
   font-size: 18px;
   margin: 0;
 }
 
 .logo-icon {
-  font-size: 36px; /* Icon size */
-  margin-bottom: 10px; /* Space between icon and text */
+  font-size: 36px; 
+  margin-bottom: 10px; 
 }
 
 

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Item } from '../item/item.model';
 import { ItemService } from './items.service';
 import { Client } from '../client/models/client.model';
-import { InvoiceModel } from './invoice-Item.model';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,10 +14,10 @@ import Swal from 'sweetalert2';
 })
 export class ItemsComponent implements OnInit {
   invoiceListForm :FormGroup
-  isAddLineVisible: boolean = true; // Define the visibility property
+  isAddLineVisible: boolean = true; 
   itemsForm: FormGroup;
   clients: Client[] = [];
-  itemList: Item[] = []; // List to store items fetched from backend
+  itemList: Item[] = []; 
 subtotal: number = 0;
 totalGST: number = 0;
 grandTotal: number = 0;
@@ -38,7 +38,7 @@ constructor(private fb: FormBuilder, private itemService: ItemService) {
     poDate: [''],
     termsAndConditions: [''],
     privateNotes: [''],
-    items: this.fb.array([]), // FormArray for items
+    items: this.fb.array([]), 
   });
 }
 
@@ -46,31 +46,17 @@ get invoiceItems(): FormArray {
   return this.invoiceListForm.get('itemList') as FormArray;
 }
 
-// saveItem(): FormGroup {
-//   return this.fb.group({
-//     itemName: [''],
-//     description: [''],
-//     hsnSac: [''],
-//     itemQuantity: [''],
-//     itemPrice: [''],
-//     itemDiscount: [''],
-//     itemGst: [''],
-//     total: [{ value: 0, disabled: true }],
-//     isReadOnly: [false],
-//   });
-// }
-  
-  ngOnInit(): void {
+ ngOnInit(): void {
     this.fetchItems();
     this.fetchClients();
-    this.addLine(); // Add the first line to the table on init
+    this.addLine(); 
    this.setDefaultDueDate();
    this.onPaymentTermsChange();
 
 
   }
 
-  // Fetch items from the backend
+
   fetchItems(): void {
     this.itemService.getItems().subscribe(
       (data: Item[]) => {
@@ -106,10 +92,10 @@ get invoiceItems(): FormArray {
   isReadOnly(index: number): boolean {
     return this.getItemFormGroup(index).get('isReadOnly')?.value;
   }
-// Flag to control visibility of the character count
+
 showCharCount: boolean = true;
 
-// Function to get remaining characters
+
 getRemainingCharacters(index: number): number {
   const descriptionControl = this.getItemFormGroup(index).get('description');
   const maxLength = 1000;
@@ -128,37 +114,15 @@ updateCharacterCount(index: number): void {
   }
 }
 
-// Call this method after saving the line
+
 onSaveLine(): void {
-  this.showCharCount = false; // Hide the character count after saving
+  this.showCharCount = false; 
 }
 
-//   addLine(): void {
-//     // Create a new item form group
-//     const itemGroup = this.fb.group({
-//         itemName: ['', Validators.required],
-//         description: [''],
-//         hsnSac: [''],
-//         itemUnit: [''],
-//         itemQuantity: [''],
-//         itemPrice: [''],
-//         itemDiscount: [''],
-//         itemGst: [''],
-//         total: [{ value: '', disabled: true }],
-//         isReadOnly: [false],
-//     });
-
-//     // Add the new item to the form array
-//     this.items.push(itemGroup);
-
-//     // Optionally, mark the newly added line as editable (not read-only)
-//     this.items.at(this.items.length - 1).get('isReadOnly')?.setValue(false);
-// }
-
 addLine(): void {
-  // Create a new empty item form group
+
   const itemGroup = this.fb.group({
-    itemName: ['', Validators.required], // Empty fields initially
+    itemName: ['', Validators.required],
     description: [''],
     hsnSac: [''],
     itemUnit: [''],
@@ -167,39 +131,39 @@ addLine(): void {
     itemDiscount: [''],
     itemGst: [''],
     total: [{ value: '', disabled: true }],
-    isReadOnly: [false], // New line is editable initially
+    isReadOnly: [false],
   });
 
-  // Add the new item to the form array
+
   this.items.push(itemGroup);
 
-  // Automatically focus on the newly added line for editing (optional)
+
   const index = this.items.length - 1;
-  this.items.at(index).get('isReadOnly')?.setValue(false); // Set to editable mode
+  this.items.at(index).get('isReadOnly')?.setValue(false); 
 }
 
 
 saveLine(index: number): void {
-  // Get the current item form group at the specified index
+ 
   const item = this.items.at(index);
 
-  // Ensure the form is valid before saving
+ 
   if (item.valid) {
-    // Recalculate the total for the current line before saving
+   
     this.calculateTotal(index);
 
-    // Use getRawValue() to include disabled fields like 'total'
+
     const itemData = item.getRawValue();
 
-    // Set the item as read-only after saving
+    
     item.get('isReadOnly')?.setValue(true);
 
-    // Update subtotal, total GST, and grand total
+  
     this.subtotal = this.getSubtotal();
     this.totalGST = this.getTotalGST();
     this.grandTotal = this.getGrandTotal();
 
-    // Push the raw value of the item into savedItems
+    
     this.savedItems.push(itemData);
 
     console.log('Item saved:', itemData);
@@ -240,10 +204,10 @@ editLine(index: number): void {
   const item = this.items.at(index);
   
   // Set to edit mode
-  item.get('isReadOnly')?.setValue(false);  // Set to edit mode
-  item.get('isEditMode')?.setValue(true);   // Flag as being in edit mode
+  item.get('isReadOnly')?.setValue(false);  
+  item.get('isEditMode')?.setValue(true);   
 
-  // Optionally, recalculate total when switching to edit mode (if needed)
+
   this.calculateTotal(index);
 
   // Recalculate overall totals (subtotal, totalGST, grandTotal)
@@ -254,7 +218,7 @@ editLine(index: number): void {
 
   
   deleteLine(index: number): void {
-    this.items.removeAt(index);  // Remove the row from the FormArray
+    this.items.removeAt(index);  
   
   
     // Recalculate Subtotal, Total GST, and Grand Total after item change
@@ -401,12 +365,6 @@ formatDate(date: Date): string {
   return `${year}-${month}-${day}`;
 }
 
-
-
-
-// addItem() {
-//   this.invoiceItems.push(this.savedItem());
-// }
 
 
 addItem(itemData: any): void {

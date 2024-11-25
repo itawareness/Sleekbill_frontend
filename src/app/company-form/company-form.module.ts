@@ -6,12 +6,12 @@ import { CompanyFormComponent } from './company-form.component';
 @NgModule({
   declarations: [CompanyFormComponent],
   imports: [
-    CommonModule,         // Provides common directives like ngIf, ngFor
-    FormsModule,         // Provides support for template-driven forms
-    ReactiveFormsModule,  // Provides support for reactive forms
+    CommonModule,        
+    FormsModule,         
+    ReactiveFormsModule,  
   ],
   exports: [
-    CompanyFormComponent  // Export the component to be used in other modules
+    CompanyFormComponent 
   ]
 })
 export class CompanyFormModule { }

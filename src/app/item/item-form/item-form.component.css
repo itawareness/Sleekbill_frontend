@@ -1,13 +1,12 @@
 
-   /* Remove the clear (cross) sign from text inputs */
    input[type="text"],
    input[type="number"],
    input[type="email"],
    input[type="tel"],
    input[type="url"] {
-     -webkit-appearance: none; /* Disable the cross sign in WebKit browsers */
-     -moz-appearance: none; /* Disable the cross sign in Firefox */
-     appearance: none; /* General appearance reset */
-     background: none; /* Remove background */
-     border: 1px solid #ced4da; /* Default border */
+     -webkit-appearance: none;
+     -moz-appearance: none; 
+     appearance: none; 
+     background: none; 
+     border: 1px solid #ced4da; 
    }

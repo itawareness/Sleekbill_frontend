@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 import { CompanyFormModule } from './company-form/company-form.module';
 import { CreditNoteFormComponent } from './credit-note/credit-note.component';
 import { DebitNoteFormComponent } from './debit-note/debit-note.component';
-import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+
 import { ItemsComponent } from './items/items.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -32,7 +32,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     InvoiceListComponent,
     CreditNoteFormComponent,
     DebitNoteFormComponent,
-    DynamicFormComponent,
+
     ItemsComponent,
     DashboardComponent,
     

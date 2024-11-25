@@ -4,15 +4,9 @@ import { ItemFormComponent } from './item-form/item-form.component';
 import { ItemListComponent } from './item-list/item-list.component';
 
 
-// const routes: Routes = [
-//   { path: '', redirectTo: 'list', pathMatch: 'full' },
-//   { path: 'lists', component: ClientListComponent },
-//   { path: 'add', component: ClientFormComponent },
-// ];
-
 const routes: Routes = [
-  { path: '', component: ItemListComponent }, // Default route for clients
-  { path: 'add', component: ItemFormComponent }, // Route for adding a client
+  { path: '', component: ItemListComponent }, 
+  { path: 'add', component: ItemFormComponent }, 
 ];
 
 @NgModule({

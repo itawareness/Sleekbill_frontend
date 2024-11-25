@@ -1,0 +1,163 @@
+.container-fluid {
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+  .card {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+.stats-card {
+  background-color: #072d45; 
+  color: rgb(255, 255, 255); 
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+  border: none; 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
+  opacity: 1; 
+  will-change: transform, box-shadow;
+  position: relative; 
+}
+
+
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+  opacity: 0.9; 
+}
+
+
+.stats-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px; 
+}
+
+
+.stats-card .card-body h5, .stats-card .card-body h6 {
+  transition: none; 
+  will-change: initial; 
+}
+
+.custom-btn {
+  background-color: #072d45; 
+  border-color: #072d45; 
+}
+
+.custom-btn:hover {
+  background-color: #072d45; 
+  border-color: #072d45; 
+}
+
+.card-body .row {
+  gap: 20px; 
+}
+
+.custom-btn {
+  background-color: #eccc37; 
+  color: white;
+  border-radius: 50px;
+  padding: 08px 20px; 
+  font-size: 16px;
+  border: none;
+  transition: none;
+}
+
+
+.custom-btn:hover {
+  background-color: #eccc37; 
+  color: white;
+  transform: none; 
+  box-shadow: none; 
+}
+
+.custom-button {
+  background-color: #073d5cdc; 
+  color: white; 
+  border-radius: 50px; 
+  padding: 08px 20px; 
+  font-size: 16px; 
+  border: none;
+  transition: none; 
+}
+
+
+.custom-card-height {
+  height: 400px; 
+  overflow: hidden; 
+}
+
+
+.chart-container {
+  position: relative;
+  height: 250px; 
+  width: 100%;
+}
+
+.custom-canvas {
+  display: block;
+  max-height: 100%;
+}
+
+.btn-custom {
+  background-color: #46be8a;
+  color: white;
+}
+
+
+.text-dark-blue {
+  color: #003366; 
+}
+
+
+.list-group .text-secondary {
+  text-decoration: none;
+  color: #6c757d; 
+}
+
+.list-group .text-secondary:hover {
+  color: #495057; 
+}
+
+.list-group .list-unstyled {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; 
+}
+
+.list-group-item {
+  padding: 0;
+}
+
+
+.tips-card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6; 
+  border-radius: 8px;
+}
+
+.tips-card .card-header {
+  background-color: #fff; 
+ 
+  color: #343a40; 
+}
+
+.tips-card .list-group-item {
+  background-color: #f9f9f9; 
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #343a40;
+}
+
+.tips-card .list-group-item:hover {
+  background-color: #e9ecef;  
+  cursor: pointer;
+}
+
+.tips-card .list-group-item span {
+  color: #007bff; 
+  font-size: 1.2rem; 
+}

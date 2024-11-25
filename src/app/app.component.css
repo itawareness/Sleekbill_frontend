@@ -8,105 +8,105 @@
   }
   
   
-  /* Default style for all buttons */
+ 
   .btn {
-    background-color: #1c1c1c !important;  /* Force the dark color */
+    background-color: #1c1c1c !important;
     color: white !important;
     border: none !important;
   }
   
-  /* Keep the green color for the 'Add Client' button */
+
   .btn-success {
-    background-color: #28a745 !important;  /* Force the green color */
+    background-color: #28a745 !important; 
     color: white !important;
   }
   .icon-button {
-    background-color: transparent !important; /* Removes the background color */
-    border: none; /* Removes the border */
-    padding: 0; /* Removes any padding */
-    margin: 0; /* Removes margin */
-    cursor: pointer; /* Changes the cursor to a pointer on hover */
-    display: inline-flex; /* Allows proper alignment */
-    align-items: center; /* Centers icon vertically */
-    line-height: 1; /* Ensures no extra space around the icon */
+    background-color: transparent !important; 
+    border: none; 
+    padding: 0;
+    margin: 0;
+    cursor: pointer; 
+    display: inline-flex; 
+    align-items: center; 
+    line-height: 1; 
     margin-left: 80px;
   }
   
   .icon-button i {
-    color: black; /* Sets the color of the icon to black */
-    font-size: 36px; /* Increase the size of the icon (adjust as needed) */
+    color: black; 
+    font-size: 36px; 
   }
   
   .icon-button:hover i {
-    color: #007bff; /* Changes the icon color to blue on hover */
+    color: #007bff;
   }
   
   .icon-button:focus {
-    outline: none; /* Removes the outline when focused */
+    outline: none; 
   }
   .icon-button:focus {
-    outline: none; /* Removes the outline when focused */
-    box-shadow: none; /* Ensures no box shadow is applied */
+    outline: none; 
+    box-shadow: none; 
   }
     
   .btn:focus {
-    outline: none; /* Removes the outline when focused */
-    box-shadow: none; /* Ensures no box shadow is applied */
+    outline: none; 
+    box-shadow: none;
   }
   .btn:hover i {
-    color: #007bff; /* Changes the icon color to blue on hover */
+    color: #007bff;
   }
 
 body {
-    height: 100%;           /* Ensure the body takes up the full height */
-    margin: 0;              /* Remove default margin */
-    background-color: #8df3eb; /* Set your desired background color */
+    height: 100%;           
+    margin: 0;            
+    background-color: #8df3eb; 
   }
 
-/* Sidebar Styling */
+
 .sidebar {
   width: 250px;
   height: 100vh;
   position: fixed;
-  background: linear-gradient(180deg, #266a95 0%, #012942 100%); /* Gradient background */
+  background-color: #083551 !important; 
   transition: all 0.3s;
   z-index: 1000;
 }
 
-/* Sidebar header styling */
+
 .sidebar-header {
-  background-color: #012942; /* Bright blue for header */
+  background-color: #012942; 
   padding: 1rem;
   color: white;
 }
 
-/* Nav link styling */
+
 .nav-link {
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
-  color: #d1d1d1; /* Lighter gray for text */
+  color: #d1d1d1; 
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Hover effect for nav links */
+
 .nav-link:hover {
-  background-color: #ffffff; /* Darker background on hover */
-  color: #ffffff; /* White text on hover */
+  background-color: #ffffff; 
+  color: #ffffff; 
 }
 
-/* Active link styling */
+
 .nav-link.active {
-  background-color: #28a745; /* Green color for active links */
-  color: #ffffff; /* White text for active links */
+  background-color: #28a745; 
+  color: #ffffff; 
 }
 
-/* Content area (main page) */
+
 .content {
   margin-left: 250px;
   transition: margin-left 0.3s;
 }
 
-/* Collapsed Sidebar */
+
 .sidebar.collapsed {
   width: 70px;
 }
@@ -125,7 +125,7 @@ body {
   margin-left: 70px;
 }
 
-/* Responsive for smaller screens */
+
 @media (max-width: 768px) {
   .sidebar {
     position: absolute;
@@ -141,28 +141,27 @@ body {
   }
 }
 
-/* Increase the size of icons */
+
 .icon-large {
-  font-size: 1.5rem; /* Adjust icon size */
+  font-size: 1.5rem; 
 }
 
-/* Adjust spacing between icons and text */
+
 .nav-link i {
-  margin-right: 20px; /* Increased space between icon and text */
+  margin-right: 20px;
 }
 
-/* Ensure vertical alignment for the nav items */
 .nav-link.d-flex {
   display: flex;
-  align-items: center; /* Ensures vertical alignment of icon and text */
+  align-items: center; 
 }
 
-/* Optional: Additional spacing for the sidebar */
 .sidebar {
   width: 250px;
 }
 
-/* Optional: Adjust sidebar links when hovered for better UX */
 .nav-link:hover {
-  background-color: #35759c;
+  background-color: #08639bb9;
 }
+
+

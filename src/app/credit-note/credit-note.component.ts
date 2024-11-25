@@ -8,9 +8,9 @@ export function discountRangeValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const discount = control.value;
     if (discount < 0 || discount > 100) {
-      return { 'discountOutOfRange': true }; // Custom error
+      return { 'discountOutOfRange': true }; 
     }
-    return null; // No error
+    return null; 
   };
 }
 
@@ -37,7 +37,7 @@ export class CreditNoteFormComponent {
     // Add the first item by default to ensure it's shown
     this.addItem();
 
-    // Subscribe to value changes of each individual form control inside each item
+    
     this.items.controls.forEach((item, index) => {
       item.valueChanges.subscribe(() => {
         this.calculateTotal(index);
@@ -91,7 +91,7 @@ export class CreditNoteFormComponent {
 
   onSubmit(): void {
     if (this.creditNoteForm.valid) {
-      this.calculateTotal(0); // Make sure total is calculated for the first item before submitting
+      this.calculateTotal(0); 
       this.creditNoteService.saveCreditNote(this.creditNoteForm.value).subscribe(
         response => {
           console.log('Credit note saved successfully:', response);
