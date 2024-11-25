@@ -6,35 +6,7 @@
       <div class="card-body">
         <form [formGroup]="companyForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
           <div class="row">
-          <!-- Logo Upload -->
-          <!-- <div class="col-md-12 mb-3">
-            <label for="logo">Your Logo:</label>
-            <input type="file" (change)="onFileChange($event)" required class="form-control" />
-          </div> -->
-          <!-- <div class="col-md-6 mb-3">
-            <label for="logo">Your Logo :</label>
-            <div 
-                class="logo-upload" 
-                (dragover)="onDragOver($event)" 
-                (dragleave)="onDragLeave($event)" 
-                (drop)="onDrop($event)" 
-                (click)="fileInput.click()"
-                [class.drag-over]="isDragOver">
-                <input 
-                    type="file" 
-                    (change)="onFileChange($event)" 
-                    required 
-                    class="form-control" 
-                    accept="image/*" 
-                    #fileInput 
-                    style="display: none;" />
-                
-                <img *ngIf="logoUrl" [src]="logoUrl" alt="Logo Preview" class="logo-preview" />
-                <p *ngIf="!logoUrl">Drag and drop your logo here or click to select</p>
-                <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-            </div>
-        </div> -->
-
+         
         <div class="col-md-6 mb-3">
           <label for="logo">Your Logo :</label>
           <div 
@@ -56,7 +28,7 @@
                   style="display: none;" 
               />
       
-              <!-- FontAwesome icon and placeholder text -->
+
               <ng-container *ngIf="!logoUrl">
                 <i class="fa-solid fa-upload fa-2x mb-2"></i>
                  
@@ -437,13 +409,7 @@
               </div>
             </div>
           </div>
-  <!-- Extra fieldss -->
- <!-- Toggle Button for Extra Fields -->
-<!-- <div class="d-flex justify-content-start mb-3">
-  <button type="button" (click)="toggleExtraFields()" class="btn btn-secondary">
-    {{ showExtraFields ? 'Hide Extra Fields Options' : 'Show Extra Fields Options' }}
-  </button>
-</div> -->
+
 
 <div class="d-flex justify-content-start mb-3">
   <button 

@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <h2 class="mb-4">Edit Invoice</h2>
-    <form (ngSubmit)="onUpdate()" #invoiceForm="ngForm"> <!-- Added template variable -->
+    <form (ngSubmit)="onUpdate()" #invoiceForm="ngForm"> 
       <!-- Client Name and Invoice No -->
       <div class="row mb-3">
         <div class="col-md-6">
@@ -119,10 +119,7 @@
   
       GST
       <div class="row mb-3">
-        <!-- <div class="col-md-6">
-          <label for="tax_cgst_sgst_igst" class="form-label">Tax (CGST/SGST/IGST):</label>
-          <input [(ngModel)]="invoice.tax_cgst_sgst_igst" name="tax_cgst_sgst_igst" id="tax_cgst_sgst_igst" type="number" class="form-control" (input)="calculateTotal()">
-        </div> -->
+  
         <div class="col-md-6">
             <label for="tax_cgst_sgst_igst" class="form-label">Tax (CGST/SGST/IGST):</label>
             <select [(ngModel)]="invoice.tax_cgst_sgst_igst" name="tax_cgst_sgst_igst" id="tax_cgst_sgst_igst" class="form-control" (change)="calculateTotal()">

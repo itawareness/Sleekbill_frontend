@@ -7,8 +7,8 @@ import { Item } from './item.model';
   providedIn: 'root'
 })
 export class ItemService {
-  private baseUrl = 'http://localhost:8080/items'; // Update with your API URL
-  private itemCountURL = 'http://localhost:8080/items/allItemCounts'; // Spring Boot endpoint
+  private baseUrl = 'http://localhost:8080/items'; 
+  private itemCountURL = 'http://localhost:8080/items/allItemCounts'; 
   constructor(private http: HttpClient) {}
 
   createItem(item: Item): Observable<Item> {

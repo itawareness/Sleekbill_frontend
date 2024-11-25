@@ -9,9 +9,9 @@ export function discountRangeValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const discount = control.value;
     if (discount < 0 || discount > 100) {
-      return { 'discountOutOfRange': true }; // Custom error
+      return { 'discountOutOfRange': true }; 
     }
-    return null; // No error
+    return null; 
   };
 }
 

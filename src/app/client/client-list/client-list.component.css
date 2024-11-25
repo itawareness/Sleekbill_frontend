@@ -7,29 +7,29 @@
 
 
 .table {
-  width: 100%; /* Ensure the table takes full width */
+  width: 100%; 
 }
 
-/* Keeps pagination fixed at the bottom */
+
 .pagination-container {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: white; /* Keeps it visible against the page background */
+  background-color: white; 
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   padding: 10px 0;
 }
 
-/* Optional: Responsiveness for mobile devices */
+
 @media (max-width: 576px) {
   .pagination {
-    font-size: 0.8rem; /* Smaller font size for mobile */
+    font-size: 0.8rem; 
   }
 
   .page-item {
-    margin: 0 2px; /* Adjust margins for smaller screens */
+    margin: 0 2px; 
   }
 }
 
@@ -47,7 +47,7 @@ container {
   display: block;
 }
 
-/* Fixed table layout */
+
 table {
   table-layout: fixed;
   width: 100%;
@@ -60,7 +60,7 @@ thead {
   z-index: 1;
 }
 
-/* Handle text overflow with ellipsis */
+
 td {
   padding: 8px;
   text-overflow: ellipsis;
@@ -73,24 +73,24 @@ td {
   width: 100%;
 }
 
-/* Pagination container styling */
+
 .pagination-container {
   padding-top: 15px;
 }
 
-/* Custom "Tomato" Button */
+
 .btn-tomato {
-  background-color: #FF6347;  /* Tomato color */
-  border-color: #FF6347;      /* Border color */
-  color: white;               /* Text color */
+  background-color: #FF6347;  
+  border-color: #FF6347;      
+  color: white;              
 }
 
 .btn-tomato:hover {
-  background-color: #E55347;  /* Darker shade of Tomato for hover effect */
+  background-color: #E55347;  
   border-color: #E55347;
 }
 
 .btn-tomato:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.5);  /* Optional: Focus effect */
+  box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.5);  
 }
 

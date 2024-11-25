@@ -25,22 +25,12 @@ export class PurchaseOrderListComponent implements OnInit {
     });
   }
 
-  // deletePurchaseOrder(id: number) {
-  //   this.purchaseOrderService.deletePurchaseOrder(id).subscribe(() => {
-  //     this.fetchPurchaseOrders();
-      
-  //   });
-  // }
-
-
-
-
   deletePurchaseOrder(id: number): void {
-    // Confirmation alert before deleting
+   
     const confirmation = window.confirm('Do you want to delete this purchase order?');
     if (confirmation) {
         this.purchaseOrderService.deletePurchaseOrder(id).subscribe(() => {
-            this.fetchPurchaseOrders(); // Reload purchase after deletion
+            this.fetchPurchaseOrders(); 
         }, error => {
             console.error('Error deleting invoice:', error);
         });

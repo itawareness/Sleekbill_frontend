@@ -6,92 +6,92 @@
   .card {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
-/* Styling for the statistics cards */
+
 .stats-card {
-  background-color: #072d45; /* Background color */
-  color: rgb(255, 255, 255); /* Text color */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover transition */
-  border: none; /* Remove border */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow initially */
-  opacity: 1; /* Full opacity */
-  will-change: transform, box-shadow; /* Optimize for transform changes */
-  position: relative; /* To allow proper movement during hover */
+  background-color: #072d45; 
+  color: rgb(255, 255, 255); 
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+  border: none; 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
+  opacity: 1; 
+  will-change: transform, box-shadow;
+  position: relative; 
 }
 
-/* Hover effect */
+
 .stats-card:hover {
-  transform: translateY(-5px); /* Move card up */
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
-  opacity: 0.9; /* Slight opacity change on hover */
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+  opacity: 0.9; 
 }
 
-/* Card body center alignment */
+
 .stats-card .card-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100px; /* Adjust as per design preference */
+  height: 100px; 
 }
 
-/* Prevent text from being blurred on hover */
+
 .stats-card .card-body h5, .stats-card .card-body h6 {
-  transition: none; /* No transition on text elements */
-  will-change: initial; /* Prevent text from being affected by hover */
+  transition: none; 
+  will-change: initial; 
 }
-  /* Custom background color for the buttons */
+
 .custom-btn {
-  background-color: #072d45; /* Apply the background color */
-  border-color: #072d45; /* Ensure the border matches the background color */
+  background-color: #072d45; 
+  border-color: #072d45; 
 }
 
 .custom-btn:hover {
-  background-color: #072d45; /* Slightly darker shade on hover */
-  border-color: #072d45; /* Matching border color on hover */
+  background-color: #072d45; 
+  border-color: #072d45; 
 }
-/* Optional custom spacing */
+
 .card-body .row {
-  gap: 20px; /* Adds spacing between the text and button */
-}
-/* Custom button styles */
-.custom-btn {
-  background-color: #eccc37; /* Background color */
-  color: white; /* Text color */
-  border-radius: 50px; /* Rounded corners */
-  padding: 08px 20px; /* Standard padding */
-  font-size: 16px; /* Standard text size */
-  border: none; /* No border */
-  transition: none; /* Disable hover effect */
+  gap: 20px; 
 }
 
-/* Prevent hover effect */
+.custom-btn {
+  background-color: #eccc37; 
+  color: white;
+  border-radius: 50px;
+  padding: 08px 20px; 
+  font-size: 16px;
+  border: none;
+  transition: none;
+}
+
+
 .custom-btn:hover {
-  background-color: #eccc37; /* Keep background same */
-  color: white; /* Keep text color same */
-  transform: none; /* Prevent any scaling */
-  box-shadow: none; /* Prevent shadow on hover */
+  background-color: #eccc37; 
+  color: white;
+  transform: none; 
+  box-shadow: none; 
 }
 
 .custom-button {
-  background-color: #073d5cdc; /* Background color */
-  color: white; /* Text color */
-  border-radius: 50px; /* Rounded corners */
-  padding: 08px 20px; /* Standard padding */
-  font-size: 16px; /* Standard text size */
-  border: none; /* No border */
-  transition: none; /* Disable hover effect */
+  background-color: #073d5cdc; 
+  color: white; 
+  border-radius: 50px; 
+  padding: 08px 20px; 
+  font-size: 16px; 
+  border: none;
+  transition: none; 
 }
 
-/* Reduce height of the card */
+
 .custom-card-height {
-  height: 400px; /* Adjust as needed */
-  overflow: hidden; /* Prevent content from spilling out */
+  height: 400px; 
+  overflow: hidden; 
 }
 
-/* Ensure the canvas fits properly within the card */
+
 .chart-container {
   position: relative;
-  height: 250px; /* Adjust canvas height */
+  height: 250px; 
   width: 100%;
 }
 
@@ -107,23 +107,23 @@
 
 
 .text-dark-blue {
-  color: #003366; /* Dark Blue */
+  color: #003366; 
 }
 
 
 .list-group .text-secondary {
   text-decoration: none;
-  color: #6c757d; /* Grey color for text */
+  color: #6c757d; 
 }
 
 .list-group .text-secondary:hover {
-  color: #495057; /* Slightly darker grey on hover */
+  color: #495057; 
 }
 
 .list-group .list-unstyled {
   margin: 0;
   padding: 0;
-  list-style-type: none; /* Removes default bullets */
+  list-style-type: none; 
 }
 
 .list-group-item {
@@ -132,32 +132,32 @@
 
 
 .tips-card {
-  background-color: #f8f9fa; /* Light background color */
-  border: 1px solid #dee2e6; /* Subtle border */
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6; 
   border-radius: 8px;
 }
 
 .tips-card .card-header {
-  background-color: #fff; /* White background for header */
+  background-color: #fff; 
  
-  color: #343a40; /* Dark text */
+  color: #343a40; 
 }
 
 .tips-card .list-group-item {
-  background-color: #f9f9f9; /* Light gray background for list items */
+  background-color: #f9f9f9; 
   border: none;
   border-radius: 5px;
-  margin-bottom: 5px; /* Spacing between items */
+  margin-bottom: 5px;
   font-weight: 500;
-  color: #343a40; /* Dark text */
+  color: #343a40;
 }
 
 .tips-card .list-group-item:hover {
-  background-color: #e9ecef; /* Slight hover effect */
+  background-color: #e9ecef;  
   cursor: pointer;
 }
 
 .tips-card .list-group-item span {
-  color: #007bff; /* Plus icon color */
-  font-size: 1.2rem; /* Slightly larger font for the plus icon */
+  color: #007bff; 
+  font-size: 1.2rem; 
 }

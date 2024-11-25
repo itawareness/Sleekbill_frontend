@@ -1,4 +1,4 @@
-<!-- src/app/invoices-list/invoices-list.component.html -->
+
 <div class="container">
 <h2 class="text-center">Invoices List</h2>
 <table class="table table-striped">
@@ -30,8 +30,7 @@
       <td>{{ invoice.item_discount }}</td>
       <td>{{ invoice.total }}</td>     
       <td>
-        <!-- <button (click)="editInvoice(invoice.invoice_Id)" class="btn btn-warning">Edit</button>
-        <button (click)="deleteInvoice(invoice.invoice_Id)" class="btn btn-danger">Delete</button> -->
+      
         <button (click)="editInvoice(invoice.invoice_Id!)" class="btn btn-warning">Edit</button> |
         <button (click)="deleteInvoice(invoice.invoice_Id!)" class="btn btn-danger">Delete</button>
 

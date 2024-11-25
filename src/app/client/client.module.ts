@@ -14,9 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms'; // Import this module
   ],
   imports: [
     CommonModule,
-    FormsModule, // Add FormsModule here
+    FormsModule, 
     ClientRoutingModule,
-    ReactiveFormsModule, // Add it to imports array
+    ReactiveFormsModule, 
   ],
 })
 export class ClientModule {}

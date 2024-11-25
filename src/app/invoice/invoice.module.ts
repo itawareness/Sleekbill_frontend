@@ -6,17 +6,17 @@ import { InvoiceService } from './invoice.service';
 
 @NgModule({
   declarations: [
-    InvoiceComponent  // Declare the InvoiceComponent
+    InvoiceComponent 
   ],
   imports: [
-    CommonModule,        // Common functionalities
-    ReactiveFormsModule  // Form functionalities
+    CommonModule,        
+    ReactiveFormsModule  
   ],
   providers: [
-    InvoiceService       // Provide the InvoiceService
+    InvoiceService       
   ],
   exports: [
-    InvoiceComponent      // Export the InvoiceComponent if needed in other modules
+    InvoiceComponent     
   ]
 })
 export class InvoiceModule { }

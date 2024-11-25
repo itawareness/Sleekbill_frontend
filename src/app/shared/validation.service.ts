@@ -17,7 +17,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[a-zA-Z\s-]+$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -30,7 +30,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[A-Z]+$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -43,7 +43,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[0-9]+$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -55,7 +55,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[0-9]+$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -68,7 +68,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[0-9]+$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -81,7 +81,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[0-9]+$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true };
   }
   return null;
   }
@@ -93,7 +93,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[0-9]+$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -105,7 +105,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[a-zA-Z\s-]+$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -119,7 +119,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[0-9]+$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -132,7 +132,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[A-Z0-9]{6}$|^[A-Z0-9]{8}$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -146,7 +146,7 @@ export class ValidationService {
   if (!itemName) {
     return { required: true };
   } else if (!/^[A-Z0-9]{6,12}$/.test(itemName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true }; 
   }
   return null;
   }
@@ -159,7 +159,7 @@ validateCompanyName(control: any) {
   if (!companyName) {
     return { required: true };
   } else if (!/^[a-zA-Z\s-]+$/.test(companyName)) {
-    return { pattern: true }; // Only alphabets, spaces, and hyphens are allowed
+    return { pattern: true };
   }
   return null;
 }
@@ -169,7 +169,7 @@ validatePhone(control: any) {
   if (!phone) {
     return { required: true };
   } else if (!/^\d{10}$/.test(phone)) {
-    return { pattern: true }; // Phone number must be exactly 10 digits
+    return { pattern: true }; 
   }
   return null;
 }
@@ -179,7 +179,7 @@ validateEmail(control: any) {
   if (!email) {
     return { required: true };
   } else if (!/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|rediffmail\.com)$/.test(email)) {
-    return { pattern: true }; // Only specific email domains allowed
+    return { pattern: true };
   }
   return null;
 }
@@ -189,7 +189,7 @@ validateGSTIN(control: any) {
   if (!gstin) {
     return { required: true };
   } else if (!/^[0-9A-Z]{15}$/.test(gstin)) {
-    return { pattern: true }; // Invalid GSTIN format
+    return { pattern: true }; 
   }
   return null;
 }
@@ -199,7 +199,7 @@ validatePAN(control: any) {
   if (!pan) {
     return { required: true };
   } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) {
-    return { pattern: true }; // Invalid PAN format
+    return { pattern: true }; 
   }
   return null;
 }
@@ -209,7 +209,7 @@ validateTIN(control: any) {
   if (!tin) {
     return { required: true };
   } else if (!/^\d{11}$/.test(tin)) {
-    return { pattern: true }; // TIN must be exactly 11 digits
+    return { pattern: true }; 
   }
   return null;
 }
@@ -219,7 +219,7 @@ validateVAT(control: any) {
   if (!vat) {
     return { required: true };
   } else if (!/^\d{2}-\d{10}-VAT$/.test(vat)) {
-    return { pattern: true }; // VAT must be numeric
+    return { pattern: true }; 
   }
   return null;
 }
@@ -228,7 +228,7 @@ validateWebsite(control: any) {
   const website = control.value;
   if (website && !/^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?(\/[^\s]*)?$/
 .test(website)) {
-    return { pattern: true }; // Invalid website format
+    return { pattern: true }; 
   }
   return null;
 }

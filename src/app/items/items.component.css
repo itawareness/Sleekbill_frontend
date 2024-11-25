@@ -1,26 +1,26 @@
-/* Table Header Color */
+
 .table thead {
-    background-color: #012f4de0;  /* Set header background color */
-    color: white;  /* Make text white for contrast */
+    background-color: #012f4de0; 
+    color: white; 
   }
   
-  /* Default font-size for all icons */
+
   .fas {
-    font-size: 1.5rem; /* Same size for all icons */
+    font-size: 1.5rem; 
   }
   
-  /* Change color for the save icon */
+
   .fas.fa-save {
-    color: green; /* Save icon color */
+    color: green;
   }
   
-  /* Optional: Set a different color for edit and delete */
+
   .fas.fa-edit {
-    color: blue; /* Edit icon color */
+    color: blue;
   }
   
   .fas.fa-trash-alt {
-    color: red; /* Delete icon color */
+    color: red;
   }
   
   .container {
@@ -29,7 +29,7 @@
   }
   
   .table td input.form-control {
-    width: 100%;  /* Makes input fields take up the entire width of their container */
+    width: 100%; 
     box-sizing: border-box;
   }
   
@@ -46,15 +46,14 @@
   }
   
   .d-flex button {
-    margin-right: 10px; /* Add space between the edit and delete buttons */
+    margin-right: 10px; 
   }
   
-  /* Fix the icon button size */
+
   button {
     padding: 5px;
   }
-  
-  /* Prevent layout shifts by setting fixed dimensions */
+
   .table td {
     min-width: 150px;
   }
@@ -66,39 +65,39 @@
   .table th {
     text-align: center;
   }
-  /* Default Add Line button style */
+
 .add-line-btn {
     padding: 3px 10px;
     font-size: 12px;
-    background-color: #28a745; /* Green background for the button */
+    background-color: #28a745; 
     border: none;
     color: white;
     cursor: pointer;
 }
 
-/* Change background when button is visible */
+
 .add-line-btn:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #218838; 
 }
 
-/* If Add Line is hidden or disabled, change its style */
+
 .add-line-btn:disabled {
-    background-color: #6c757d; /* Grey background */
+    background-color: #6c757d; 
     cursor: not-allowed;
 }
 .title-fixed {
-  white-space: nowrap;    /* Prevents title text from wrapping */
-  margin-right: 5px;      /* Reduced space between title and value */
-  flex-shrink: 0;         /* Prevents the title from shrinking */
-  width: 80%;             /* Allocate 50% of space to the title */
-  text-align: right;      /* Align the title text to the right */
+  white-space: nowrap;   
+  margin-right: 5px;    
+  flex-shrink: 0;        
+  width: 80%;          
+  text-align: right;     
 }
 
 .d-flex {
   display: flex;
-  justify-content: flex-end; /* Moves everything to the right side */
+  justify-content: flex-end;
 }
-/* Fix Footer Section at the Bottom */
+
 .footer-container {
   position: fixed;
   bottom: 0;
@@ -110,14 +109,14 @@
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Center the Buttons with Spacing */
+
 .footer-container .row {
   display: flex;
   justify-content: center;
 }
 
-/* Custom Button Style */
+
 .custom-btn {
-  margin: 0 0px; /* Adds spacing of 0.5 cm between buttons */
+  margin: 0 0px; 
   padding: 5px 15px;
 }
